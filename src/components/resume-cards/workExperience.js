@@ -21,7 +21,7 @@ export default function WorkExperience() {
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Insurance Broker
 							</h3>
-							<p className='text-sm text-tertiary hidden sm:block'>
+							<p className='text-sm text-tertiary sm:block'>
 								<span className='font-bold text-black'>
 									Independant
 								</span>{' '}

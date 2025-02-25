@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 async function fetchProjectData(slug) {
-	const res = await fetch(`http://localhost:3000/api/projects`);
-	const projects = await res.json();
-	return projects[slug] || null;
+	const res = await fetch(`/api/projects?slug=${slug}`);
+	const project = await res.json();
+	return project;
 }
 
 export default function CaseStudy() {
@@ -81,13 +81,13 @@ export default function CaseStudy() {
 
 						<div className='flex md:flex-row flex-col md:flex-rowjustify-end gap-4 my-4'>
 							<a
-								href={project.link}
+								href={project.source}
 								className='relativ rounded bg-primary flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
 								target='_blank'>
 								App Link
 							</a>
 							<a
-								href={project.source}
+								href={project.link}
 								className='relative rounded bg-white flex items-center justify-center py-4 px-10 box-border text-center text-base text-primary border-4 border-primary border-opacity-50 tracking-[-0.04em] uppercase font-black'
 								target='_blank'>
 								{'<Source Code/>'}

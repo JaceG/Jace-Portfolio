@@ -29,7 +29,7 @@ export default function Header() {
 			<header className='w-full sticky top-0 z-20 bg-primary'>
 				<button
 					onClick={handleSidebar}
-					className='flex justify-center items-center m-auto p-4'>
+					className='flex justify-center items-center m-auto p-4 sm:hidden'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						fill='none'

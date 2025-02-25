@@ -74,56 +74,29 @@ export default function Me() {
 				<div className='md:flex-1 md:px-0 px-10 md:text-left text-center'>
 					<div className='xl:max-w-[715px] md:pr-24 text-[20px] leading-[32px]'>
 						<p className='xl:mt-[275px] md:mt-[200px]'>
-							<strong>Jace</strong> is a former digital marketer
-							and newly minted React developer and a recent
-							graduate of The Ohio State University&apos;s Full
-							Stack Development Bootcamp , where he honed his
-							skills in building responsive, dynamic web
-							applications with a focus on React. Combining a
-							strong foundation in modern JavaScript frameworks
-							with a passion for clean, efficient code, Jace has
-							cultivated the technical and problem-solving skills
-							necessary to excel in the fast-paced world of web
-							app development.
+							<strong>Jace</strong> is a recent graduate of The
+							Ohio State University&apos;s Full Stack Development
+							Bootcamp, where he specialized in React and modern
+							JavaScript frameworks. His unique background in
+							digital marketing and sales provides him with
+							valuable insights into user behavior and business
+							needs, allowing him to bridge the gap between
+							technical requirements and marketing objectives
+							while building responsive, user-focused web
+							applications.
 						</p>
 						<br />
 						<p>
-							His former experience in the world of marketing
-							gives him a unique perspective on user behavior and
-							how to create applications that not only look great
-							but also provide a seamless user experience. He
-							understands that sometimes the needs of the
-							marketing team are not always what an engineer would
-							think is ideal, and can use this perspective to find
-							solutions that are ideal for both marketing goals
-							while not sacrificing engineering principles.
-						</p>
-						<br />
-						<p>
-							Beyond coding, what sets Jace apart is his skills in
-							leveraging advanced AI tools like ChatGPT from his
-							unique interdisciplinary background in subjects such
-							as communication, psychology, and bias. Also,
-							advanced English language topics such as
-							linguistics, the roots of language, how children
-							learn language, and whether or not language is
-							hardwired into the human brain. His constant
-							curiosity in researching these subjects increases
-							his ability to understand not only user behavior,
-							but also how to communicate effectively with AI
-							models.
-						</p>
-						<br />
-						<p>
-							Jace is eager to bring these diverse talents to a
-							collaborative team. He is actively exploring
-							opportunities in web development, AI, or any roles
-							that benefit from his blend of technical skills and
-							marketing insight, with a particular interest in the
-							emerging field of prompt engineering. He is prepared
-							to apply his new skills to any appropriate project,
-							opportunities, or internships, and is excited to
-							contribute to your team&apos;s success.
+							What sets Jace apart is his combination of technical
+							skills and strong soft skills developed through his
+							previous career. His experience has cultivated
+							exceptional self-awareness, tact, patience, and
+							active listening abilities - qualities that make him
+							an effective team member and quick learner. While he
+							may be new to development, his ability to understand
+							both business and technical perspectives positions
+							him uniquely to contribute meaningful solutions to
+							any development team.
 						</p>
 					</div>
 				</div>

@@ -57,7 +57,7 @@ export default function Projects() {
 							title={project.title}
 							description={project.snippet}
 							image={project.image}
-							link={project.link}
+							github={project.github}
 							isCenter={index % 3 === 1}>
 							<Link
 								href={`/case-study/${project.slug}`}

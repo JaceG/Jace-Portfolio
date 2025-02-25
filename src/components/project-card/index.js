@@ -6,7 +6,7 @@ export default function Card({
 	title,
 	description,
 	image,
-	link,
+	github,
 	isCenter = false,
 }) {
 	function toSlug(text) {
@@ -39,7 +39,7 @@ export default function Card({
 							Case Study
 						</Link>
 						<a
-							href={link}
+							href={github}
 							target='_blank'
 							className='relative rounded border-4 border-[rgba(57,187,106,0.5)] box-border w-[80px] flex flex-row items-center justify-center py-3 px-5 text-center text-base text-[#39bb6a]'>
 							<span className='relative tracking-[-0.04em] uppercase font-black'>{`</>`}</span>

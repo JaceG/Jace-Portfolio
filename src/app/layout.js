@@ -26,6 +26,9 @@ export default function RootLayout({ children }) {
 				<Header></Header>
 				{children}
 				<Footer></Footer>
+				<script
+					src='https://player.vimeo.com/api/player.js'
+					async></script>
 			</body>
 		</html>
 	);

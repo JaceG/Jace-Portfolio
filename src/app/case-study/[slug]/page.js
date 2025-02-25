@@ -72,22 +72,46 @@ export default function CaseStudy() {
 									</svg>
 								</div>
 							</div>
-							<img
-								src={project.image}
-								alt={`${project.title} Screenshot`}
-								className='w-full h-full object-cover absolute bottom-8 left-8'
-							/>
+							{project.video ? (
+								<div
+									style={{
+										padding: '64.95% 0 0 0',
+										position: 'relative',
+									}}>
+									<iframe
+										src={project.video}
+										frameBorder='0'
+										allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media'
+										style={{
+											position: 'absolute',
+											top: 0,
+											left: 0,
+											width: '100%',
+											height: '100%',
+										}}
+										title={`${project.title} Demo`}
+									/>
+								</div>
+							) : (
+								<img
+									src={project.image}
+									alt={`${project.title} Screenshot`}
+									className='w-full h-full object-cover absolute bottom-8 left-8'
+								/>
+							)}
 						</div>
 
 						<div className='flex md:flex-row flex-col md:flex-rowjustify-end gap-4 my-4'>
+							{project.app && (
+								<a
+									href={project.app}
+									className='relativ rounded bg-primary flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
+									target='_blank'>
+									App Link
+								</a>
+							)}
 							<a
-								href={project.source}
-								className='relativ rounded bg-primary flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
-								target='_blank'>
-								App Link
-							</a>
-							<a
-								href={project.link}
+								href={project.github}
 								className='relative rounded bg-white flex items-center justify-center py-4 px-10 box-border text-center text-base text-primary border-4 border-primary border-opacity-50 tracking-[-0.04em] uppercase font-black'
 								target='_blank'>
 								{'<Source Code/>'}

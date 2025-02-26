@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 async function fetchProjectData(slug) {
 	const res = await fetch(`/api/projects?slug=${slug}`);
@@ -13,9 +13,31 @@ async function fetchProjectData(slug) {
 export default function CaseStudy() {
 	const pathname = usePathname();
 	const slug = pathname.split('/').pop(); // Extract the slug from the pathname
-
+	const projectImageRef = useRef(null);
 	const [project, setProject] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [projectImageWidth, setProjectImageWidth] = useState(0);
+	const [projectImageHeight, setProjectImageHeight] = useState(0);
+
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			if (projectImageRef.current) {
+				setProjectImageWidth(projectImageRef.current.clientWidth);
+				setProjectImageHeight(projectImageRef.current.clientHeight);
+			}
+		});
+	}, []);
+
+	useEffect(() => {
+		if (projectImageRef.current) {
+			setProjectImageWidth(projectImageRef.current.clientWidth);
+			setProjectImageHeight(projectImageRef.current.clientHeight);
+		}
+	}, [
+		projectImageRef,
+		projectImageRef?.current?.clientWidth,
+		projectImageRef?.current?.clientHeight,
+	]);
 
 	useEffect(() => {
 		async function loadProject() {
@@ -39,7 +61,9 @@ export default function CaseStudy() {
 			<div className='max-w-[1560px] mx-auto pt-[60px] flex md:flex-row flex-col'>
 				<div className='flex md:flex-1 md:mt-0 mt-60 md:h-screen items-center justify-center'>
 					<div>
-						<div className='border-[11px] border-primary relative lg:w-[600px] lg:h-[300px] md:w-[400px] h-[200px] w-[300px] ml-2 md:ml-0'>
+						<div
+							ref={projectImageRef}
+							className='border-[11px] border-primary relative lg:w-[600px] lg:h-[300px] md:w-[400px] h-[200px] w-[300px] ml-2 md:ml-0'>
 							<div className='absolute z-10 lg:left-[700px] md:left-[450px] left-0 lg:bottom-[200px] bottom-[100px]'>
 								<h1 className='text-primary 2xl:text-[112px] lg:text-[72px] text-[52px] font-black uppercase 2xl:leading-[102px] lg:leading-[72px] leading-[52px]'>
 									{project.title}
@@ -73,25 +97,19 @@ export default function CaseStudy() {
 								</div>
 							</div>
 							{project.video ? (
-								<div
+								<iframe
+									src={project.video}
+									className='bg-black'
+									width={projectImageWidth}
+									height={projectImageHeight}
+									allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media'
 									style={{
-										padding: '64.95% 0 0 0',
-										position: 'relative',
-									}}>
-									<iframe
-										src={project.video}
-										frameBorder='0'
-										allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media'
-										style={{
-											position: 'absolute',
-											top: 0,
-											left: 0,
-											width: '100%',
-											height: '100%',
-										}}
-										title={`${project.title} Demo`}
-									/>
-								</div>
+										position: 'absolute',
+										bottom: 30,
+										left: 30,
+									}}
+									title={`${project.title} Demo`}
+								/>
 							) : (
 								<img
 									src={project.image}

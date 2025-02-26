@@ -39,18 +39,18 @@ export default function Projects() {
 
 	return (
 		<Section>
-			<div className='flex flex-col items-center justify-center 3xl:mb-16 mb-24'>
+			<div className='flex flex-col items-center justify-center lg:mb-16 mb-24'>
 				<h1 className='sm:text-9xl text-6xl font-bold text-white uppercase mb-4'>
 					Projects
 				</h1>
 				<img
 					src={'/line-curved.svg'}
 					alt='Arrow 2'
-					className='about-img transform -translate-x-28 hidden 3xl:block'
+					className='about-img transform -translate-x-28 hidden lg:block'
 				/>
 			</div>
 			<div className='flex justify-center items-center'>
-				<div className='flex flex-col 3xl:flex-row justify-start items-center 3xl:gap-24 gap-24 flex-wrap max-w-[1572px]'>
+				<div className='flex flex-col lg:flex-row justify-start items-center lg:gap-24 gap-24 flex-wrap max-w-[1572px]'>
 					{projects.map((project, index) => (
 						<Card
 							key={project.slug}
@@ -72,7 +72,7 @@ export default function Projects() {
 				{Math.ceil(total / 3) > page ? (
 					<button
 						onClick={handleShowMore}
-						className='relative rounded bg-[#39bb6a] border-2 border-white 3xl:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
+						className='relative rounded bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
 						See More
 					</button>
 				) : null}
@@ -80,7 +80,7 @@ export default function Projects() {
 				{page > 1 ? (
 					<button
 						onClick={handleShowLess}
-						className='relative rounded bg-[#39bb6a] border-2 border-white 3xl:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
+						className='relative rounded bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
 						See Less
 					</button>
 				) : null}

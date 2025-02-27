@@ -1,4 +1,8 @@
+'use client';
+
 import { Geist, Geist_Mono } from 'next/font/google';
+import { useEffect } from 'react';
+import Hotjar from '@hotjar/browser';
 import Header from '@/components/header';
 import './globals.css';
 import Footer from '@/components/footer';
@@ -19,6 +23,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+	useEffect(() => {
+		Hotjar.init(5320763, 6);
+	}, []);
+
 	return (
 		<html lang='en'>
 			<body

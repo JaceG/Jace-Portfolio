@@ -17,11 +17,6 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
-export const metadata = {
-	title: 'Hire Jace',
-	description: 'Seriously. Hire me.',
-};
-
 export default function RootLayout({ children }) {
 	useEffect(() => {
 		Hotjar.init(5320763, 6);

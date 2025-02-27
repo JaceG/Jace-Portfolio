@@ -1,10 +1,62 @@
+'use client';
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import me from '@/assets/me.png';
 import { SocialIcon } from 'react-social-icons';
 import Section from '../section';
+import { useRef } from 'react';
 
 export default function Me() {
+	const isDraggingRef = useRef(null);
+	const imageRef = useRef(null);
+	const svgRef = useRef(null);
+	const mouseStartImageRef = useRef({ x: 0, y: 0 });
+	const faceTrackingRef = useRef(null);
+	const handleImageMouseDown = (e) => {
+		debugger;
+		isDraggingRef.current = true;
+		mouseStartImageRef.current = {
+			x: e.clientX,
+			y: e.clientY,
+		};
+	};
+
+	const handleImageMouseUp = () => {
+		isDraggingRef.current = false;
+		imageRef.current.style.left = '0px';
+		imageRef.current.style.top = '0px';
+		svgRef.current.style.transform = 'rotate(0deg)';
+	};
+
+	const handleImageMouseMove = (e) => {
+		debugger;
+		if (!isDraggingRef.current) return;
+		const mouseX = e.clientX;
+		const mouseY = e.clientY;
+		const distanceX = mouseX - mouseStartImageRef.current.x;
+		const distanceY = mouseY - mouseStartImageRef.current.y;
+		mouseStartImageRef.current = {
+			x: mouseX,
+			y: mouseY,
+		};
+		console.log(imageRef.current);
+		const imageLeft =
+			parseInt(imageRef.current.style.left?.replace('px', '')) || 0;
+
+		const imageTop =
+			parseInt(imageRef.current.style.top?.replace('px', '')) || 0;
+		imageRef.current.style.left = `${imageLeft + distanceX}px`;
+		imageRef.current.style.top = `${imageTop + distanceY}px`;
+		const faceTrackerRect = faceTrackingRef.current.getBoundingClientRect();
+		const radians = Math.atan2(faceTrackerRect.y, faceTrackerRect.x);
+
+		let degrees = Math.ceil(radians * (180 / Math.PI));
+		// if (faceTrackerRect.y >= svgRef.current.getBoundingClientRect().y) {
+		// 	degrees *= -1;
+		// }
+		svgRef.current.style.transform = `rotate(${degrees}deg)`;
+	};
+
 	const socialLinks = [
 		{
 			url: 'https://github.com/JaceG',
@@ -35,6 +87,7 @@ export default function Me() {
 									Galloway
 								</h1>
 								<img
+									ref={svgRef}
 									src={'/line.svg'}
 									alt='Line'
 									className='about-img relative xl:right-[315px] md:right-[175px] xl:w-[925px] md:w-[550px] hidden md:block'
@@ -45,12 +98,25 @@ export default function Me() {
 									className='about-img relative xl:right-[300px] md:right-[150px] xl:w-[925px] md:w-[550px] md:hidden block top-8'
 								/>
 							</div>
-							<Image
-								src={me}
-								alt='Me'
-								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full'
-							/>
+							<div
+								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full '
+								ref={imageRef}
+								onMouseDown={handleImageMouseDown}
+								onMouseUp={handleImageMouseUp}
+								onMouseOut={handleImageMouseUp}
+								onMouseMove={handleImageMouseMove}>
+								<div
+									className='w-[250px] h-[250px] absolute face-tracking bg-red-500'
+									ref={faceTrackingRef}></div>
+								<Image
+									draggable={false}
+									src={me}
+									alt='Me'
+									className='object-cover h-full w-full'
+								/>
+							</div>
 						</div>
+
 						<div className='flex md:justify-between justify-center items-center md:flex-row flex-col md:mt-[50px] mt-8'>
 							<div className='flex xl:gap-4 md:gap-2 gap-10'>
 								{socialLinks.map((link, index) => (

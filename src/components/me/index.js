@@ -4,7 +4,7 @@ import Image from 'next/image';
 import me from '@/assets/me.png';
 import { SocialIcon } from 'react-social-icons';
 import Section from '../section';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Me() {
 	const isDraggingRef = useRef(null);
@@ -12,8 +12,71 @@ export default function Me() {
 	const svgRef = useRef(null);
 	const mouseStartImageRef = useRef({ x: 0, y: 0 });
 	const faceTrackingRef = useRef(null);
+	const [dimensions, setDimensions] = useState({
+		width: 0,
+		height: 0,
+	});
+	const [svgEndpoint, setSvgEndpoint] = useState({
+		startX: 0,
+		startY: 0,
+		endX: 0,
+		endY: 0,
+	});
+	console.log(svgEndpoint);
+	const isInsideImage = (e) => {
+		const mouseY = e.clientY;
+		const mouseX = e.clientX;
+		const bounds = imageRef.current.getBoundingClientRect();
+		console.log(imageRef.current);
+		return (
+			mouseX >= bounds.left &&
+			mouseX <= bounds.left + imageRef.current.width &&
+			mouseY >= bounds.top &&
+			mouseY <= bounds.top + imageRef.current.height
+		);
+	};
+	useEffect(() => {
+		document.body.addEventListener('mousemove', (e) => {
+			if (isInsideImage(e)) {
+				console.log('mouseMove');
+				handleImageMouseMove(e);
+			} else if (isDraggingRef.current) {
+				handleImageMouseUp(e);
+			}
+		});
+		document.body.addEventListener('mousedown', (e) => {
+			if (isInsideImage(e)) {
+				console.log('mouseDown');
+				handleImageMouseDown(e);
+			}
+		});
+		document.body.addEventListener('mouseup', (e) => {
+			handleImageMouseUp(e);
+		});
+	}, []);
+	useEffect(() => {
+		const handleResize = () => {
+			const width = window.innerWidth;
+			const midPoint = Math.floor(width / 2);
+
+			setDimensions({ width, height: window.innerHeight });
+			setSvgEndpoint({
+				startX: midPoint - 400, // Offset from center
+				startY: 420,
+				endX: midPoint + 400, // Offset from center
+				endY: 420,
+			});
+		};
+
+		// Run on mount and handle window resize
+		if (typeof window !== 'undefined') {
+			handleResize();
+			window.addEventListener('resize', handleResize);
+			return () => window.removeEventListener('resize', handleResize);
+		}
+	}, []);
+
 	const handleImageMouseDown = (e) => {
-		debugger;
 		isDraggingRef.current = true;
 		mouseStartImageRef.current = {
 			x: e.clientX,
@@ -29,7 +92,6 @@ export default function Me() {
 	};
 
 	const handleImageMouseMove = (e) => {
-		debugger;
 		if (!isDraggingRef.current) return;
 		const mouseX = e.clientX;
 		const mouseY = e.clientY;
@@ -48,13 +110,20 @@ export default function Me() {
 		imageRef.current.style.left = `${imageLeft + distanceX}px`;
 		imageRef.current.style.top = `${imageTop + distanceY}px`;
 		const faceTrackerRect = faceTrackingRef.current.getBoundingClientRect();
-		const radians = Math.atan2(faceTrackerRect.y, faceTrackerRect.x);
+		svgRef.current
+			.querySelector('curve')
+			.setAttribute(
+				'd',
+				`M${mouseX},${mouseY} , ${svgEndpoint.endX},${svgEndpoint.endY}`
+			);
+		// const radians = Math.atan2(faceTrackerRect.y, faceTrackerRect.x);
 
-		let degrees = Math.ceil(radians * (180 / Math.PI));
+		// let degrees = Math.ceil(radians * (180 / Math.PI));
 		// if (faceTrackerRect.y >= svgRef.current.getBoundingClientRect().y) {
 		// 	degrees *= -1;
 		// }
-		svgRef.current.style.transform = `rotate(${degrees}deg)`;
+		console.log('mouseMove');
+		// svgRef.current.style.transform = `rotate(${degrees}deg)`;
 	};
 
 	const socialLinks = [
@@ -75,6 +144,54 @@ export default function Me() {
 
 	return (
 		<Section>
+			<div>
+				<svg
+					ref={svgRef}
+					style={{
+						zIndex: '1000',
+						position: 'absolute',
+						top: '0',
+						left: '0',
+						width: '100%',
+						height: dimensions.height,
+						transform: `rotate(0deg)`,
+						overflow: 'visible',
+					}}
+					xmlns='http://www.w3.org/2000/svg'
+					viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+					preserveAspectRatio='xMidYMid meet'>
+					<defs>
+						<marker
+							id='arrow'
+							viewBox='0 0 330 330'
+							refX={svgEndpoint.startX - 740} // Adjust to properly align arrowhead with path start
+							refY='167'
+							markerWidth='6'
+							markerHeight='6'
+							orient='auto-start-reverse'>
+							<path
+								id='arrow'
+								d='M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
+    c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
+    C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606
+    C255,161.018,253.42,157.202,250.606,154.389z'
+								fill='white'
+								stroke='white'
+								strokeWidth={10}
+							/>
+						</marker>
+					</defs>
+
+					<path
+						id='curve'
+						d={`M${svgEndpoint.startX},${svgEndpoint.startY} , ${svgEndpoint.endX},${svgEndpoint.endY}`}
+						stroke='white'
+						strokeWidth={10}
+						fill='none'
+						markerStart='url(#arrow)' // Arrow at the start
+					/>
+				</svg>
+			</div>
 			<main className='flex md:flex-row flex-col'>
 				<div className='md:flex-1 flex md:justify-end justify-center md:mt-0 mt-32'>
 					<div className='xl:mr-[75px] md:mr-[60px] w-full md:w-auto'>
@@ -86,12 +203,13 @@ export default function Me() {
 								<h1 className='text-white xl:text-[112px] md:text-[72px] font-black uppercase xl:leading-[102px] md:leading-[72px] text-[52px] leading-[42px]'>
 									Galloway
 								</h1>
-								<img
+
+								{/* <img
 									ref={svgRef}
 									src={'/line.svg'}
 									alt='Line'
 									className='about-img relative xl:right-[315px] md:right-[175px] xl:w-[925px] md:w-[550px] hidden md:block'
-								/>
+								/> */}
 								<img
 									src={'/line-curved-2.svg'}
 									alt='Line'
@@ -101,12 +219,13 @@ export default function Me() {
 							<div
 								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full '
 								ref={imageRef}
-								onMouseDown={handleImageMouseDown}
-								onMouseUp={handleImageMouseUp}
-								onMouseOut={handleImageMouseUp}
-								onMouseMove={handleImageMouseMove}>
+								// onMouseDown={handleImageMouseDown}
+								// onMouseUp={handleImageMouseUp}
+								// onMouseOut={handleImageMouseUp}
+								// onMouseMove={handleImageMouseMove}
+							>
 								<div
-									className='w-[250px] h-[250px] absolute face-tracking bg-red-500'
+									className='w-[250px] h-[250px] absolute face-tracking'
 									ref={faceTrackingRef}></div>
 								<Image
 									draggable={false}

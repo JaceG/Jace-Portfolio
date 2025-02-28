@@ -2,7 +2,7 @@ export default function Skills() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			{/* Skills Header */}
-			<div className='3xl:w-[730px] lg:w-[730px] md:w-[600px] w-full flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
+			<div className='3xl:w-[730px] xl:w-[730px] lg:w-[730px] md:w-[600px]  flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
 				<h2 className='w-[336px] relative text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
 					Skills
 				</h2>

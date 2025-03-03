@@ -18,3 +18,10 @@ body {
   height: 60px;
   top: 250px;
 }
+
+@media (max-width: 1279px) {
+  .face-tracking {
+    left: 73px;
+    top: 137px;
+  }
+}

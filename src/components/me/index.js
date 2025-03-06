@@ -264,6 +264,9 @@ export default function Me() {
 				<div className='md:flex-1 flex md:justify-end justify-center md:mt-0 mt-32'>
 					<div className='xl:mr-[75px] md:mr-[60px] w-full md:w-auto'>
 						<div className='xl:h-[800px] xl:w-[600px] md:h-[475px] md:w-[350px] h-[450px] w-[calc(100%-50px)] m-auto md:m-0 border-[11px] border-white relative -translate-x-[10px] md:translate-x-0'>
+							<div className='absolute w-full h-full flex justify-center items-center'>
+								Hire Me!
+							</div>
 							<div className='absolute z-10 xl:left-[580px] md:left-[330px] -top-52 md:top-0'>
 								<h1 className='text-white xl:text-[112px] md:text-[72px] font-black uppercase xl:leading-[102px] md:leading-[72px] text-[52px]'>
 									Jace
@@ -285,12 +288,15 @@ export default function Me() {
 							</div>
 							<div
 								ref={imageContainerRef}
-								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full'
+								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full hover:animate-shake group'
 								// onMouseDown={handleImageMouseDown}
 								// onMouseUp={handleImageMouseUp}
 								// onMouseOut={handleImageMouseUp}
 								// onMouseMove={handleImageMouseMove}
 							>
+								<span className='absolute inset-0 flex items-center justify-center text-white font-bold text-xl opacity-0 group-hover:animate-flash pointer-events-none'>
+									Move Me
+								</span>
 								<div
 									className='w-[250px] h-[250px] absolute face-tracking'
 									ref={faceTrackingRef}></div>
@@ -299,7 +305,7 @@ export default function Me() {
 									draggable={false}
 									src={me}
 									alt='Me'
-									className='object-cover h-full w-full'
+									className='object-cover h-full w-full group-hover:animate-shake'
 								/>
 							</div>
 						</div>

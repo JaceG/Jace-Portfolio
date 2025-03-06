@@ -46,11 +46,11 @@ export default function Projects() {
 				<img
 					src={'/line-curved.svg'}
 					alt='Arrow 2'
-					className='about-img transform -translate-x-28 hidden lg:block'
+					className='about-img transform hidden lg:block'
 				/>
 			</div>
 			<div className='flex justify-center items-center'>
-				<div className='flex flex-col lg:flex-row justify-start items-center lg:gap-24 gap-24 flex-wrap max-w-[1572px]'>
+				<div className='flex flex-col lg:flex-row justify-center items-center lg:gap-24 gap-24 flex-wrap max-w-[1572px]'>
 					{projects.map((project, index) => (
 						<Card
 							key={project.slug}

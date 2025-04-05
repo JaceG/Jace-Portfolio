@@ -295,7 +295,7 @@ export default function Me() {
 								// onMouseMove={handleImageMouseMove}
 							>
 								<span className='absolute inset-0 flex items-center justify-center text-white font-bold text-xl opacity-0 group-hover:animate-flash pointer-events-none'>
-									Move Me
+									Drag This Image
 								</span>
 								<div
 									className='w-[250px] h-[250px] absolute face-tracking'

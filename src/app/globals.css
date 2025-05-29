@@ -25,3 +25,13 @@ body {
     top: 137px;
   }
 }
+
+.react-switch-bg {
+  background-color: #39bb6a !important;
+  border-width: 3px !important;
+  border-color: white !important;
+}
+
+.react-switch-bg svg {
+  display: none !important;
+}

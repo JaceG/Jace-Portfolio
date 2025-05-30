@@ -329,7 +329,7 @@ const Books = () => {
 				))}
 
 				{/* Pagination buttons for Psychology section */}
-				<div className='flex justify-center items-center gap-4 mt-16 mb-8'>
+				<div className='flex flex-col sm:flex-row justify-center items-center gap-4 mt-16 mb-8'>
 					{psychologyPage > 1 && (
 						<button
 							onClick={handlePsychologyShowLess}
@@ -383,7 +383,7 @@ const Books = () => {
 				))}
 
 				{/* Pagination buttons for Philosophy section */}
-				<div className='flex justify-center items-center gap-4 mt-16 mb-8'>
+				<div className='flex flex-col sm:flex-row justify-center items-center gap-4 mt-16 mb-8'>
 					{philosophyPage > 1 && (
 						<button
 							onClick={handlePhilosophyShowLess}
@@ -437,7 +437,7 @@ const Books = () => {
 				))}
 
 				{/* Pagination buttons for History section */}
-				<div className='flex justify-center items-center gap-4 mt-16 mb-8'>
+				<div className='flex flex-col sm:flex-row justify-center items-center gap-4 mt-16 mb-8'>
 					{historyPage > 1 && (
 						<button
 							onClick={handleHistoryShowLess}
@@ -491,7 +491,7 @@ const Books = () => {
 				))}
 
 				{/* Pagination buttons for Science section */}
-				<div className='flex justify-center items-center gap-4 mt-16 mb-8'>
+				<div className='flex flex-col sm:flex-row justify-center items-center gap-4 mt-16 mb-8'>
 					{sciencePage > 1 && (
 						<button
 							onClick={handleScienceShowLess}
@@ -545,7 +545,7 @@ const Books = () => {
 				))}
 
 				{/* Pagination buttons for English Writing section */}
-				<div className='flex justify-center items-center gap-4 mt-16 mb-8'>
+				<div className='flex flex-col sm:flex-row justify-center items-center gap-4 mt-16 mb-8'>
 					{englishWritingPage > 1 && (
 						<button
 							onClick={handleEnglishWritingShowLess}

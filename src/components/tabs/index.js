@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import Switch from 'react-switch';
 
-const Tabs = ({ tabsContents }) => {
+const Tabs = ({ tabsContents, isDragging = false }) => {
 	const [tabsContentData, setTabsContents] = useState(() => tabsContents);
 
 	const handleTabClicked = (key) => {
+		if (isDragging) return;
+
 		setTabsContents((prevTabs) => {
 			const newPrevTabs = prevTabs.map((prevTab) => {
 				return {
@@ -16,7 +18,7 @@ const Tabs = ({ tabsContents }) => {
 		});
 	};
 	return (
-		<div>
+		<div style={{ pointerEvents: isDragging ? 'none' : 'auto' }}>
 			<div className='flex flex-col gap-4 flex-wrap items-center'>
 				{tabsContentData.map((tab) => {
 					if (tab.type === 'textSwitch') {

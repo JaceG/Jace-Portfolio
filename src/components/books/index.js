@@ -306,14 +306,23 @@ const Books = () => {
 							<div
 								key={book.id}
 								className='border-[20px] border-[#39bb6a]'>
-								<Link href={book.pageUrl} target='_blank'>
+								{book.pageUrl ? (
+									<Link href={book.pageUrl} target='_blank'>
+										<img
+											src={book.coverUrl}
+											width={200}
+											height={200}
+											alt='Book cover'
+										/>
+									</Link>
+								) : (
 									<img
 										src={book.coverUrl}
 										width={200}
 										height={200}
 										alt='Book cover'
 									/>
-								</Link>
+								)}
 							</div>
 						))}
 					</div>
@@ -351,14 +360,23 @@ const Books = () => {
 							<div
 								key={`philosophy-${book.id}`}
 								className='border-[20px] border-[#39bb6a]'>
-								<Link href={book.pageUrl} target='_blank'>
+								{book.pageUrl ? (
+									<Link href={book.pageUrl} target='_blank'>
+										<img
+											src={book.coverUrl}
+											width={200}
+											height={200}
+											alt='Book cover'
+										/>
+									</Link>
+								) : (
 									<img
 										src={book.coverUrl}
 										width={200}
 										height={200}
 										alt='Book cover'
 									/>
-								</Link>
+								)}
 							</div>
 						))}
 					</div>
@@ -396,14 +414,23 @@ const Books = () => {
 							<div
 								key={`history-${book.id}`}
 								className='border-[20px] border-[#39bb6a]'>
-								<Link href={book.pageUrl} target='_blank'>
+								{book.pageUrl ? (
+									<Link href={book.pageUrl} target='_blank'>
+										<img
+											src={book.coverUrl}
+											width={200}
+											height={200}
+											alt='Book cover'
+										/>
+									</Link>
+								) : (
 									<img
 										src={book.coverUrl}
 										width={200}
 										height={200}
 										alt='Book cover'
 									/>
-								</Link>
+								)}
 							</div>
 						))}
 					</div>
@@ -441,14 +468,23 @@ const Books = () => {
 							<div
 								key={`science-${book.id}`}
 								className='border-[20px] border-[#39bb6a]'>
-								<Link href={book.pageUrl} target='_blank'>
+								{book.pageUrl ? (
+									<Link href={book.pageUrl} target='_blank'>
+										<img
+											src={book.coverUrl}
+											width={200}
+											height={200}
+											alt='Book cover'
+										/>
+									</Link>
+								) : (
 									<img
 										src={book.coverUrl}
 										width={200}
 										height={200}
 										alt='Book cover'
 									/>
-								</Link>
+								)}
 							</div>
 						))}
 					</div>
@@ -486,14 +522,23 @@ const Books = () => {
 							<div
 								key={`english-writing-${book.id}`}
 								className='border-[20px] border-[#39bb6a]'>
-								<Link href={book.pageUrl} target='_blank'>
+								{book.pageUrl ? (
+									<Link href={book.pageUrl} target='_blank'>
+										<img
+											src={book.coverUrl}
+											width={200}
+											height={200}
+											alt='Book cover'
+										/>
+									</Link>
+								) : (
 									<img
 										src={book.coverUrl}
 										width={200}
 										height={200}
 										alt='Book cover'
 									/>
-								</Link>
+								)}
 							</div>
 						))}
 					</div>

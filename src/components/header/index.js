@@ -57,6 +57,11 @@ export default function Header() {
 							</Link>
 						</li>
 						<li>
+							<Link onClick={smoothScroll} href='/#books'>
+								BOOKS
+							</Link>
+						</li>
+						<li>
 							<Link onClick={smoothScroll} href='/#connect'>
 								CONTACT
 							</Link>

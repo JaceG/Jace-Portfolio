@@ -327,7 +327,7 @@ export default function Me() {
 								))}
 							</div>
 							<a
-								href='https://drive.google.com/uc?export=download&id=1lvE1VHpLcgTLfk86HLCBhHR5ShVrwHI1'
+								href='https://drive.google.com/uc?export=download&id=1raNk-PljPIJk0X2iWP79WPrgmLUTLlWB'
 								className='rounded bg-black flex items-center justify-center xl:py-4 xl:px-10 md:py-2 md:px-6 my-16 md:my-0 py-6 px-12 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'>
 								Download Resume
 							</a>

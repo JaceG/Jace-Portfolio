@@ -10,13 +10,38 @@ const initialData = {
 
 const Connect = () => {
 	const [formData, setFormData] = useState(initialData);
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({
+		name: '',
+		email: '',
+		message: '',
+	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitMessage, setSubmitMessage] = useState(null);
 
-	const handleErrors = (key, data) => {
-		// Implement your error handling logic here
-		return true;
+	const handleErrors = () => {
+		const newErrors = { ...initialData };
+		Object.keys(formData).forEach((key) => {
+			if (key === 'name' && !formData.name) {
+				newErrors.name = 'Name is required';
+			}
+			if (key === 'email' && !formData.email) {
+				newErrors.email = 'Email is required';
+			}
+			if (
+				key === 'email' &&
+				!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+					formData.email
+				)
+			) {
+				newErrors.email = 'Invalid email address';
+			}
+			if (key === 'message' && !formData.message) {
+				newErrors.message = 'Message is required';
+			}
+		});
+
+		setErrors(newErrors);
+		return Object.values(newErrors).every((error) => error === '');
 	};
 
 	const handleChange = (e) => {
@@ -26,10 +51,7 @@ const Connect = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formErrors = Object.keys(formData).filter(
-			(key) => !handleErrors(key, formData)
-		);
-		if (formErrors.length === 0) {
+		if (handleErrors()) {
 			setIsSubmitting(true);
 			try {
 				const response = await fetch('/api/contact', {
@@ -101,7 +123,7 @@ const Connect = () => {
 							Your Email
 						</label>
 						<input
-							type='email'
+							type='text'
 							name='email'
 							id='email'
 							className='mt-1 block w-full px-3 py-2 bg-transparent border-4 opacity-50 border-white'
@@ -140,6 +162,11 @@ const Connect = () => {
 						disabled={isSubmitting}>
 						{isSubmitting ? 'Sending...' : 'Send Message'}
 					</button>
+					{submitMessage && (
+						<div className='text-green-500 text-sm mt-1'>
+							{submitMessage}
+						</div>
+					)}
 				</form>
 			</div>
 		</Section>

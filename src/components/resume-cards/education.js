@@ -2,7 +2,7 @@ export default function Education() {
 	return (
 		<div className='flex flex-col items-center justify-center py-8'>
 			<div className='3xl:w-[730px] xl:w-[730px] lg:w-[730px] md:w-[600px]  flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
-				<div className='w-[336px] relative text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
+				<div className='w-[336px] text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
 					<p className='m-0'>Education</p>
 				</div>
 			</div>

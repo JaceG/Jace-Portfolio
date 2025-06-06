@@ -21,11 +21,13 @@ export default function Card({
 			}`}>
 			<div className='bg-white w-full h-full absolute bottom-8 left-8'>
 				<div className='p-8'>
-					<img
-						src={image}
-						alt={title}
-						className='mb-2 h-[198px] w-[400px] object-cover'
-					/>
+					<Link href={`/case-study/${slug}`}>
+						<img
+							src={image}
+							alt={title}
+							className='mb-2 h-[198px] w-[400px] object-cover cursor-pointer'
+						/>
+					</Link>
 					<h2 className='sm:text-4xl text-2xl font-bold text-black uppercase mb-2'>
 						{title}
 					</h2>

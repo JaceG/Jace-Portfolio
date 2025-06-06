@@ -11,3 +11,27 @@ body {
   height: unset !important;
   max-width: unset !important;
 }
+
+.face-tracking {
+  left: 220px;
+  width: 60px;
+  height: 60px;
+  top: 250px;
+}
+
+@media (max-width: 1279px) {
+  .face-tracking {
+    left: 73px;
+    top: 137px;
+  }
+}
+
+.react-switch-bg {
+  background-color: #39bb6a !important;
+  border-width: 3px !important;
+  border-color: white !important;
+}
+
+.react-switch-bg svg {
+  display: none !important;
+}

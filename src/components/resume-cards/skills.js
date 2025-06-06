@@ -3,7 +3,7 @@ export default function Skills() {
 		<div className='flex flex-col items-center justify-center'>
 			{/* Skills Header */}
 			<div className='3xl:w-[730px] xl:w-[730px] lg:w-[730px] md:w-[600px]  flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
-				<h2 className='w-[336px] relative text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
+				<h2 className='w-[336px] text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
 					Skills
 				</h2>
 			</div>
@@ -135,6 +135,11 @@ export default function Skills() {
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
+												MongoDB Atlas
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
 												Mongoose
 											</span>
 										</div>
@@ -239,7 +244,12 @@ export default function Skills() {
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
-												Refactoring
+												Replit
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Claude MCP Servers
 											</span>
 										</div>
 									</div>
@@ -281,6 +291,11 @@ export default function Skills() {
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
 												Active Listening
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Adaptability
 											</span>
 										</div>
 									</div>

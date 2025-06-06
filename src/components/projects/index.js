@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '../project-card';
 import Section from '../section';
 import Link from 'next/link';
@@ -46,11 +46,11 @@ export default function Projects() {
 				<img
 					src={'/line-curved.svg'}
 					alt='Arrow 2'
-					className='about-img transform -translate-x-28 hidden lg:block'
+					className='about-img transform hidden lg:block'
 				/>
 			</div>
 			<div className='flex justify-center items-center'>
-				<div className='flex flex-col lg:flex-row justify-start items-center lg:gap-24 gap-24 flex-wrap max-w-[1572px]'>
+				<div className='flex flex-col lg:flex-row justify-center items-center lg:gap-24 gap-24 flex-wrap max-w-[1572px]'>
 					{projects.map((project, index) => (
 						<Card
 							key={project.slug}
@@ -73,7 +73,7 @@ export default function Projects() {
 					<button
 						onClick={handleShowMore}
 						className='relative rounded bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-						See More
+						See More Projects
 					</button>
 				) : null}
 

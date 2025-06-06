@@ -342,7 +342,7 @@ const Books = () => {
 						<button
 							onClick={handlePsychologyShowMore}
 							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-							See More
+							See More Books
 						</button>
 					)}
 				</div>
@@ -396,7 +396,7 @@ const Books = () => {
 						<button
 							onClick={handlePhilosophyShowMore}
 							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-							See More
+							See More Books
 						</button>
 					)}
 				</div>
@@ -450,7 +450,7 @@ const Books = () => {
 						<button
 							onClick={handleHistoryShowMore}
 							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-							See More
+							See More Books
 						</button>
 					)}
 				</div>
@@ -504,7 +504,7 @@ const Books = () => {
 						<button
 							onClick={handleScienceShowMore}
 							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-							See More
+							See More Books
 						</button>
 					)}
 				</div>
@@ -559,7 +559,7 @@ const Books = () => {
 						<button
 							onClick={handleEnglishWritingShowMore}
 							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-							See More
+							See More Books
 						</button>
 					)}
 				</div>

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '../project-card';
 import Section from '../section';
 import Link from 'next/link';
@@ -73,7 +73,7 @@ export default function Projects() {
 					<button
 						onClick={handleShowMore}
 						className='relative rounded bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
-						See More
+						See More Projects
 					</button>
 				) : null}
 

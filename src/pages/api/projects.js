@@ -1,6 +1,17 @@
 export default function handler(req, res) {
 	const projects = [
 		{
+			slug: 'react-learning-stories',
+			title: 'React Learning Stories',
+			snippet:
+				'An interactive learning platform for React through storytelling and hands-on exercises.',
+			description:
+				'<strong>⚠️ WORK IN PROGRESS: Please keep checking back for updates as this project evolves!</strong><br><br>React Learning Stories is an innovative educational platform designed to teach React fundamentals through engaging storytelling and hands-on interactive exercises. The application transforms complex React concepts into metaphorical stories that create memorable mental models for learners. With a progressive curriculum structure, users journey from basic components to advanced patterns, reinforcing their understanding through kinesthetic exercises that bring abstract concepts to life. The platform features interactive diagrams and visualizations that illustrate key React principles, making it easier for visual learners to grasp challenging topics.<br><br>The application implements a thoughtfully structured learning path that includes foundational modules such as "Component Kingdom" (exploring components as React\'s building blocks), "Props Messengers" (demonstrating data flow between components), "JSX Magic" (mastering the syntax that combines HTML and JavaScript), and "Component Lifecycle" (understanding how components are created, updated, and destroyed). Each module combines narrative storytelling with practical coding exercises, providing immediate feedback and reinforcement. The user interface adapts to different learning styles and paces, allowing learners to progress at a comfortable speed while tracking their advancement through the curriculum.<br><br>From a technical perspective, the application is built using React with Create React App for reliable configuration and build optimization. The architecture leverages modern React patterns including hooks for state management, context API for global state, and React Router for seamless navigation between learning modules. The codebase follows component-based architecture with careful separation of concerns, making it maintainable and scalable as new modules are added. The project emphasizes test-driven development with comprehensive test coverage using Jest and React Testing Library, ensuring a robust and reliable learning experience. The responsive design implementation ensures accessibility across devices, allowing learners to continue their React journey whether on desktop or mobile platforms.',
+			image: 'https://github.com/JaceG/React-Learning-Stories/blob/main/assets/screenshot.png?raw=true',
+			github: 'https://github.com/JaceG/react-learning-stories',
+			app: 'https://react-learning-stories.onrender.com/',
+		},
+		{
 			slug: 'random-movie-generator',
 			title: 'Random Movie Generator',
 			snippet:
@@ -22,17 +33,7 @@ export default function handler(req, res) {
 			github: 'https://github.com/JaceG/ShowFinder',
 			app: 'https://showfinder.app',
 		},
-		{
-			slug: 'react-learning-stories',
-			title: 'React Learning Stories',
-			snippet:
-				'An interactive learning platform for React through storytelling and hands-on exercises.',
-			description:
-				'<strong>⚠️ WORK IN PROGRESS: Please keep checking back for updates as this project evolves!</strong><br><br>React Learning Stories is an innovative educational platform designed to teach React fundamentals through engaging storytelling and hands-on interactive exercises. The application transforms complex React concepts into metaphorical stories that create memorable mental models for learners. With a progressive curriculum structure, users journey from basic components to advanced patterns, reinforcing their understanding through kinesthetic exercises that bring abstract concepts to life. The platform features interactive diagrams and visualizations that illustrate key React principles, making it easier for visual learners to grasp challenging topics.<br><br>The application implements a thoughtfully structured learning path that includes foundational modules such as "Component Kingdom" (exploring components as React\'s building blocks), "Props Messengers" (demonstrating data flow between components), "JSX Magic" (mastering the syntax that combines HTML and JavaScript), and "Component Lifecycle" (understanding how components are created, updated, and destroyed). Each module combines narrative storytelling with practical coding exercises, providing immediate feedback and reinforcement. The user interface adapts to different learning styles and paces, allowing learners to progress at a comfortable speed while tracking their advancement through the curriculum.<br><br>From a technical perspective, the application is built using React with Create React App for reliable configuration and build optimization. The architecture leverages modern React patterns including hooks for state management, context API for global state, and React Router for seamless navigation between learning modules. The codebase follows component-based architecture with careful separation of concerns, making it maintainable and scalable as new modules are added. The project emphasizes test-driven development with comprehensive test coverage using Jest and React Testing Library, ensuring a robust and reliable learning experience. The responsive design implementation ensures accessibility across devices, allowing learners to continue their React journey whether on desktop or mobile platforms.',
-			image: 'https://github.com/JaceG/React-Learning-Stories/blob/main/assets/screenshot.png?raw=true',
-			github: 'https://github.com/JaceG/react-learning-stories',
-			app: 'https://react-learning-stories.onrender.com/',
-		},
+
 		{
 			slug: 'book-search-engine',
 			title: 'Book Search Engine',

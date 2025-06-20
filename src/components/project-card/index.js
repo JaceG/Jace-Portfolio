@@ -38,7 +38,7 @@ export default function Card({
 						<Link
 							href={`/case-study/${slug}`}
 							className='relative rounded bg-[#39bb6a] p-3 tracking-[-0.04em] block w-[140px] uppercase font-black'>
-							Case Study
+							See App
 						</Link>
 						<a
 							href={github}

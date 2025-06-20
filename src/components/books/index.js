@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import React, { useEffect, useState } from 'react';
 import Section from '../section';
@@ -7,6 +6,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 const categories = [
+	{ key: 'ai', name: 'AI', apiCategory: 'ai' },
 	{ key: 'psychology', name: 'Psychology', apiCategory: 'psychology' },
 	{ key: 'philosophy', name: 'Philosophy', apiCategory: 'philosophy' },
 	{ key: 'history', name: 'History', apiCategory: 'history' },
@@ -156,11 +156,37 @@ const Books = () => {
 	return (
 		<Section>
 			<div className='flex flex-col items-center justify-center 3xl:mb-0 mb-24 bg-white'>
-				<main className='flex justify-center items-center mb-2'>
+				<main className='flex justify-center items-center mb-8'>
 					<h1 className='flex-1 text-center sm:text-9xl text-6xl font-bold text-[#39bb6a] uppercase mb-4 mt-8'>
 						Books
 					</h1>
 				</main>
+
+				<div className='border-8 h-[475px] lg:h-[375px] xl:h-[375px] border-[#39bb6a] w-[300px] sm:w-[600px] lg:w-[800px] relative mb-8'>
+					<div className='w-full h-full bg-[#39bb6a] text-white absolute bottom-8 left-7 p-8'>
+						<h3 className='md:text-2xl font-bold'>
+							This is a section for the books I&apos;ve read that
+							I think are relevant to prompt & AI Engineering. I
+							have also included a X conversation thread that
+							explains why I chose the categories of books that I
+							have here.
+							<br />
+							<br />
+							Over the last several years I have read over 400
+							nonfiction books, this is a fraction of them.
+							<br />
+							<br />
+							<a
+								style={{ textDecoration: 'underline' }}
+								href='https://www.goodreads.com/review/list/72594950-jace?shelf=read'
+								target='_blank'
+								rel='noopener noreferrer'>
+								You can find the full list of books I&apos;ve
+								read here.
+							</a>
+						</h3>
+					</div>
+				</div>
 
 				{/* Twitter Embeds */}
 				<div className='flex justify-center items-center mb-8'>

@@ -44,11 +44,11 @@ const Tabs = ({ tabsContents, isDragging = false }) => {
 					return (
 						<button
 							key={tab.key}
-							className={`border-2 border-solid px-2 py-4 min-w-[180px] flex-1 ${
+							className={`border-2 border-solid px-2 py-4 min-w-[180px] flex-1 block transition-all duration-500 ${
 								tab.selected
-									? 'bg-transparent text-white border-white'
-									: 'bg-white text-primary border-transparent'
-							} block   transition-all duration-500 hover:border-white   hover:bg-transparent hover:text-white`}
+									? 'bg-white text-primary border-transparent'
+									: 'bg-transparent text-white border-white hover:bg-white hover:text-primary hover:border-transparent'
+							}`}
 							onClick={() => handleTabClicked(tab.key)}>
 							{tab.label}
 						</button>

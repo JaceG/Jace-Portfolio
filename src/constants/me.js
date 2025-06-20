@@ -44,7 +44,7 @@ export const tabsContents = [
 	},
 	{
 		key: '3',
-		label: 'AI Expert',
+		label: 'AI Engineer',
 		selected: false,
 		children: (
 			<div
@@ -54,17 +54,17 @@ export const tabsContents = [
 				}}>
 				<p>
 					<strong>Jace</strong> is positioned at the forefront of the
-					next evolution in software development as a prompt engineer
-					and AI specialist. While traditional coding skills remain
-					valuable, Jace understands that the future belongs to
-					professionals who can bridge human intent and machine
-					capability through sophisticated prompt design and AI
-					orchestration. His background in digital marketing and sales
-					provides crucial insights into user psychology and business
-					objectives—essential skills for crafting prompts that
-					deliver meaningful results.
+					next evolution in software development as a{' '}
+					<strong>Prompt & AI Engineer</strong>. While traditional
+					coding skills remain valuable, Jace understands that the
+					future belongs to professionals who can bridge human intent
+					and machine capability through sophisticated prompt design
+					and AI orchestration. His background in digital marketing
+					and sales provides crucial insights into user psychology and
+					business objectives—essential skills for crafting prompts
+					that deliver meaningful results.
 				</p>
-				<br />
+				{/* <br />
 				<p>
 					What distinguishes Jace is his commitment to intellectual
 					breadth, demonstrated through his curated collection of
@@ -76,7 +76,7 @@ export const tabsContents = [
 					roles—designing systems rather than writing every line of
 					code—Jace is prepared to be a strategic architect of
 					AI-human collaboration.
-				</p>
+				</p> */}
 				<br />
 				<p>
 					His approach to prompt engineering combines technical

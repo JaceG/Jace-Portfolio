@@ -19,19 +19,19 @@ const config = {
 				'3xl': '1572px',
 			},
 			keyframes: {
-				shake: {
-					'0%, 100%': { transform: 'translateX(0)' },
-					'25%': { transform: 'translateX(-4px)' },
-					'75%': { transform: 'translateX(4px)' },
-				},
+				// shake: {
+				// 	'0%, 100%': { transform: 'translateX(0)' },
+				// 	'25%': { transform: 'translateX(-4px)' },
+				// 	'75%': { transform: 'translateX(4px)' },
+				// },
 				flash: {
-					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0' },
+					'10%, 100%': { opacity: '1' },
+					'70%': { opacity: '0' },
 				},
 			},
 			animation: {
-				shake: 'shake 0.5s ease-in-out 1',
-				flash: 'flash 3s ease-in-out',
+				// shake: 'shake 1s ease-in-out 1',
+				flash: 'flash 10s ease-in-out',
 			},
 		},
 	},

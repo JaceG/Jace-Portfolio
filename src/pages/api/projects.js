@@ -12,6 +12,28 @@ export default function handler(req, res) {
 			app: 'https://react-learning-stories.onrender.com/',
 		},
 		{
+			slug: 'marketing-email-api',
+			title: 'Marketing Email API',
+			snippet:
+				'A data scraper with: email automation, Shopify & WordPress integrations.',
+			description:
+				"<strong>Water Quality Report App</strong> is a full-stack web application that provides real-time water quality reports by scraping data from the Environmental Working Group (EWG) database and delivering detailed contamination analysis via automated email campaigns. The system accepts user email addresses and ZIP codes through embeddable forms, fetches live water utility data, and sends comprehensive reports highlighting contaminant levels, health guidelines, and potential health effects through Klaviyo email marketing integration.<br><br>The application features a sophisticated <strong>multi-platform integration ecosystem</strong> with ready-to-deploy solutions for WordPress (complete plugin with shortcode support), Shopify (theme sections and blocks), and universal JavaScript embedding for any website. The core data engine utilizes <strong>real-time web scraping</strong> of EWG's tap water database using Axios and Cheerio to extract contaminant information, detection levels compared to health guidelines, and detailed explanations of potential health effects. The email automation system leverages Klaviyo's API to create customer profiles and trigger detailed water quality reports with structured data for up to 10 contaminants per location.<br><br>Built with <strong>Express.js and ES6 modules</strong>, the backend provides RESTful API endpoints with comprehensive CORS configuration for cross-domain embedding capabilities. The architecture includes dedicated utility modules for EWG data fetching and Klaviyo event tracking, ensuring clean separation of concerns and maintainable code structure. The system supports both HTTP and HTTPS protocols with SSL certificate integration, making it suitable for deployment across various hosting environments. The embeddable widget uses protocol-relative URLs and vanilla JavaScript for maximum compatibility, while the WordPress plugin provides admin configuration panels and automatic script loading optimization. The Shopify integration includes native theme editor support with metafield configuration and Liquid template compatibility, allowing seamless integration into e-commerce workflows for water quality awareness and customer engagement.",
+			image: 'https://github.com/JaceG/water-report/blob/main/assets/screenshot.png?raw=true',
+			github: 'https://github.com/JaceG/water-report',
+			app: 'http://64.23.239.32:3000/',
+		},
+		{
+			slug: 'spotify-playlist-ai',
+			title: 'Spotify Playlist AI',
+			snippet:
+				'AI-powered personalized Spotify playlist generator using OpenAI and Spotify Web API.',
+			description:
+				"<strong>⚠️ Spotify API depricated needed endpoints to create functional app because they created the same thing with the new Spotify AI DJ X: <strong>Spotify Playlist AI</strong> is a sophisticated full-stack application that combines OpenAI's language processing capabilities with Spotify's vast music library to create personalized playlists from natural language descriptions. Users can describe their ideal playlist in plain English (such as \"songs to test my new speakers with good bass and EDM buildups\") and the system intelligently curates tracks from their personal music collections, including liked songs, top tracks, and existing playlists. The application features multiple processing modes (Quick, Standard, Comprehensive, Complete) that balance speed versus thoroughness, with real-time progress tracking and detailed explanations of why each track was selected.<br><br>The backend architecture utilizes <strong>Express.js with TypeScript</strong> and implements secure OAuth 2.0 PKCE flow for Spotify authentication using Passport.js strategies. The system integrates with <strong>OpenAI's GPT-4 API</strong> to analyze natural language prompts and extract musical preferences, genres, moods, and audio characteristics. MongoDB serves as the persistent data layer with Mongoose models for Users, Playlists, and Tracks, while the Spotify Web API integration handles music data retrieval, playlist creation, and user library access. The application includes sophisticated token management with automatic refresh capabilities and comprehensive error handling for API limitations.<br><br>Built with <strong>React, TypeScript, and Tailwind CSS</strong>, the frontend provides an intuitive interface with tabbed navigation between chat-style playlist requests and advanced playlist generation controls. The system features real-time progress indicators, detailed selection explanations, and responsive design using Radix UI components and Framer Motion animations. Despite encountering Spotify's API restrictions on audio features for AI applications, the platform successfully pivots to popularity-based and genre-matching algorithms while maintaining transparency about selection criteria. The application demonstrates advanced architectural patterns including WebSocket integration for real-time updates, comprehensive caching strategies for performance optimization, and robust fallback systems that ensure functionality despite external API limitations.",
+			image: 'https://github.com/JaceG/Spotify-Playlist-AI/blob/main/assets/screenshot.png?raw=true',
+			github: 'https://github.com/JaceG/Spotify-Playlist-AI',
+			app: 'https://spotify-playlist-ai.replit.app/',
+		},
+		{
 			slug: 'random-movie-generator',
 			title: 'Random Movie Generator',
 			snippet:

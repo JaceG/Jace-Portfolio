@@ -1,6 +1,17 @@
 export default function handler(req, res) {
 	const projects = [
 		{
+			slug: 'dealbreaker',
+			title: 'Dating Tool App',
+			snippet:
+				'A React Expo mobile app for tracking relationship red-flags using a kanban board interface.',
+			description:
+				"<strong>⚠️ WORK IN PROGRESS: Please keep checking back for updates as this project evolves!</strong><br><br>Dealbreaker is an iPhone-exclusive React Native mobile app that helps users track relationship red flags and dealbreakers using a kanban board interface. After building three different versions to perfect the concept, this iteration provides a clean way to organize relationship concerns and track their progression from warning signs to confirmed dealbreakers. Users can create multiple profiles for different relationships and maintain separate kanban boards for each.<br><br>The app features a custom-built kanban board where users drag and drop flags between columns representing different stages of relationship evaluation. Users can add detailed descriptions, attach images, and track complete history of flag transitions. The app includes Google OAuth authentication, offline-first architecture with background sync, and multi-profile support for managing multiple relationships simultaneously.<br><br>This project presented significant technical challenges. Finding the right library for the kanban board functionality was particularly difficult, as most existing solutions weren't suitable for mobile interfaces. The biggest challenge was implementing precise drag-and-drop functionality that works seamlessly on Apple devices - this required extensive testing and refinement to achieve the smooth user experience expected on iOS. The app is built with React Native, TypeScript, and integrates with a Node.js backend on Render with MongoDB Atlas for data persistence.",
+			image: 'https://github.com/JaceG/Dealbreaker/blob/main/assets/screenshot.png?raw=true',
+			github: 'https://github.com/JaceG/Dealbreaker',
+			app: 'https://dealbreaker.site',
+		},
+		{
 			slug: 'react-learning-stories',
 			title: 'React Learning Stories',
 			snippet:

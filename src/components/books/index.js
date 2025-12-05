@@ -20,6 +20,7 @@ const categories = [
 
 const Books = () => {
 	const [bookData, setBookData] = useState({});
+	const [tweetsExpanded, setTweetsExpanded] = useState(false);
 	const booksPerPage = 4;
 
 	async function fetchBooks() {
@@ -47,6 +48,27 @@ const Books = () => {
 	useEffect(() => {
 		fetchBooks();
 	}, []);
+
+	// Ensure Twitter widgets render when tweets are expanded
+	useEffect(() => {
+		const checkAndLoadWidgets = () => {
+			if (
+				typeof window !== 'undefined' &&
+				window.twttr &&
+				window.twttr.widgets
+			) {
+				window.twttr.widgets.load();
+			}
+		};
+
+		// Check immediately
+		checkAndLoadWidgets();
+
+		// Also check after a short delay in case script is still loading
+		const timeout = setTimeout(checkAndLoadWidgets, 500);
+
+		return () => clearTimeout(timeout);
+	}, [tweetsExpanded]);
 
 	const handleShowMore = (categoryKey) => {
 		setBookData((prev) => {
@@ -88,6 +110,10 @@ const Books = () => {
 			rows.push(books.slice(i, i + booksPerPage));
 		}
 		return rows;
+	};
+
+	const toggleTweets = () => {
+		setTweetsExpanded((prev) => !prev);
 	};
 
 	const BookSection = ({ category }) => {
@@ -189,84 +215,100 @@ const Books = () => {
 				</div>
 
 				{/* Twitter Embeds */}
-				<div className='flex justify-center items-center mb-8'>
-					<div className='w-full lg:max-w-xl xl:max-w-2xl'>
-						<blockquote
-							className='twitter-tweet'
-							data-theme='light'
-							data-dnt='true'>
-							<p lang='en' dir='ltr'>
-								College is mostly a scam at this point. <br />
-								<br />
-								You pay $200k+ to get a piece of paper that says
-								you can follow instructions and sit still for 4
-								years. <br />
-								<br />
-								Meanwhile, the most successful people I know
-								either dropped out or never went.
-							</p>
-							&mdash; Amjad Masad (@amasad)
-							<a href='https://twitter.com/amasad/status/1905103640089825788?ref_src=twsrc%5Etfw'>
-								September 23, 2024
-							</a>
-						</blockquote>
-					</div>
+				<div className='flex flex-col items-center mb-8'>
+					<button
+						onClick={toggleTweets}
+						className='mb-4 px-4 py-2 bg-[#39bb6a] text-white rounded font-semibold hover:bg-[#2fa05a] transition-colors'>
+						{tweetsExpanded ? 'Collapse' : 'Expand'} Tweets
+					</button>
 				</div>
 
-				<div className='flex justify-center items-center mb-8'>
-					<div className='w-full lg:max-w-xl xl:max-w-2xl'>
-						<blockquote
-							className='twitter-tweet'
-							data-theme='light'
-							data-dnt='true'>
-							<p lang='en' dir='ltr'>
-								The fundamental issue is that most universities
-								have become massive real estate portfolios with
-								bloated administrations that happen to also run
-								schools on the side. <br />
-								<br />
-								The education part has become secondary to the
-								business of managing endowments and facilities.
-							</p>
-							&mdash; Chamath Palihapitiya (@chamath)
-							<a href='https://twitter.com/chamath/status/1905270472947704141?ref_src=twsrc%5Etfw'>
-								September 24, 2024
-							</a>
-						</blockquote>
-					</div>
+				<div
+					className={`w-full lg:max-w-xl xl:max-w-2xl mx-auto overflow-hidden transition-all duration-300 mb-8 ${
+						tweetsExpanded
+							? 'max-h-[2000px] opacity-100'
+							: 'max-h-0 opacity-0'
+					}`}>
+					<blockquote
+						className='twitter-tweet'
+						data-theme='light'
+						data-dnt='true'>
+						<p lang='en' dir='ltr'>
+							College is mostly a scam at this point. <br />
+							<br />
+							You pay $200k+ to get a piece of paper that says you
+							can follow instructions and sit still for 4 years.{' '}
+							<br />
+							<br />
+							Meanwhile, the most successful people I know either
+							dropped out or never went.
+						</p>
+						&mdash; Amjad Masad (@amasad)
+						<a href='https://twitter.com/amasad/status/1905103640089825788?ref_src=twsrc%5Etfw'>
+							September 23, 2024
+						</a>
+					</blockquote>
 				</div>
 
-				<div className='flex justify-center items-center mb-8'>
-					<div className='w-full lg:max-w-xl xl:max-w-2xl'>
-						<blockquote
-							className='twitter-tweet'
-							data-theme='light'
-							data-dnt='true'>
-							<p lang='en' dir='ltr'>
-								I no longer think college is worth it for most
-								people. <br />
-								<br />
-								The value prop is completely broken:
-								<br />
-								<br />
-								- Crippling debt
-								<br />
-								- Outdated curriculums
-								<br />
-								- Professors disconnected from reality
-								<br />
-								- Woke ideology prioritized over critical
-								thinking
-								<br />
-								<br />
-								Learn a skill. Start a business. Skip the debt.
-							</p>
-							&mdash; Chamath Palihapitiya (@chamath)
-							<a href='https://twitter.com/chamath/status/1905286323977720285?ref_src=twsrc%5Etfw'>
-								September 24, 2024
-							</a>
-						</blockquote>
-					</div>
+				<div
+					className={`w-full lg:max-w-xl xl:max-w-2xl mx-auto overflow-hidden transition-all duration-300 mb-8 ${
+						tweetsExpanded
+							? 'max-h-[2000px] opacity-100'
+							: 'max-h-0 opacity-0'
+					}`}>
+					<blockquote
+						className='twitter-tweet'
+						data-theme='light'
+						data-dnt='true'>
+						<p lang='en' dir='ltr'>
+							The fundamental issue is that most universities have
+							become massive real estate portfolios with bloated
+							administrations that happen to also run schools on
+							the side. <br />
+							<br />
+							The education part has become secondary to the
+							business of managing endowments and facilities.
+						</p>
+						&mdash; Chamath Palihapitiya (@chamath)
+						<a href='https://twitter.com/chamath/status/1905270472947704141?ref_src=twsrc%5Etfw'>
+							September 24, 2024
+						</a>
+					</blockquote>
+				</div>
+
+				<div
+					className={`w-full lg:max-w-xl xl:max-w-2xl mx-auto overflow-hidden transition-all duration-300 mb-8 ${
+						tweetsExpanded
+							? 'max-h-[2000px] opacity-100'
+							: 'max-h-0 opacity-0'
+					}`}>
+					<blockquote
+						className='twitter-tweet'
+						data-theme='light'
+						data-dnt='true'>
+						<p lang='en' dir='ltr'>
+							I no longer think college is worth it for most
+							people. <br />
+							<br />
+							The value prop is completely broken:
+							<br />
+							<br />
+							- Crippling debt
+							<br />
+							- Outdated curriculums
+							<br />
+							- Professors disconnected from reality
+							<br />
+							- Woke ideology prioritized over critical thinking
+							<br />
+							<br />
+							Learn a skill. Start a business. Skip the debt.
+						</p>
+						&mdash; Chamath Palihapitiya (@chamath)
+						<a href='https://twitter.com/chamath/status/1905286323977720285?ref_src=twsrc%5Etfw'>
+							September 24, 2024
+						</a>
+					</blockquote>
 				</div>
 
 				<Script

@@ -23,6 +23,17 @@ export default function handler(req, res) {
 			app: 'https://react-learning-stories.onrender.com/',
 		},
 		{
+			slug: 'the-vegan-aisle',
+			title: 'The Vegan Aisle',
+			snippet:
+				'An online marketplace database of vegan grocery items and store availability.',
+			description:
+				"<strong>The Vegan Aisle</strong>  is a vegan grocery discovery platform that helps users find plant-based products across brick-and-mortar stores, online retailers, and direct-from-brand websites. The application solves a common frustration for vegan shoppers: knowing a product exists but not knowing where to buy it locally. Users can browse thousands of vegan products in a unified interface, discover where each product is available, and build smart shopping lists that work across multiple stores.<br><br>The platform features a comprehensive product discovery system with advanced filtering by category, tags, and minimum rating. Each product detail page displays store availability with an interactive map, user reviews with ratings, nutritional information, and ingredient summaries. Users can contribute to the platform by adding new products they've discovered, reporting store availability, and writing reviews—all moderated through a robust admin approval workflow. The city landing pages provide localized shopping guides, showing stores in a specific area and the vegan products available at each location. Shopping lists intelligently aggregate availability hints, showing users which stores carry the most items from their list.<br><br>From a technical perspective, the application is built with React 18 and TypeScript on the frontend using Vite for fast development, while the backend runs on Node.js with Express and MongoDB Atlas. The architecture follows a clean separation between API clients, custom hooks, and presentation components. The admin panel implements comprehensive content moderation including product approvals, review moderation, featured product curation, and city page management. Product data is seeded from the Open Food Facts API, with crowdsourced availability reports building the store-product relationships over time. The custom design system uses CSS variables with a nature-inspired color palette (forest greens, sage, mint, cream) and organic typography to create a cohesive, visually appealing experience. Authentication uses JWT tokens with bcrypt password hashing, supporting distinct user and admin roles throughout the application.",
+			image: 'https://github.com/JaceG/Plant-Pantry/blob/main/assets/plantpantry-homepage.png?raw=true',
+			github: 'https://github.com/JaceG/plant-pantry',
+			app: 'https://theveganaisle.com',
+		},
+		{
 			slug: 'marketing-email-api',
 			title: 'Marketing Email API',
 			snippet:

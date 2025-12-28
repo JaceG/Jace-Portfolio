@@ -19,6 +19,37 @@ const Tabs = ({ tabsContents, isDragging = false }) => {
 	};
 	return (
 		<div style={{ pointerEvents: isDragging ? 'none' : 'auto' }}>
+			<div
+				className='text-fade-in mb-4'
+				style={{
+					textAlign: 'justify',
+				}}>
+				<p>
+					My story starts with nerding out over computers and the
+					internet at a young age. I started building my own PCs when
+					I was about 16yo and even had my own computer repair and
+					game computer building business for years. I eventually
+					needed to learn marketing, and wound up working in marking
+					for a number of years because I got hooked and spent most of
+					my marketing career programming CRMs to automate marketing
+					campaigns. Email, text messages, internal and external
+					communications, I automated all of it in different CRMs.
+				</p>
+				<br />
+				<p>
+					I always had an interest in code, but never got beyond LAMP
+					servers, HTML, CSS, and terminal commands for a long time.
+					But I always figured I would make the transition from
+					programming CRMs to programming websites and apps. So I
+					decided to eventually go to OSU to get some computer science
+					education.
+				</p>
+				<br />
+				<p>
+					I look forward to talking with you about a development or
+					project management role you need filled!
+				</p>
+			</div>
 			<div className='flex flex-col gap-4 flex-wrap items-center'>
 				{tabsContentData.map((tab) => {
 					if (tab.type === 'textSwitch') {

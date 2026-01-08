@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
+import Head from 'next/head';
 
 async function fetchProjectData(slug) {
 	const res = await fetch(`/api/projects?slug=${slug}`);
@@ -56,8 +57,128 @@ export default function CaseStudy() {
 		return <div>Project not found</div>;
 	}
 
+	// Generate structured data for the project
+	const projectStructuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareApplication',
+		name: project.title,
+		description: project.snippet,
+		applicationCategory: 'WebApplication',
+		author: {
+			'@type': 'Person',
+			name: 'Jace Galloway',
+			url: 'https://jacegalloway.com',
+		},
+		url: project.app || project.github,
+		screenshot: project.image,
+		...(project.github && {
+			codeRepository: project.github,
+		}),
+	};
+
+	// Breadcrumb structured data for better navigation in search results
+	const breadcrumbStructuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Home',
+				item: 'https://jacegalloway.com',
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Projects',
+				item: 'https://jacegalloway.com/#projects',
+			},
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: project.title,
+				item: `https://jacegalloway.com/case-study/${slug}`,
+			},
+		],
+	};
+
+	// Extract plain text from HTML description for meta tags
+	const plainTextDescription =
+		project.description
+			?.replace(/<[^>]*>/g, '')
+			.substring(0, 160)
+			.trim() + '...' || project.snippet;
+
 	return (
-		<div className='bg-white'>
+		<>
+			<Head>
+				<title>{`${project.title} - Case Study | Jace Galloway`}</title>
+				<meta
+					name='description'
+					content={plainTextDescription}
+				/>
+				<meta
+					name='keywords'
+					content={`${project.title}, web development, portfolio, Jace Galloway, React, Node.js, full-stack`}
+				/>
+
+				{/* Open Graph */}
+				<meta
+					property='og:type'
+					content='article'
+				/>
+				<meta
+					property='og:title'
+					content={`${project.title} - Case Study`}
+				/>
+				<meta
+					property='og:description'
+					content={plainTextDescription}
+				/>
+				<meta
+					property='og:image'
+					content={project.image}
+				/>
+				<meta
+					property='og:url'
+					content={`https://jacegalloway.com/case-study/${slug}`}
+				/>
+
+				{/* Twitter Card */}
+				<meta
+					name='twitter:card'
+					content='summary_large_image'
+				/>
+				<meta
+					name='twitter:title'
+					content={`${project.title} - Case Study`}
+				/>
+				<meta
+					name='twitter:description'
+					content={plainTextDescription}
+				/>
+				<meta
+					name='twitter:image'
+					content={project.image}
+				/>
+
+				{/* Structured Data - Project */}
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(projectStructuredData),
+					}}
+				/>
+
+				{/* Structured Data - Breadcrumbs */}
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(breadcrumbStructuredData),
+					}}
+				/>
+			</Head>
+			<div className='bg-white'>
 			<div className='max-w-[1560px] mx-auto pt-[60px] flex md:flex-row flex-col'>
 				<div className='flex md:flex-1 md:mt-0 mt-60 md:h-screen items-center justify-center'>
 					<div>
@@ -149,5 +270,6 @@ export default function CaseStudy() {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 }

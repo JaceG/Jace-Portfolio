@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Me from '@/components/me';
 import Projects from '@/components/projects';
 import Resume from '@/components/resume';
@@ -7,22 +6,32 @@ import Books from '@/components/books';
 
 export default function Home() {
 	return (
-		<div>
-			<div id='me'>
+		<main>
+			<section
+				id='me'
+				aria-label='About Jace Galloway'>
 				<Me />
-			</div>
-			<div id='projects'>
+			</section>
+			<section
+				id='projects'
+				aria-label='Portfolio Projects'>
 				<Projects />
-			</div>
-			<div id='resume'>
+			</section>
+			<section
+				id='resume'
+				aria-label='Resume and Experience'>
 				<Resume />
-			</div>
-			<div id='books'>
+			</section>
+			<section
+				id='books'
+				aria-label='Books and Learning'>
 				<Books />
-			</div>
-			<div id='connect'>
+			</section>
+			<section
+				id='connect'
+				aria-label='Contact Information'>
 				<Connect />
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }

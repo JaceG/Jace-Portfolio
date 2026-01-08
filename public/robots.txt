@@ -6,4 +6,4 @@ Allow: /
 # Disallow: /admin
 
 # Sitemap location
-Sitemap: https://jacegalloway.com/sitemap.xml
+Sitemap: https://hirejace.com/sitemap.xml

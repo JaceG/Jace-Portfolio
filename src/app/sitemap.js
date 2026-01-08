@@ -1,6 +1,6 @@
 export default async function sitemap() {
 	// Fetch all projects to generate dynamic URLs
-	const baseUrl = 'https://jacegalloway.com';
+	const baseUrl = 'https://hirejace.com';
 
 	// Import projects data
 	const projectsModule = await import('@/pages/api/projects.js');

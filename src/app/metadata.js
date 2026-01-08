@@ -1,7 +1,8 @@
 export const metadata = {
-	metadataBase: new URL('https://jacegalloway.com'),
+	metadataBase: new URL('https://hirejace.com'),
 	title: {
-		default: 'Jace Galloway - Full-Stack Developer & Software Engineer Portfolio',
+		default:
+			'Jace Galloway - Full-Stack Developer & Software Engineer Portfolio',
 		template: '%s | Jace Galloway',
 	},
 	description:
@@ -39,7 +40,7 @@ export const metadata = {
 	openGraph: {
 		type: 'website',
 		locale: 'en_US',
-		url: 'https://jacegalloway.com',
+		url: 'https://hirejace.com',
 		title: 'Jace Galloway - Full-Stack Developer & Software Engineer',
 		description:
 			'Full-stack software engineer specializing in React, Node.js, TypeScript, and modern web development. View my portfolio of innovative web applications.',
@@ -77,7 +78,13 @@ export const metadata = {
 			{ url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
 			{ url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
 		],
-		apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+		apple: [
+			{
+				url: '/apple-touch-icon.png',
+				sizes: '180x180',
+				type: 'image/png',
+			},
+		],
 		other: [
 			{
 				rel: 'android-chrome-192x192',

@@ -21,7 +21,7 @@ const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
 	name: 'Jace Galloway',
-	url: 'https://jacegalloway.com',
+	url: 'https://hirejace.com',
 	jobTitle: 'Full-Stack Software Engineer',
 	description:
 		'Full-stack software engineer specializing in React, Node.js, TypeScript, and modern web development.',
@@ -60,23 +60,14 @@ export default function RootLayout({ children }) {
 		<html lang='en'>
 			<head>
 				{/* Preconnect to external domains for performance */}
-				<link
-					rel='preconnect'
-					href='https://fonts.googleapis.com'
-				/>
+				<link rel='preconnect' href='https://fonts.googleapis.com' />
 				<link
 					rel='preconnect'
 					href='https://fonts.gstatic.com'
 					crossOrigin='anonymous'
 				/>
-				<link
-					rel='preconnect'
-					href='https://player.vimeo.com'
-				/>
-				<link
-					rel='preconnect'
-					href='https://github.com'
-				/>
+				<link rel='preconnect' href='https://player.vimeo.com' />
+				<link rel='preconnect' href='https://github.com' />
 
 				{/* DNS Prefetch for additional performance */}
 				<link
@@ -93,14 +84,8 @@ export default function RootLayout({ children }) {
 				/>
 
 				{/* Theme Color for mobile browsers */}
-				<meta
-					name='theme-color'
-					content='#0A0E27'
-				/>
-				<meta
-					name='msapplication-TileColor'
-					content='#39BD6D'
-				/>
+				<meta name='theme-color' content='#0A0E27' />
+				<meta name='msapplication-TileColor' content='#39BD6D' />
 			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} bg-primary text-secondary antialiased !scroll-smooth`}>

@@ -84,7 +84,7 @@ export default function Skills() {
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
-												Object-Oriented Programming
+												Java
 											</span>
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>

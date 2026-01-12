@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
-import Head from 'next/head';
 
 async function fetchProjectData(slug) {
 	const res = await fetch(`/api/projects?slug=${slug}`);
@@ -111,58 +110,21 @@ export default function CaseStudy() {
 
 	return (
 		<>
-			<Head>
-				<title>{`${project.title} - Case Study | Jace Galloway`}</title>
-				<meta name='description' content={plainTextDescription} />
-				<meta
-					name='keywords'
-					content={`${project.title}, web development, portfolio, Jace Galloway, React, Node.js, full-stack`}
-				/>
+			{/* Structured Data - Project */}
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(projectStructuredData),
+				}}
+			/>
 
-				{/* Open Graph */}
-				<meta property='og:type' content='article' />
-				<meta
-					property='og:title'
-					content={`${project.title} - Case Study`}
-				/>
-				<meta
-					property='og:description'
-					content={plainTextDescription}
-				/>
-				<meta property='og:image' content={project.image} />
-				<meta
-					property='og:url'
-					content={`https://hirejace.com/case-study/${slug}`}
-				/>
-
-				{/* Twitter Card */}
-				<meta name='twitter:card' content='summary_large_image' />
-				<meta
-					name='twitter:title'
-					content={`${project.title} - Case Study`}
-				/>
-				<meta
-					name='twitter:description'
-					content={plainTextDescription}
-				/>
-				<meta name='twitter:image' content={project.image} />
-
-				{/* Structured Data - Project */}
-				<script
-					type='application/ld+json'
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(projectStructuredData),
-					}}
-				/>
-
-				{/* Structured Data - Breadcrumbs */}
-				<script
-					type='application/ld+json'
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(breadcrumbStructuredData),
-					}}
-				/>
-			</Head>
+			{/* Structured Data - Breadcrumbs */}
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(breadcrumbStructuredData),
+				}}
+			/>
 			<div className='bg-white'>
 				<div className='max-w-[1560px] mx-auto pt-[60px] flex md:flex-row flex-col'>
 					<div className='flex md:flex-1 md:mt-0 mt-60 md:h-screen items-center justify-center'>

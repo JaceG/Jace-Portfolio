@@ -113,7 +113,7 @@ export async function generateMetadata({ params }) {
 		};
 	}
 
-	const imageUrl = `https://hirejace.com${project.image}`;
+	const imageUrl = `https://www.hirejace.com${project.image}`;
 
 	return {
 		title: `${project.title} - Case Study | Jace Galloway`,
@@ -132,7 +132,7 @@ export async function generateMetadata({ params }) {
 			type: 'article',
 			title: `${project.title} - Case Study`,
 			description: project.description,
-			url: `https://hirejace.com/case-study/${slug}`,
+			url: `https://www.hirejace.com/case-study/${slug}`,
 			siteName: 'Jace Galloway Portfolio',
 			images: [
 				{

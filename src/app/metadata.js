@@ -47,7 +47,7 @@ export const metadata = {
 		siteName: 'Jace Galloway Portfolio',
 		images: [
 			{
-				url: '/og-image.png',
+				url: 'https://hirejace.com/og-image.png',
 				width: 1200,
 				height: 630,
 				alt: 'Jace Galloway - Full-Stack Developer Portfolio',
@@ -59,7 +59,7 @@ export const metadata = {
 		title: 'Jace Galloway - Full-Stack Developer & Software Engineer',
 		description:
 			'Full-stack software engineer specializing in React, Node.js, TypeScript, and modern web development.',
-		images: ['/og-image.png'],
+		images: ['https://hirejace.com/og-image.png'],
 		creator: '@jacegalloway',
 	},
 	robots: {

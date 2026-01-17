@@ -21,7 +21,7 @@ const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
 	name: 'Jace Galloway',
-	url: 'https://hirejace.com',
+	url: 'https://www.hirejace.com',
 	jobTitle: 'Full-Stack Software Engineer',
 	description:
 		'Full-stack software engineer specializing in React, Node.js, TypeScript, and modern web development.',

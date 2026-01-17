@@ -5,5 +5,5 @@ Allow: /
 # Disallow admin or private paths (if any)
 # Disallow: /admin
 
-# Sitemap location
-Sitemap: https://hirejace.com/sitemap.xml
+# Sitemap location (must match canonical domain with www)
+Sitemap: https://www.hirejace.com/sitemap.xml

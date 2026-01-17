@@ -1,6 +1,7 @@
 export default async function sitemap() {
 	// Fetch all projects to generate dynamic URLs
-	const baseUrl = 'https://hirejace.com';
+	// IMPORTANT: Must match metadataBase in metadata.js for SEO consistency
+	const baseUrl = 'https://www.hirejace.com';
 
 	// Import projects data
 	const projectsModule = await import('@/pages/api/projects.js');

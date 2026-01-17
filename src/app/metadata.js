@@ -97,6 +97,9 @@ export const metadata = {
 		],
 	},
 	manifest: '/site.webmanifest',
+	alternates: {
+		canonical: 'https://www.hirejace.com',
+	},
 	verification: {
 		google: 'your-google-verification-code',
 		// Add other verification codes as needed

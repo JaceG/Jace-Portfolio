@@ -36,11 +36,11 @@ const projects = {
 			'A browser-based application for extracting page ranges from PDF documents with secure client-side processing.',
 		image: '/og-pdf-wonder-kit.png',
 	},
-	'bet-data-app': {
-		title: 'Sports Bet App',
+	'sports-betting-charts': {
+		title: 'Sports Betting Charts',
 		description:
 			'A sports betting balance tracker with analytics and profit calculators.',
-		image: '/og-bet-data-app.png',
+		image: '/og-sports-betting-charts.png',
 	},
 	'spotify-playlist-ai': {
 		title: 'Spotify Playlist AI',

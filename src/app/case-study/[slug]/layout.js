@@ -18,6 +18,12 @@ const projects = {
 			'An online marketplace database of vegan grocery items and store availability.',
 		image: '/og-the-vegan-aisle.png',
 	},
+	'positive-postcards': {
+		title: 'Positive Postcards',
+		description:
+			'A subscription site that delivers affirmation postcards to your mailboxes.',
+		image: '/og-positive-postcards.png',
+	},
 	'company-hunter': {
 		title: 'Company Hunter',
 		description:

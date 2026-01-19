@@ -34,6 +34,17 @@ export default function handler(req, res) {
 			app: 'https://theveganaisle.com',
 		},
 		{
+			slug: 'positive-postcards',
+			title: 'Positive Postcards',
+			snippet:
+				'Subscription site that delivers affirmation postcards to your mailboxes.',
+			description:
+				"<strong>Positive Postcards</strong> is a full-stack subscription e-commerce platform that delivers daily affirmation postcards directly to customers' mailboxes. The application combines modern web technologies with physical product fulfillment, creating a seamless bridge between digital commerce and tangible mail delivery. Users can subscribe to receive beautiful, uplifting postcards on a daily basis, with flexible subscription options including monthly, quarterly, and annual plans, as well as promotional trials and business packages for corporate wellness programs.<br><br>The platform features a sophisticated sales funnel with upsell and downsell modals, countdown timers for promotional offers, and exit-intent detection to maximize conversions. The checkout experience includes real-time address autocomplete powered by Google Places API (securely proxied through the server), Stripe payment processing with support for both one-time purchases and recurring subscriptions, and promotional code validation. Customer authentication uses a passwordless magic link system, where users receive secure login emails rather than managing passwords.<br><br>The customer dashboard provides comprehensive subscription management capabilities including the ability to pause, resume, upgrade, downgrade, or cancel subscriptions, with real-time proration previews for plan changes. Integration with Stripe's billing portal allows customers to update payment methods and view invoice history. The backend implements a content calendar approach for postcard fulfillment, with 365 unique daily designs that customers enter based on their subscription start date.<br><br>From a technical perspective, the frontend is built with React 19 and TypeScript, featuring a component-based architecture with React Router for navigation and Context API for global state management of cart and authentication. The backend runs on Express.js with integrations to Stripe for payments, Postmark for transactional emails, and Postcard Mania's DirectMail API v3 for automated physical postcard printing and mailing. Stripe webhooks handle the complete subscription lifecycle, triggering welcome emails and postcard campaigns on subscription creation, processing renewal batches on successful payments, and canceling pending mail orders when subscriptions end. The application includes comprehensive error handling with automatic retry queues for failed fulfillment orders.",
+			image: 'https://github.com/JaceG/Positive-Postcards/blob/main/homepage-screenshot.png?raw=true',
+			github: 'https://github.com/JaceG/Positive-Postcards',
+			app: 'https://positivepost.cards',
+		},
+		{
 			slug: 'company-hunter',
 			title: 'Company Hunter',
 			snippet:

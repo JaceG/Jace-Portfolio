@@ -1,3 +1,6 @@
+export const RESUME_DOWNLOAD_URL =
+	'https://drive.google.com/uc?export=download&id=1Hh7V3ycVcd_O5yX2Q-txQy2b_HIVx1Fe';
+
 export const tabsContents = [
 	{
 		key: '1',

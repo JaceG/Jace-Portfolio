@@ -1,3 +1,5 @@
+import { RESUME_DOWNLOAD_URL } from '@/constants/me';
+
 export default function WorkExperience() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
@@ -8,7 +10,7 @@ export default function WorkExperience() {
 				</div>
 				<div className='mb-8'>
 					<a
-						href='https://drive.google.com/uc?export=download&id=1Hh7V3ycVcd_O5yX2Q-txQy2b_HIVx1Fe'
+						href={RESUME_DOWNLOAD_URL}
 						className='rounded bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black mt-4'>
 						Download Resume
 					</a>

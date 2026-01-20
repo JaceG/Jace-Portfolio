@@ -5,7 +5,7 @@ import me from '@/assets/me.png';
 import { SocialIcon } from 'react-social-icons';
 import Section from '../section';
 import { useEffect, useRef, useState } from 'react';
-import { tabsContents } from '@/constants/me';
+import { tabsContents, RESUME_DOWNLOAD_URL } from '@/constants/me';
 import Tabs from '../tabs';
 
 export default function Me() {
@@ -327,7 +327,7 @@ export default function Me() {
 								))}
 							</div>
 							<a
-								href='https://drive.google.com/uc?export=download&id=1Hh7V3ycVcd_O5yX2Q-txQy2b_HIVx1Fe'
+								href={RESUME_DOWNLOAD_URL}
 								className='rounded bg-black flex items-center justify-center xl:py-4 xl:px-10 md:py-2 md:px-6 my-16 md:my-0 py-6 px-12 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'>
 								Download Resume
 							</a>

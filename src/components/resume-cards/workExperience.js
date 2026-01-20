@@ -8,7 +8,7 @@ export default function WorkExperience() {
 				</div>
 				<div className='mb-8'>
 					<a
-						href='https://drive.google.com/uc?export=download&id=1raNk-PljPIJk0X2iWP79WPrgmLUTLlWB'
+						href='https://drive.google.com/uc?export=download&id=1Hh7V3ycVcd_O5yX2Q-txQy2b_HIVx1Fe'
 						className='rounded bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black mt-4'>
 						Download Resume
 					</a>

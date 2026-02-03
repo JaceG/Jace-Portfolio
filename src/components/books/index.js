@@ -204,11 +204,11 @@ const Books = () => {
 							<br />
 							<a
 								style={{ textDecoration: 'underline' }}
-								href='https://www.goodreads.com/review/list/72594950-jace?shelf=read'
+								href='/audible-library/index.html'
 								target='_blank'
 								rel='noopener noreferrer'>
-								You can find the full list of books I&apos;ve
-								read here.
+								You can explore my complete Audible library
+								here.
 							</a>
 						</h3>
 					</div>

@@ -38,9 +38,15 @@ export async function GET(_request, context) {
 	}
 
 	try {
-		const content = await readFile(filePath);
+		let content = await readFile(filePath);
 		const ext = extname(filePath).toLowerCase();
 		const contentType = CONTENT_TYPES[ext] || 'application/octet-stream';
+
+		if (ext === '.html') {
+			let html = content.toString('utf-8');
+			html = html.replace('<head>', '<head><base href="/audible-library/">');
+			content = html;
+		}
 
 		const cacheControl =
 			ext === '.html'

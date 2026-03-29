@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
+const AUDIBLE_LIBRARY_URL = '/audible-library';
+
 const categories = [
 	{ key: 'ai', name: 'AI', apiCategory: 'ai' },
 	{ key: 'psychology', name: 'Psychology', apiCategory: 'psychology' },
@@ -204,7 +206,7 @@ const Books = () => {
 							<br />
 							<a
 								style={{ textDecoration: 'underline' }}
-								href='/audible-library/index.html'
+								href={AUDIBLE_LIBRARY_URL}
 								target='_blank'
 								rel='noopener noreferrer'>
 								You can explore my complete Audible library

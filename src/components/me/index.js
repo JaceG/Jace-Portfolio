@@ -5,8 +5,7 @@ import me from '@/assets/me.png';
 import { SocialIcon } from 'react-social-icons';
 import Section from '../section';
 import { useEffect, useRef, useState } from 'react';
-import { tabsContents, RESUME_DOWNLOAD_URL } from '@/constants/me';
-import Tabs from '../tabs';
+import { bio, RESUME_DOWNLOAD_URL } from '@/constants/me';
 
 export default function Me() {
 	const isDraggingRef = useRef(null);
@@ -339,11 +338,12 @@ export default function Me() {
 						className={`xl:max-w-[715px] md:pr-24 text-[20px] leading-[32px] ${
 							isDragging ? 'z-[-1]' : 'z-[0]'
 						} relative`}>
-						<div className='xl:mt-[275px] md:mt-[200px]'>
-							<Tabs
-								tabsContents={tabsContents}
-								isDragging={isDragging}
-							/>
+						<div
+							className='xl:mt-[275px] md:mt-[200px]'
+							style={{
+								pointerEvents: isDragging ? 'none' : 'auto',
+							}}>
+							{bio}
 						</div>
 					</div>
 				</div>

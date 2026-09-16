@@ -1,5 +1,23 @@
 // Project data for metadata generation
 const projects = {
+	'phone-case-store': {
+		title: 'Phone Case Store',
+		description:
+			'A direct-to-consumer phone case storefront with a Blender-rendered catalog studio and three-case bundle pricing.',
+		image: '/og-phone-case-store.png',
+	},
+	imagedrop: {
+		title: 'ImageDrop',
+		description:
+			'A tiny, free macOS menu bar app that converts images between PNG, JPEG, WebP, HEIC and more with one drop.',
+		image: '/og-imagedrop.png',
+	},
+	remi: {
+		title: 'REMI',
+		description:
+			'A single Expo/React Native app for a mobile oil change franchise: dispatch calendar, guided job flow, orders, inventory and payments.',
+		image: '/og-remi.png',
+	},
 	'dating-tool-app': {
 		title: 'Dating Tool App',
 		description:

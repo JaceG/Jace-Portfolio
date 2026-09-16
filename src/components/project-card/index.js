@@ -40,12 +40,14 @@ export default function Card({
 							className='relative rounded bg-[#39bb6a] p-3 tracking-[-0.04em] block w-[140px] uppercase font-black'>
 							See App
 						</Link>
-						<a
-							href={github}
-							target='_blank'
-							className='relative rounded border-4 border-[rgba(57,187,106,0.5)] box-border w-[80px] flex flex-row items-center justify-center py-3 px-5 text-center text-base text-[#39bb6a]'>
-							<span className='relative tracking-[-0.04em] uppercase font-black'>{`</>`}</span>
-						</a>
+						{github && (
+							<a
+								href={github}
+								target='_blank'
+								className='relative rounded border-4 border-[rgba(57,187,106,0.5)] box-border w-[80px] flex flex-row items-center justify-center py-3 px-5 text-center text-base text-[#39bb6a]'>
+								<span className='relative tracking-[-0.04em] uppercase font-black'>{`</>`}</span>
+							</a>
+						)}
 					</div>
 				</div>
 			</div>

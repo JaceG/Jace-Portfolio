@@ -8,6 +8,9 @@ export default async function sitemap() {
 
 	// Create a mock request/response to get projects
 	const projects = [
+		{ slug: 'phone-case-store' },
+		{ slug: 'imagedrop' },
+		{ slug: 'remi' },
 		{ slug: 'dating-tool-app' },
 		{ slug: 'react-learning-stories' },
 		{ slug: 'the-vegan-aisle' },

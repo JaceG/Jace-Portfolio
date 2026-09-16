@@ -16,9 +16,27 @@ export default function WorkExperience() {
 					</a>
 				</div>
 			</div>
-			<div className='border-8 h-[675px] border-white w-[300px] sm:w-[600px] lg:w-[800px] relative'>
+			<div className='border-8 h-[800px] sm:h-[820px] border-white w-[300px] sm:w-[600px] lg:w-[800px] relative'>
 				<div className='w-full h-full bg-white text-black absolute bottom-8 left-7'>
 					<ul>
+						<li className='px-8 pt-8'>
+							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
+								Developer &amp; Project Manager
+							</h3>
+							<p className='text-sm text-tertiary sm:block'>
+								<span className='font-bold text-black'>
+									REMI / MAXI Oil Change
+								</span>{' '}
+								- Columbus, OH
+							</p>
+							<p className='text-sm text-tertiary hidden sm:block'>
+								Single-handedly built the REMI field-service
+								platform (backend API, technician and customer
+								mobile apps, franchise dashboard) in four
+								months, then hired and led a team of developers
+								to take it over.
+							</p>
+						</li>
 						<li className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Freelance Developer

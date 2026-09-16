@@ -196,12 +196,14 @@ export default function CaseStudy() {
 										App Link
 									</a>
 								)}
-								<a
-									href={project.github}
-									className='relative rounded bg-white flex items-center justify-center py-4 px-10 box-border text-center text-base text-primary border-4 border-primary border-opacity-50 tracking-[-0.04em] uppercase font-black'
-									target='_blank'>
-									{'<Source Code/>'}
-								</a>
+								{project.github && (
+									<a
+										href={project.github}
+										className='relative rounded bg-white flex items-center justify-center py-4 px-10 box-border text-center text-base text-primary border-4 border-primary border-opacity-50 tracking-[-0.04em] uppercase font-black'
+										target='_blank'>
+										{'<Source Code/>'}
+									</a>
+								)}
 							</div>
 						</div>
 					</div>

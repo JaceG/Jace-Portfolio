@@ -21,25 +21,10 @@ export default function Me() {
 		width: 0,
 		height: 0,
 	});
-	const [svgEndpoint, setSvgEndpoint] = useState({
-		startX: 0,
-		startY: 0,
-		cOneX: 0,
-		cTwoX: 0,
-		endX: 0,
-		endY: 0,
-	});
-	const svgEndAxis = useRef({
-		startX: 0,
-		startY: 0,
-		cOneX: 0,
-		cTwoX: 0,
-		endX: 0,
-		endY: 0,
-	});
-
 	const [strokeWidth, setStrokeWidth] = useState(10);
+
 	const isInsideImage = (e) => {
+		if (!imageRef.current) return false;
 		const mouseY = e.clientY;
 		const mouseX = e.clientX;
 		const bounds = imageRef.current.getBoundingClientRect();
@@ -50,25 +35,66 @@ export default function Me() {
 			mouseY <= bounds.top + imageRef.current.height
 		);
 	};
+
+	// All line geometry is computed live in viewport coordinates and drawn on
+	// a position:fixed SVG, so it stays correct no matter where this section
+	// sits in the document or how far the page is scrolled.
+	const lineGeometry = () => {
+		const s = staticSvgRef.current?.getBoundingClientRect() || {
+			x: 0,
+			right: 0,
+			bottom: 0,
+		};
+		return {
+			startX: s.x,
+			endX: s.right,
+			y: s.bottom - 5,
+			midX: s.x + Math.ceil((s.right - s.x) / 2),
+		};
+	};
+
+	const setCurve = (d) => {
+		svgRef.current?.querySelector('#curve')?.setAttribute('d', d);
+	};
+
+	const restCurve = () => {
+		const { startX, endX, y, midX } = lineGeometry();
+		return `M${startX},${y} C${midX},${y} ${midX},${y} ${endX},${y}`;
+	};
+
 	useEffect(() => {
-		document.body.addEventListener('mousemove', (e) => {
+		const onMove = (e) => {
 			if (isInsideImage(e) && !hideDragFeatureRef.current) {
 				handleImageMouseMove(e);
 			} else if (isDraggingRef.current) {
 				handleImageMouseUp(e);
 			}
-		});
-		document.body.addEventListener('mousedown', (e) => {
-			if (isInsideImage(e) && !hideDragFeatureRef.current) {
+		};
+		const onDown = (e) => {
+			if (
+				imageContainerRef.current?.contains(e.target) &&
+				isInsideImage(e) &&
+				!hideDragFeatureRef.current
+			) {
 				handleImageMouseDown(e);
 			}
-		});
-		document.body.addEventListener('mouseup', (e) => {
-			if (!hideDragFeatureRef.current) {
+		};
+		const onUp = (e) => {
+			if (!hideDragFeatureRef.current && isDraggingRef.current) {
 				handleImageMouseUp(e);
 			}
-		});
+		};
+		document.body.addEventListener('mousemove', onMove);
+		document.body.addEventListener('mousedown', onDown);
+		document.body.addEventListener('mouseup', onUp);
+		return () => {
+			document.body.removeEventListener('mousemove', onMove);
+			document.body.removeEventListener('mousedown', onDown);
+			document.body.removeEventListener('mouseup', onUp);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	useEffect(() => {
 		const handleResize = () => {
 			const width = window.innerWidth;
@@ -87,32 +113,8 @@ export default function Me() {
 			}
 
 			setDimensions({ width, height: window.innerHeight });
-			const staticRectBound =
-				staticSvgRef.current.getBoundingClientRect();
-			const startX = staticRectBound.x;
-			const startY = staticRectBound.bottom - 5;
-			const endX = staticRectBound.right;
-			const endY = staticRectBound.bottom - 5;
-			const midPoint = Math.ceil((endX - startX) / 2);
-			const cOneX = startX + midPoint;
-			const cTwoX = startX + midPoint;
-			setSvgEndpoint({
-				startX, // Offset from center
-				startY,
-				cOneX,
-				cTwoX,
-				endX, // Offset from center
-				endY,
-			});
-			svgEndAxis.current.startX = startX;
-			svgEndAxis.current.startY = startY;
-			svgEndAxis.current.cOneX = cOneX;
-			svgEndAxis.current.cTwoX = cTwoX;
-			svgEndAxis.current.endX = endX;
-			svgEndAxis.current.endY = endY;
 		};
 
-		// Run on mount and handle window resize
 		if (typeof window !== 'undefined') {
 			handleResize();
 			window.addEventListener('resize', handleResize);
@@ -121,18 +123,17 @@ export default function Me() {
 	}, []);
 
 	const handleImageMouseDown = (e) => {
-		let doc = document.documentElement;
-		let top = window.scrollY || doc.scrollTop;
-		const maxHeight =
-			imageContainerRef.current.getBoundingClientRect().bottom;
-		if (top > maxHeight / 2) return;
+		e.preventDefault();
 		isDraggingRef.current = true;
 		mouseStartImageRef.current = {
 			x: e.clientX,
 			y: e.clientY,
 		};
-		staticSvgRef.current.style.display = 'none';
+		// Keep the static line in layout (visibility, not display) so its
+		// bounds can still be measured while the live curve is drawn.
+		staticSvgRef.current.style.visibility = 'hidden';
 		svgRef.current.style.display = 'block';
+		setCurve(restCurve());
 		setIsDragging(true);
 	};
 
@@ -141,20 +142,14 @@ export default function Me() {
 		imageContainerRef.current.style.left = '24px';
 		imageContainerRef.current.style.top = 'unset';
 		imageContainerRef.current.style.bottom = '30px';
-		svgRef.current.style.transform = 'rotate(0deg)';
-		svgRef.current
-			.querySelector('#curve')
-			.setAttribute(
-				'd',
-				`M${svgEndAxis.current.startX},${svgEndAxis.current.startY} , C${svgEndAxis.current.cOneX},${svgEndAxis.current.startY} ${svgEndAxis.current.cTwoX},${svgEndAxis.current.startY} ${svgEndAxis.current.endX},${svgEndAxis.current.endY}`
-			);
-		staticSvgRef.current.style.display = 'block';
+		setCurve(restCurve());
+		staticSvgRef.current.style.visibility = 'visible';
 		svgRef.current.style.display = 'none';
 		setIsDragging(false);
 	};
 
 	const handleImageMouseMove = (e) => {
-		if (!isDraggingRef.current) return;
+		if (!isDraggingRef.current || !imageContainerRef.current) return;
 		const mouseX = e.clientX;
 		const mouseY = e.clientY;
 		const distanceX = mouseX - mouseStartImageRef.current.x;
@@ -171,27 +166,12 @@ export default function Me() {
 			0;
 		imageContainerRef.current.style.left = `${imageLeft + distanceX}px`;
 		imageContainerRef.current.style.top = `${imageTop + distanceY}px`;
-		const faceRectBounds = faceTrackingRef.current.getBoundingClientRect();
-		let doc = document.documentElement;
-		let top = window.scrollY || doc.scrollTop;
-		svgRef.current
-			.querySelector('#curve')
-			.setAttribute(
-				'd',
-				`M${faceRectBounds.right},${faceRectBounds.bottom + top} , C${
-					svgEndAxis.current.cOneX
-				},${faceRectBounds.y + top} ${svgEndAxis.current.cTwoX},${
-					faceRectBounds.y + top
-				} ${svgEndAxis.current.endX},${svgEndAxis.current.endY}`
-			);
-		// const radians = Math.atan2(faceTrackerRect.y, faceTrackerRect.x);
 
-		// let degrees = Math.ceil(radians * (180 / Math.PI));
-		// if (faceTrackerRect.y >= svgRef.current.getBoundingClientRect().y) {
-		// 	degrees *= -1;
-		// }
-
-		// svgRef.current.style.transform = `rotate(${degrees}deg)`;
+		const face = faceTrackingRef.current.getBoundingClientRect();
+		const { endX, y, midX } = lineGeometry();
+		setCurve(
+			`M${face.right},${face.bottom} C${midX},${face.y} ${midX},${face.y} ${endX},${y}`
+		);
 	};
 
 	const socialLinks = [
@@ -217,23 +197,23 @@ export default function Me() {
 					ref={svgRef}
 					style={{
 						zIndex: '1000',
-						position: 'absolute',
+						position: 'fixed',
 						top: '0',
 						left: '0',
-						width: '100%',
-						// height: 5162,
-						transform: `rotate(0deg)`,
+						width: '100vw',
+						height: '100vh',
 						overflow: 'visible',
 						display: 'none',
+						pointerEvents: 'none',
 					}}
 					xmlns='http://www.w3.org/2000/svg'
-					viewBox={`0 0 ${dimensions.width} ${5162}`}
-					preserveAspectRatio='xMidYMid meet'>
+					viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+					preserveAspectRatio='none'>
 					<defs>
 						<marker
 							id='arrow'
 							viewBox='0 0 330 330'
-							refX={210} // Adjust to properly align arrowhead with path start
+							refX={210}
 							refY='165'
 							markerWidth='6'
 							markerHeight='6'
@@ -253,11 +233,11 @@ export default function Me() {
 
 					<path
 						id='curve'
-						d={`M${svgEndpoint.startX},${svgEndpoint.startY} C${svgEndpoint.cOneX},${svgEndpoint.startY} ${svgEndpoint.cTwoX},${svgEndpoint.startY} ${svgEndpoint.endX},${svgEndpoint.endY}`}
+						d=''
 						stroke='white'
 						strokeWidth={strokeWidth}
 						fill='none'
-						markerStart='url(#arrow)' // Arrow at the start
+						markerStart='url(#arrow)'
 					/>
 				</svg>
 			</div>
@@ -279,23 +259,18 @@ export default function Me() {
 									ref={staticSvgRef}
 									src={'/line.svg'}
 									alt='Line'
-									className='about-img relative xl:right-[315px] md:right-[175px] xl:w-[925px] md:w-[550px] hidden md:block'
+									className='about-img xl:-ml-[315px] md:-ml-[175px] xl:w-[925px] md:w-[550px] hidden md:block'
 								/>
 								<img
 									src={'/line-curved-2.svg'}
 									alt='Line'
-									className='about-img relative xl:right-[300px] md:right-[150px] xl:w-[925px] md:w-[550px] md:hidden block top-8'
+									className='about-img relative top-8 xl:-ml-[300px] md:-ml-[150px] xl:w-[925px] md:w-[550px] md:hidden block'
 								/>
 							</div>
 							<div
 								ref={imageContainerRef}
-								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full hover:animate-shake group'
-								// onMouseDown={handleImageMouseDown}
-								// onMouseUp={handleImageMouseUp}
-								// onMouseOut={handleImageMouseUp}
-								// onMouseMove={handleImageMouseMove}
-							>
-								<span className='absolute inset-0 flex items-center justify-center text-white font-bold text-xl opacity-0 group-hover:animate-flash pointer-events-none'>
+								className='md:max-w-auto object-cover absolute md:left-5 md:bottom-[30px] bottom-[25px] left-6 xl:w-[600px] xl:h-[800px] md:w-[360px] h-full w-full hover:animate-shake group'>
+								<span className='drag-hint absolute inset-0 flex items-center justify-center text-white font-bold text-xl opacity-0 group-hover:animate-flash pointer-events-none [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]'>
 									Drag This Image
 								</span>
 								<div

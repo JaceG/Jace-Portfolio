@@ -14,6 +14,11 @@ const config = {
 				primary: '#39BD6D',
 				secondary: '#fff',
 				tertiary: '#4c4d50',
+				ink: '#08090b',
+			},
+			fontFamily: {
+				geist: ['var(--font-geist-sans)', 'Inter', 'sans-serif'],
+				'geist-mono': ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
 			},
 			screens: {
 				'3xl': '1572px',

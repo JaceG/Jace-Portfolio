@@ -35,3 +35,404 @@ body {
 .react-switch-bg svg {
   display: none !important;
 }
+/* ---------- Animated hero (ported from Figma Make) ---------- */
+@keyframes aurora-drift {
+  0% { transform: translate3d(-8%, -6%, 0) scale(1); }
+  50% { transform: translate3d(6%, 8%, 0) scale(1.15); }
+  100% { transform: translate3d(-8%, -6%, 0) scale(1); }
+}
+
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 -56px; }
+}
+
+@keyframes rise-in {
+  0% { opacity: 0; transform: translateY(120%) rotate(4deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes sheen {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.glitch-char {
+  position: relative;
+}
+
+/* TV-static blotch clipped to a random band of a single glyph */
+.g-static::after {
+  content: attr(data-ch);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  clip-path: var(--band, inset(30% 0 40% 0));
+  mix-blend-mode: screen;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: g-static 0.28s steps(3, jump-none) both;
+}
+
+@keyframes g-static {
+  0% { opacity: 0; }
+  20% { opacity: 0.95; background-position: 0 0; }
+  55% { opacity: 0.55; background-position: 80% 30%; }
+  85% { opacity: 0.9; background-position: 20% 90%; }
+  100% { opacity: 0; }
+}
+
+.g-flicker {
+  animation: g-flicker 0.3s linear both;
+}
+
+@keyframes g-flicker {
+  0%, 100% { opacity: 1; }
+  12% { opacity: 0.15; }
+  20% { opacity: 1; }
+  44% { opacity: 0.5; }
+  55% { opacity: 1; }
+  74% { opacity: 0.1; }
+  82% { opacity: 1; }
+}
+
+.g-chroma {
+  animation: g-chroma 0.26s linear both;
+}
+
+@keyframes g-chroma {
+  0%, 100% { text-shadow: none; opacity: 1; }
+  25% { text-shadow: -2px 0 rgba(57, 189, 109, 0.9), 2px 0 rgba(255, 40, 90, 0.7); opacity: 0.8; }
+  55% { text-shadow: 2px 0 rgba(57, 189, 109, 0.9), -2px 0 rgba(255, 40, 90, 0.7); }
+  80% { text-shadow: -1px 0 rgba(57, 189, 109, 0.9), 1px 0 rgba(255, 40, 90, 0.7); opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-root *,
+  .hero-root *::before,
+  .hero-root *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* CRT fizzle layers used while the hero scrolls out */
+.hero-static {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: screen;
+  animation: static-jitter 0.16s steps(1, end) infinite;
+}
+
+@keyframes static-jitter {
+  0% { background-position: 0 0; filter: brightness(1); }
+  20% { background-position: 37% 61%; filter: brightness(1.25); }
+  40% { background-position: 88% 12%; filter: brightness(0.9); }
+  60% { background-position: 21% 83%; filter: brightness(1.15); }
+  80% { background-position: 66% 44%; filter: brightness(0.95); }
+  100% { background-position: 0 0; filter: brightness(1); }
+}
+
+.hero-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.45) 0 2px,
+    transparent 2px 4px
+  );
+}
+
+.hero-roll {
+  top: -20%;
+  height: 18%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.14),
+    transparent
+  );
+  animation: crt-roll 1.4s linear infinite;
+}
+
+@keyframes crt-roll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(720%); }
+}
+
+/* Tiny positional shiver while the hero is being pushed through */
+.hero-jitter {
+  animation: hero-jitter 0.11s steps(1, end) infinite;
+}
+
+@keyframes hero-jitter {
+  0% { translate: 0 0; }
+  25% { translate: 2px -1px; }
+  50% { translate: -2px 1px; }
+  75% { translate: 1px 2px; }
+  100% { translate: -1px -2px; }
+}
+
+/* While the Me section is held after the hero fizzles, flash the drag hint */
+@media (min-width: 768px) {
+  [data-hero-zone='hold'] .drag-hint {
+    animation: drag-hint-flash 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes drag-hint-flash {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* While the hero is on screen, paint the page canvas ink too, so overscroll
+   bounce and scrollbar gutters never flash the green body background. */
+html {
+  transition: background-color 0.4s ease;
+}
+html[data-hero-zone='hero'],
+html[data-hero-zone='fizzle'] {
+  background-color: #08090b;
+}
+
+/* Short viewports: tighten the hero's vertical rhythm so nothing overlaps */
+@media (max-height: 720px) {
+  .hero-root .hero-head { padding-top: 1rem; padding-bottom: 1rem; }
+  .hero-root .hero-body { padding-top: 0; padding-bottom: 1.5rem; }
+  .hero-root .hero-pill { margin-bottom: 1rem; }
+  .hero-root .hero-role,
+  .hero-root .hero-blurb { margin-top: 1rem; }
+  .hero-root .hero-ctas { margin-top: 1.25rem; }
+}
+
+@media (max-height: 560px) {
+  .hero-root .hero-blurb { display: none; }
+}
+
+/* ---------- Hero click / double-tap interactions ---------- */
+
+/* Pulse: rings, flash and sparks spawned at the click point */
+.hero-fx {
+  position: absolute;
+  display: block;
+}
+
+.hero-fx-flash {
+  width: 420px;
+  height: 420px;
+  margin: -210px 0 0 -210px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(57, 189, 109, 0.55), rgba(57, 189, 109, 0.12) 40%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: hero-flash 0.55s ease-out forwards;
+}
+
+@keyframes hero-flash {
+  0% { transform: scale(0.4); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.hero-fx-ring,
+.hero-fx-ring2 {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 9999px;
+  border: 2px solid rgba(57, 189, 109, 0.9);
+  box-shadow: 0 0 22px rgba(57, 189, 109, 0.55);
+  animation: hero-ring 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-fx-ring2 {
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: none;
+  animation-delay: 0.1s;
+  animation-duration: 1s;
+}
+
+@keyframes hero-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(30); opacity: 0; }
+}
+
+.hero-fx-spark {
+  width: var(--s, 4px);
+  height: var(--s, 4px);
+  margin: calc(var(--s, 4px) / -2) 0 0 calc(var(--s, 4px) / -2);
+  background: #39bd6d;
+  box-shadow: 0 0 8px rgba(57, 189, 109, 0.9);
+  animation: hero-spark var(--d, 700ms) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes hero-spark {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(300deg); opacity: 0; }
+}
+
+/* Grid shockwave on click */
+.hero-shock {
+  animation: grid-pan 8s linear infinite, hero-shock 0.45s ease-out;
+}
+
+@keyframes hero-shock {
+  0% { opacity: 0.14; filter: brightness(1); }
+  20% { opacity: 0.5; filter: brightness(2.2); }
+  100% { opacity: 0.14; filter: brightness(1); }
+}
+
+/* CRT power cycle on double-tap */
+.hero-crt-off {
+  transform-origin: 50% 50%;
+  animation: hero-crt-off 0.6s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes hero-crt-off {
+  0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+  30% { transform: scale(1, 0.006); filter: brightness(3.5); opacity: 1; }
+  60% { transform: scale(1, 0.006); filter: brightness(3.5); opacity: 1; }
+  100% { transform: scale(0, 0.006); filter: brightness(8); opacity: 0; }
+}
+
+.hero-crt-on {
+  transform-origin: 50% 50%;
+  animation: hero-crt-on 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes hero-crt-on {
+  0% { transform: scale(0, 0.006); filter: brightness(8); opacity: 1; }
+  35% { transform: scale(1, 0.006); filter: brightness(3.5); opacity: 1; }
+  100% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+}
+
+.hero-bootline {
+  animation: fade-up 0.25s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-crt-off,
+  .hero-crt-on,
+  .hero-fx {
+    animation-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Throwable orb ---------- */
+.hero-orb {
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+}
+.hero-orb:active,
+.hero-orb.is-moving {
+  cursor: grabbing;
+}
+.hero-orb-dot {
+  animation: float-orb 6s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+.hero-orb:hover .hero-orb-dot {
+  transform: scale(1.5);
+}
+.hero-orb.is-moving .hero-orb-dot {
+  animation: none;
+  transform: scale(1.25);
+}
+
+.hero-trail {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 9999px;
+  background: #39bd6d;
+  box-shadow: 0 0 12px rgba(57, 189, 109, 0.8);
+  pointer-events: none;
+  animation: hero-trail 0.55s ease-out forwards;
+}
+
+@keyframes hero-trail {
+  0% { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+/* Hidden messages: masked to a soft circle of light around the orb */
+.hero-secrets {
+  -webkit-mask-image: radial-gradient(
+    circle 170px at var(--orb-x, -999px) var(--orb-y, -999px),
+    black 0%,
+    rgba(0, 0, 0, 0.7) 45%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle 170px at var(--orb-x, -999px) var(--orb-y, -999px),
+    black 0%,
+    rgba(0, 0, 0, 0.7) 45%,
+    transparent 100%
+  );
+}
+
+/* ---------- Orb docking into the status pill ---------- */
+/* --pill-near (0..1) is how close the orb is; the pill senses it. */
+.hero-root .hero-pill {
+  border-color: rgba(57, 189, 109, calc(0.12 + var(--pill-near, 0) * 0.75));
+  box-shadow: 0 0 calc(var(--pill-near, 0) * 30px)
+    rgba(57, 189, 109, calc(var(--pill-near, 0) * 0.55));
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.3s ease;
+}
+.hero-root .hero-pill-dot {
+  transform: scale(calc(1 + var(--pill-near, 0) * 0.9));
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+}
+.hero-root .hero-pill.is-docked {
+  border-color: #39bd6d;
+  background-color: rgba(57, 189, 109, 0.14);
+  box-shadow: 0 0 36px rgba(57, 189, 109, 0.6);
+  animation: fade-up 0.7s ease-out 0.1s both, hero-pill-hum 1.6s ease-in-out infinite;
+}
+.hero-root .hero-pill.is-docked .hero-pill-dot {
+  transform: scale(1.9);
+  box-shadow: 0 0 16px 4px rgba(57, 189, 109, 0.85);
+}
+.hero-pill-link {
+  animation: fade-up 0.35s ease-out both;
+}
+.hero-pill-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@keyframes hero-pill-hum {
+  0%, 100% { box-shadow: 0 0 30px rgba(57, 189, 109, 0.5); }
+  50% { box-shadow: 0 0 48px rgba(57, 189, 109, 0.8); }
+}
+
+.hero-orb.is-docked {
+  pointer-events: none;
+}
+.hero-orb.is-docked .hero-orb-dot {
+  transform: scale(0);
+  opacity: 0;
+  animation: none;
+}

@@ -77,7 +77,15 @@ body {
   100% { background-position: 200% 0; }
 }
 
+/* Must stay in flow (no position/transform/opacity). The last name is painted
+   with background-clip:text on the parent, and WebKit excludes positioned
+   descendants from that clip — positioning these would make the word invisible
+   on iOS Safari. Only .g-static opts into positioning, for its ::after. */
 .glitch-char {
+  position: static;
+}
+
+.g-static {
   position: relative;
 }
 

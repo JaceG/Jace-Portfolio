@@ -609,7 +609,9 @@ export default function Terminal() {
 				</div>
 			)}
 			{open && (
-				<div className='terminal-root pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-3 pb-3 sm:px-6 sm:pb-6'>
+				// Top-anchored on phones so the on-screen keyboard doesn't cover it;
+				// bottom-docked on larger screens.
+				<div className='terminal-root pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:inset-x-0 sm:bottom-0 sm:top-auto sm:px-6 sm:pb-6 sm:pt-0'>
 					<div
 						role='dialog'
 						aria-label='Site terminal'
@@ -630,7 +632,7 @@ export default function Terminal() {
 						<div
 							ref={scrollRef}
 							onClick={() => inputRef.current?.focus({ preventScroll: true })}
-							className='terminal-scroll h-[46vh] max-h-[380px] cursor-text overflow-y-auto px-4 py-3 leading-6'>
+							className='terminal-scroll h-[38vh] max-h-[380px] cursor-text overflow-y-auto px-4 py-3 leading-6 sm:h-[46vh]'>
 							{lines.map((l) => (
 								<div key={l.id} className={`terminal-line ${lineClass[l.kind] || ''}`}>
 									{l.kind === 'in' ? (

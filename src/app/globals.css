@@ -194,10 +194,18 @@ body {
   100% { translate: -1px -2px; }
 }
 
-/* While the Me section is held after the hero fizzles, flash the drag hint */
-@media (min-width: 768px) {
+/* While the Me section is held after the hero fizzles, flash the drag hint.
+   Dragging needs a mouse, so the hint only exists on hover-capable devices
+   at tablet width and up. */
+@media (min-width: 768px) and (hover: hover) {
   [data-hero-zone='hold'] .drag-hint {
     animation: drag-hint-flash 1.4s ease-in-out infinite;
+  }
+}
+
+@media (max-width: 767px), (hover: none) {
+  .drag-hint {
+    display: none !important;
   }
 }
 
@@ -435,4 +443,35 @@ html[data-hero-zone='fizzle'] {
   transform: scale(0);
   opacity: 0;
   animation: none;
+}
+
+/* ---------- Site terminal ---------- */
+.terminal-panel {
+  animation: terminal-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes terminal-in {
+  0% { opacity: 0; transform: translateY(24px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.terminal-line {
+  animation: fade-up 0.18s ease-out both;
+  overflow-wrap: anywhere;
+}
+
+.terminal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(57, 189, 109, 0.35) transparent;
+}
+.terminal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(57, 189, 109, 0.35);
+  border-radius: 9999px;
+}
+
+.terminal-input:disabled {
+  opacity: 0.6;
 }

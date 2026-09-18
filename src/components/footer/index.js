@@ -1,5 +1,6 @@
 import { SocialIcon } from 'react-social-icons';
 import Section from '../section';
+import TerminalHint from '../terminal/hint';
 
 export default function Footer() {
 	const socialLinks = [
@@ -21,7 +22,10 @@ export default function Footer() {
 		<Section>
 			<footer className='w-full'>
 				<div className='flex sm:flex-row flex-col max-w-[1024px] mx-auto items-center justify-between'>
-					<p>© 2025 Jace Galloway</p>
+					<div className='flex flex-col items-center sm:items-start'>
+						<p>© 2025 Jace Galloway</p>
+						<TerminalHint />
+					</div>
 					<div className='flex justify-between my-4'>
 						<div className='flex gap-4'>
 							{socialLinks.map((link, index) => (

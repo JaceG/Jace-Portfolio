@@ -269,6 +269,20 @@ export default function handler(req, res) {
 	const endIndex = page * 3;
 	const results = projects.slice(startIndex, endIndex);
 
+	// Full list (used by the site terminal's `projects` command)
+	if (req.query.all) {
+		return res.status(200).json({
+			total,
+			results: projects.map(({ slug, title, snippet, github, app }) => ({
+				slug,
+				title,
+				snippet,
+				github,
+				app,
+			})),
+		});
+	}
+
 	// You can now easily find a project by slug using Array.find()
 	if (req.query.slug) {
 		const project = projects.find((p) => p.slug === req.query.slug);

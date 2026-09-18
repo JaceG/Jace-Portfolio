@@ -3,6 +3,7 @@ import Header from '@/components/header';
 import './globals.css';
 import Footer from '@/components/footer';
 import HotjarInit from '@/components/hotjar';
+import Terminal from '@/components/terminal';
 
 // Re-export metadata from metadata.js
 export { metadata } from './metadata';
@@ -89,6 +90,7 @@ export default function RootLayout({ children }) {
 				<Header></Header>
 				{children}
 				<Footer></Footer>
+				<Terminal />
 				<script
 					src='https://player.vimeo.com/api/player.js'
 					async></script>

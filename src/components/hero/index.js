@@ -517,6 +517,17 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
 			apply();
 		};
 
+		// `orb` from the site terminal: kick it off in a random direction.
+		const onCommand = (e) => {
+			if (e.detail !== 'launch') return;
+			if (s.docked) eject();
+			const a = Math.random() * Math.PI * 2;
+			s.vx = Math.cos(a) * 2.2;
+			s.vy = Math.sin(a) * 2.2;
+			run();
+		};
+		window.addEventListener('hero:command', onCommand);
+
 		home();
 		el.addEventListener('pointerdown', onDown);
 		el.addEventListener('pointermove', onMove);
@@ -529,6 +540,7 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
 			el.removeEventListener('pointerup', onUp);
 			el.removeEventListener('pointercancel', onUp);
 			window.removeEventListener('resize', onResize);
+			window.removeEventListener('hero:command', onCommand);
 			if (s.raf != null) cancelAnimationFrame(s.raf);
 			s.hits.forEach((t) => clearTimeout(t));
 			if (ejectRef) ejectRef.current = null;
@@ -774,6 +786,22 @@ export default function Hero() {
 	};
 
 	useEffect(() => () => clearTimeout(dockTimerRef.current), []);
+
+	// Commands from the site terminal (`reboot`, `glitch` → pulse). The orb
+	// handles `launch` itself.
+	useEffect(() => {
+		const onCommand = (e) => {
+			if (e.detail === 'reboot') {
+				window.scrollTo({ top: 0, behavior: 'instant' });
+				if (cycleRef.current === 'idle') powerCycle();
+			} else if (e.detail === 'pulse') {
+				const r = rootRef.current?.getBoundingClientRect();
+				if (r) pulse(r.width / 2, r.height / 2, false);
+			}
+		};
+		window.addEventListener('hero:command', onCommand);
+		return () => window.removeEventListener('hero:command', onCommand);
+	}, []);
 
 	const powerCycle = () => {
 		cycleRef.current = 'off';

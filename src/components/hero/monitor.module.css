@@ -1,0 +1,17 @@
+.casing {
+	position: fixed;
+	inset: 0;
+	z-index: 11;
+	pointer-events: none;
+	visibility: hidden;
+	transform-origin: 50% 0;
+}
+.casing img {
+	position: absolute;
+	/* Align the live viewport with the generated image's 1272 x 554 opening. */
+	left: -10.37736%;
+	top: -22.02166%;
+	width: 120.75472%;
+	height: 184.83755%;
+	max-width: none;
+}

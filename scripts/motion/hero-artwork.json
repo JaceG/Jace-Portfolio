@@ -1,0 +1,23 @@
+{
+  "purpose": "Additive motion artwork for the existing portfolio hero. Preserve all existing layout, copy, typography, sections, and interactions.",
+  "preview": "http://127.0.0.1:3100/?motion=1",
+  "model": "seedance_2_5",
+  "job_id": "0ecf5741-0fa1-4980-913d-d0025fd2d6c0",
+  "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_122219_0ecf5741-0fa1-4980-913d-d0025fd2d6c0.mp4",
+  "parameters": {
+    "model": "seedance_2_5",
+    "duration": 8,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false,
+    "count": 1,
+    "prompt": "Create an original high-end editorial motion artwork for a software engineer's portfolio website. A single sculptural continuous ribbon made from many extremely thin translucent emerald-green optical glass sheets hangs suspended in a vast nearly black photographic studio. It is an elegant flowing folded loop, like a calligraphic silk ribbon caught in slow motion, not a flower, no sphere, no circuit board. Emerald #39bd6d edges, pale mint specular highlights, rich obsidian shadows, subtle analog film texture, premium tangible optical photography, deeply dimensional but very restrained. Composition: the entire sculpture remains in the RIGHT HALF of the frame, occupying x=52-88 percent and y=15-85 percent; the LEFT HALF is completely empty near-black negative space for a readable headline. One locked camera, wide 16:9 composition, no cuts, no zoom, no shaking. Over 8 seconds the layered ribbon slowly unfurls and folds back toward its original shape in a smooth circular breathing motion; light runs gently along its fine layered edges. Delicate controlled motion throughout, contemplative, precise, quietly strange. End in nearly the same composition as the start to enable a loop. Keep stable topology and one connected ribbon throughout. No text, no letters, no logos, no interface, no watermark, no people, no lightning, no particle shower, no flashing, no neon cyberpunk scene. Black background should remain clean, uniform, almost black #080d0c at all frame edges. Output a silent cinematic motion study."
+  },
+  "credit_estimate": 52,
+  "delivery": {
+    "video": "public/motion/emerald-loop.mp4",
+    "poster": "public/motion/emerald-poster.jpg",
+    "encoding": "H.264, 1280x720, 24fps, silent, forward/reverse 16.083-second loop"
+  },
+  "unused_study": "The separate screenshot montage is archived in artifacts/motion-study and is not used on the website."
+}

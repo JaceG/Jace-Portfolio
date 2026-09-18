@@ -1,0 +1,116 @@
+{
+  "purpose": "Original Seedance artwork for the existing portfolio's section transitions. No reference foliage, screenshots, or layout redesign.",
+  "estimated_total_credits": 162.5,
+  "films": [
+    {
+      "section": "github",
+      "title": "Branching paths",
+      "index": 0,
+      "job_id": "fcdaed89-3f12-47b4-a02d-e3d3ae3bbf5c",
+      "params": {
+        "model": "seedance_2_5",
+        "prompt": "Create a five-second original editorial motion artwork used as a full-screen transition over a software developer's portfolio. High-end experimental title-sequence art direction, tactile cut-paper and optical-print aesthetic, ivory-white material with fine emerald-green #39bd6d edges, strong silhouettes, pure uniform black background for compositing. Broad graceful choreography with a strong change of scale, foreground layers crossing the frame, a clear climax then an opening. This is a finished animated film, not a website mockup. No lettering, text, numbers, logos, UI screenshots, people, plants, flowers, foliage, scenery, explosions, neon cyberpunk, confetti, flashing or flickering. Nothing gray in the black background. All visible material is luminous enough to separate from pure black. Single continuous shot, no cuts. Silent. Begin with the material just entering at the outside edges, build to an expansive central composition around 2 seconds, then send the material sweeping outward past all four edges so the center and finally the full frame are empty black by the end. Subject: collaboration and branching source code, represented by precisely cut narrow ivory paper tracks. Start with one crisp track entering from the left. It splits into several beautifully curved parallel paths with small flat square junctions, weaving a large elegant branching network across the frame. The paths reconnect in one central square junction. The camera pushes through that junction while the tracks expand into oversized sweeping graphic arcs and stream past the edges. Orthographic graphic language, generous spaces between paths, fine emerald undersides, exact engineered curves; avoid electrical circuitry and avoid a circuit-board texture. The final outward sweep creates a wide empty opening, not a persistent object.",
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "status": "completed",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_131713_fcdaed89-3f12-47b4-a02d-e3d3ae3bbf5c.mp4",
+      "delivery": {
+        "path": "public/motion/transitions/github.mp4",
+        "bytes": 1209014,
+        "encoding": "H.264 1280x720, 24fps, silent, every frame independently seekable; lifted blacks normalized for compositing"
+      }
+    },
+    {
+      "section": "projects",
+      "title": "Assembly",
+      "index": 1,
+      "job_id": "5e9f9975-4275-4a38-a911-92a092252626",
+      "params": {
+        "model": "seedance_2_5",
+        "prompt": "Create a five-second original editorial motion artwork used as a full-screen transition over a software developer's portfolio. High-end experimental title-sequence art direction, tactile cut-paper and optical-print aesthetic, ivory-white material with fine emerald-green #39bd6d edges, strong silhouettes, pure uniform black background for compositing. Broad graceful choreography with a strong change of scale, foreground layers crossing the frame, a clear climax then an opening. This is a finished animated film, not a website mockup. No lettering, text, numbers, logos, UI screenshots, people, plants, flowers, foliage, scenery, explosions, neon cyberpunk, confetti, flashing or flickering. Nothing gray in the black background. All visible material is luminous enough to separate from pure black. Single continuous shot, no cuts. Silent. Begin with the material just entering at the outside edges, build to an expansive central composition around 2 seconds, then send the material sweeping outward past all four edges so the center and finally the full frame are empty black by the end. Subject: building useful software from separate parts. Oversized blank ivory paper panels and narrow emerald-edged frames glide into the scene on different diagonal trajectories, unfold and precisely align into one striking modular composition of three interlocking rectangular windows. These are abstract physical paper frames, with black empty negative-space openings; no fabricated UI or devices. A few broad panels pass close to camera in the foreground. At the climax the camera pushes into the central empty window, while the entire assembled structure opens apart along its joints; the large panels sweep outward past the lens. Bold asymmetric composition, layered editorial precision, strong 2D shapes and spectacular full-frame scale. End with no panels remaining.",
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "status": "completed",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_131713_5e9f9975-4275-4a38-a911-92a092252626.mp4",
+      "delivery": {
+        "path": "public/motion/transitions/projects.mp4",
+        "bytes": 1212315,
+        "encoding": "H.264 1280x720, 24fps, silent, every frame independently seekable; lifted blacks normalized for compositing"
+      }
+    },
+    {
+      "section": "resume",
+      "title": "Experience unfolding",
+      "index": 2,
+      "job_id": "1e6df310-3c35-4756-80a3-9a2aef419cfe",
+      "params": {
+        "model": "seedance_2_5",
+        "prompt": "Create a five-second original editorial motion artwork used as a full-screen transition over a software developer's portfolio. High-end experimental title-sequence art direction, tactile cut-paper and optical-print aesthetic, ivory-white material with fine emerald-green #39bd6d edges, strong silhouettes, pure uniform black background for compositing. Broad graceful choreography with a strong change of scale, foreground layers crossing the frame, a clear climax then an opening. This is a finished animated film, not a website mockup. No lettering, text, numbers, logos, UI screenshots, people, plants, flowers, foliage, scenery, explosions, neon cyberpunk, confetti, flashing or flickering. Nothing gray in the black background. All visible material is luminous enough to separate from pure black. Single continuous shot, no cuts. Silent. Begin with the material just entering at the outside edges, build to an expansive central composition around 2 seconds, then send the material sweeping outward past all four edges so the center and finally the full frame are empty black by the end. Subject: professional experience accumulating into a path. One wide blank ivory paper strip unfurls diagonally through the frame and makes a long sculptural accordion of seven broad folds, suggesting a timeline without text or symbols. The camera tracks along the folds at close range, the near paper edges pass dramatically across the foreground, narrow emerald undersides catch light. The accordion opens into a graceful ascending sweep; each broad fold releases and rushes upward and outward until the path opens fully and all paper leaves the frame. Elegant tangible paper motion, not books, not a stack of business cards, no graph and no staircase architecture. The paper forms one continuous coherent object before unfolding.",
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "status": "completed",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_131714_1e6df310-3c35-4756-80a3-9a2aef419cfe.mp4",
+      "delivery": {
+        "path": "public/motion/transitions/resume.mp4",
+        "bytes": 1032149,
+        "encoding": "H.264 1280x720, 24fps, silent, every frame independently seekable; lifted blacks normalized for compositing"
+      }
+    },
+    {
+      "section": "books",
+      "title": "Pages into ideas",
+      "index": 3,
+      "job_id": "1581d070-a916-4711-8505-7b4c5acf3f8f",
+      "params": {
+        "model": "seedance_2_5",
+        "prompt": "Create a five-second original editorial motion artwork used as a full-screen transition over a software developer's portfolio. High-end experimental title-sequence art direction, tactile cut-paper and optical-print aesthetic, ivory-white material with fine emerald-green #39bd6d edges, strong silhouettes, pure uniform black background for compositing. Broad graceful choreography with a strong change of scale, foreground layers crossing the frame, a clear climax then an opening. This is a finished animated film, not a website mockup. No lettering, text, numbers, logos, UI screenshots, people, plants, flowers, foliage, scenery, explosions, neon cyberpunk, confetti, flashing or flickering. Nothing gray in the black background. All visible material is luminous enough to separate from pure black. Single continuous shot, no cuts. Silent. Begin with the material just entering at the outside edges, build to an expansive central composition around 2 seconds, then send the material sweeping outward past all four edges so the center and finally the full frame are empty black by the end. Subject: reading and the movement of ideas. A single oversized open book made of luminous ivory paper, with a thin emerald cover and entirely blank pages, glides upward from the bottom edge. Its pages turn in an accelerating but smooth wave and fan across the entire screen in an elegant radial arc. Camera moves very close through the turning leaves, with near paper pages briefly filling the foreground and distant pages forming fine parallel curves. Then the book opens all the way, its pages extend into broad flowing leaves of paper and sweep outward beyond the left and right edges to reveal a wide empty center. Only literal blank book pages, absolutely no botanical leaves. End with empty black and no book.",
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "status": "completed",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_131713_1581d070-a916-4711-8505-7b4c5acf3f8f.mp4",
+      "delivery": {
+        "path": "public/motion/transitions/books.mp4",
+        "bytes": 2127639,
+        "encoding": "H.264 1280x720, 24fps, silent, every frame independently seekable; lifted blacks normalized for compositing"
+      }
+    },
+    {
+      "section": "connect",
+      "title": "A connection made",
+      "index": 4,
+      "job_id": "68177e29-9c71-4fe4-8567-cabdc6790641",
+      "params": {
+        "model": "seedance_2_5",
+        "prompt": "Create a five-second original editorial motion artwork used as a full-screen transition over a software developer's portfolio. High-end experimental title-sequence art direction, tactile cut-paper and optical-print aesthetic, ivory-white material with fine emerald-green #39bd6d edges, strong silhouettes, pure uniform black background for compositing. Broad graceful choreography with a strong change of scale, foreground layers crossing the frame, a clear climax then an opening. This is a finished animated film, not a website mockup. No lettering, text, numbers, logos, UI screenshots, people, plants, flowers, foliage, scenery, explosions, neon cyberpunk, confetti, flashing or flickering. Nothing gray in the black background. All visible material is luminous enough to separate from pure black. Single continuous shot, no cuts. Silent. Begin with the material just entering at the outside edges, build to an expansive central composition around 2 seconds, then send the material sweeping outward past all four edges so the center and finally the full frame are empty black by the end. Subject: two separate voices finding a connection. Two long luminous ivory calligraphic strokes made of folded paper enter slowly from opposite sides of the empty frame, one high left and one low right. Each stroke curls into a large elegant open loop, like abstract quotation marks but with no readable symbol. They approach each other and weave once together at the center, making a single continuous flowing connection with a fine emerald seam. A smooth visible pulse of white light travels across the connection. Then both ends draw outward and the joined loops dramatically unfurl into broad arcs that sweep close past the lens and disappear completely beyond the frame edges. Balanced conversational choreography, sculptural editorial grace, no cable plugs, no heart, no infinity symbol, no glowing energy orb.",
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "status": "completed",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_131714_68177e29-9c71-4fe4-8567-cabdc6790641.mp4",
+      "delivery": {
+        "path": "public/motion/transitions/connect.mp4",
+        "bytes": 976129,
+        "encoding": "H.264 1280x720, 24fps, silent, every frame independently seekable; lifted blacks normalized for compositing"
+      }
+    }
+  ]
+}

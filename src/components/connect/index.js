@@ -88,7 +88,7 @@ const Connect = () => {
 		<Section>
 			<div className='flex flex-col items-center justify-center 3xl:mb-0 mb-24'>
 				<main className='flex justify-center items-center mb-8'>
-					<h1 className='flex-1 text-center sm:text-9xl text-6xl font-bold text-white uppercase mb-4'>
+					<h1 data-motion='heading' className='flex-1 text-center sm:text-9xl text-6xl font-bold text-white uppercase mb-4'>
 						Connect
 					</h1>
 				</main>
@@ -96,7 +96,7 @@ const Connect = () => {
 				<form
 					className='sm:p-0 p-4 w-full max-w-[1024px]'
 					onSubmit={handleSubmit}>
-					<div className='mb-8'>
+					<div data-motion='copy' className='mb-8'>
 						<label
 							htmlFor='name'
 							className='block text-[20px] tracking-[-0.04em] uppercase font-black font-inter text-white text-left'>
@@ -116,7 +116,7 @@ const Connect = () => {
 							</div>
 						)}
 					</div>
-					<div className='form-group'>
+					<div data-motion='copy' className='form-group'>
 						<label
 							htmlFor='email'
 							className='block text-[20px] tracking-[-0.04em] uppercase font-black font-inter text-white text-left'>
@@ -136,7 +136,7 @@ const Connect = () => {
 							</div>
 						)}
 					</div>
-					<div className='my-8'>
+					<div data-motion='copy' className='my-8'>
 						<label
 							htmlFor='message'
 							className='block text-[20px] tracking-[-0.04em] uppercase font-black font-inter text-white text-left'>

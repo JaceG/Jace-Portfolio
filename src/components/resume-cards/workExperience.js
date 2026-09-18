@@ -4,7 +4,7 @@ export default function WorkExperience() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			<div className='3xl:w-[730px] lg:w-[730px] md:w-[600px] flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
-				<div className='w-[336px] relative text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
+				<div data-motion='heading' className='w-[336px] relative text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
 					<p className='m-0'>Work</p>
 					<p className='m-0'>Experience</p>
 				</div>
@@ -17,9 +17,9 @@ export default function WorkExperience() {
 				</div>
 			</div>
 			<div className='border-8 h-[800px] sm:h-[820px] border-white w-[300px] sm:w-[600px] lg:w-[800px] relative'>
-				<div className='w-full h-full bg-white text-black absolute bottom-8 left-7'>
+				<div data-motion='card' className='w-full h-full bg-white text-black absolute bottom-8 left-7'>
 					<ul>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Developer &amp; Project Manager
 							</h3>
@@ -37,7 +37,7 @@ export default function WorkExperience() {
 								to take it over.
 							</p>
 						</li>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Freelance Developer
 							</h3>
@@ -52,7 +52,7 @@ export default function WorkExperience() {
 								solutions for clients using modern technologies.
 							</p>
 						</li>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Insurance Broker
 							</h3>
@@ -67,7 +67,7 @@ export default function WorkExperience() {
 								insurance products.
 							</p>
 						</li>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Driver
 							</h3>
@@ -83,7 +83,7 @@ export default function WorkExperience() {
 								responsibilities of this one.
 							</p>
 						</li>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Marketing Manager
 							</h3>
@@ -98,7 +98,7 @@ export default function WorkExperience() {
 								management of ads team.
 							</p>
 						</li>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Marketing &amp; Data Entry Specialist
 							</h3>
@@ -113,7 +113,7 @@ export default function WorkExperience() {
 								customer support.
 							</p>
 						</li>
-						<li className='px-8 pt-8'>
+						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Quality Assurance Analyst
 							</h3>

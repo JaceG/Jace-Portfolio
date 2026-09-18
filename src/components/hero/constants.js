@@ -12,9 +12,3 @@ export const FIZZLE_VH = 1.8;
  * after the hero is gone before the page scrolls on.
  */
 export const HOLD_VH = 0.6;
-
-/**
- * Fraction of the fizzle distance the user must push past for the hero to
- * commit and snap to the Me section; stopping short snaps back to the top.
- */
-export const SNAP_THRESHOLD = 0.55;

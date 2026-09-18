@@ -160,7 +160,7 @@ export default function GithubWork() {
 	return (
 		<div className='bg-white py-24 text-black'>
 			<div className='mx-auto flex max-w-[1100px] flex-col items-center px-6 sm:px-10'>
-				<h1 className='mb-2 text-center text-6xl font-bold uppercase text-[#39bb6a] sm:text-9xl'>
+				<h1 data-motion='heading' className='mb-2 text-center text-6xl font-bold uppercase text-[#39bb6a] sm:text-9xl'>
 					GitHub
 				</h1>
 				<p className='mb-12 text-center text-[20px] font-black uppercase tracking-[-0.04em] text-tertiary'>

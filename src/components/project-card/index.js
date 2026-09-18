@@ -8,6 +8,7 @@ export default function Card({
 	image,
 	github,
 	isCenter = false,
+	motionDelay = 0,
 }) {
 	function toSlug(text) {
 		return text.toLowerCase().replace(/ /g, '-');
@@ -16,10 +17,13 @@ export default function Card({
 	const slug = toSlug(title);
 	return (
 		<div
+			data-motion='card'
+			data-motion-hover
+			data-motion-delay={motionDelay}
 			className={`w-[330px] h-[540px] sm:w-[460px] sm:h-[480px] border-[11px] border-white relative ${
 				isCenter ? '3xl:mt-60' : ''
 			}`}>
-			<div className='bg-white w-full h-full absolute bottom-8 left-8'>
+			<div data-motion-sheet className='bg-white w-full h-full absolute bottom-8 left-8'>
 				<div className='p-8'>
 					<Link href={`/case-study/${slug}`}>
 						<img

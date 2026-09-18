@@ -3,7 +3,7 @@ export default function Skills() {
 		<div className='flex flex-col items-center justify-center'>
 			{/* Skills Header */}
 			<div className='3xl:w-[730px] xl:w-[730px] lg:w-[730px] md:w-[600px]  flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
-				<h2 className='w-[336px] text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
+				<h2 data-motion='heading' className='w-[336px] text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
 					Skills
 				</h2>
 			</div>
@@ -14,7 +14,7 @@ export default function Skills() {
 					{/* Skills Rows Container with padding and gap */}
 					<div className='flex flex-col gap-2'>
 						{/* Row 1: Frontend Development Skills */}
-						<div className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Frontend Development
@@ -70,7 +70,7 @@ export default function Skills() {
 							</div>
 						</div>
 						{/* Row 2: Backend Development Skills */}
-						<div className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Backend Development
@@ -116,7 +116,7 @@ export default function Skills() {
 							</div>
 						</div>
 						{/* Row 3: Database Skills */}
-						<div className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Database Skills
@@ -163,7 +163,7 @@ export default function Skills() {
 						</div>
 
 						{/* Row 4: Tools and Technologies */}
-						<div className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Tools and Technologies
@@ -215,7 +215,7 @@ export default function Skills() {
 						</div>
 
 						{/* Row 5: Additional Skills */}
-						<div className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Additional Skills
@@ -266,7 +266,7 @@ export default function Skills() {
 							</div>
 						</div>
 						{/* Row 6: Soft Skills */}
-						<div className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Soft Skills

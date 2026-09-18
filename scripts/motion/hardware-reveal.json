@@ -1,0 +1,26 @@
+{
+  "purpose": "Hero lifts upward to expose giant hardware behind the screen. Transparent Seedance components fall downward around the full perimeter into ME, driven by native scrolling.",
+  "job_id": "e3e5f910-641c-4bba-a5ea-69d4d7a7dfb3",
+  "status": "completed",
+  "estimated_credits": 72,
+  "params": {
+    "model": "seedance_2_5",
+    "mode": "t2v",
+    "duration": 8,
+    "resolution": "1080p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false,
+    "count": 1,
+    "prompt": "Create an elaborate 8-second animated hardware curtain reveal, for compositing AROUND THE EDGES of a software engineer's existing website. Fixed front-facing camera, a single continuous choreography, absolutely no camera flight or cuts. Giant beautifully illustrated real computer components surround a large EMPTY CENTRAL OPENING like the hidden mechanical structure behind the website. The left and right outer 30 percent of the frame are packed from TOP TO BOTTOM with richly detailed oversized PC hardware, layered at many depths; some objects extend far beyond the outer edges. The central 40 percent stays completely EMPTY. Across the top edge and bottom corners are more overlapping hardware. Objects are monumental: a cooling fan the size of half the frame's height, a tall motherboard with delicate printed circuits, an enormous diagonal graphics card, stacked RAM, pale keyboard keys, ribbed heat sinks, metallic processor plates, thick coiling black cables, tiny screws amongst large foreground objects. The composition is asymmetric, physically dimensional, an editorial cut-paper technical illustration with engraved ink detail and strong material textures, ivory surfaces, deep charcoal and saturated emerald green. Crisp silhouettes and beautiful strong shading only WITHIN objects. NOT neon wireframes, NOT particles, NOT minimal geometric shapes, NOT a rectangular framed video. ACTION: 0-1 seconds the imposing machine is assembled around all four edges, with a large clean open center. 1-3 seconds fasteners release; the fan rotates, giant boards tilt toward the viewer, overlapping layers pull apart with convincing depth, coiled cables swing in long arcs. 3-6 seconds everything cascades FALLING DOWNWARD along both sides of the empty center, gracefully tumbling and rotating outwards at different speeds; huge close foreground boards sweep down and offscreen, slower smaller parts descend behind them, cables whip and uncoil in continuous sweeping S curves, keycaps tumble in cascading waves. A sweeping elaborate theatrical falling-away reveal with tremendous SCALE, objects occupy approximately two thirds of the entire picture, not tiny decoration. Nothing flies across the central opening. 6-7.5 seconds the last broad cable loops and few large lower-corner hardware pieces fall completely beyond the bottom edge. 7.5-8 seconds the frame is completely EMPTY. COMPOSITING: the entire background and all empty spaces including the central opening must be perfectly flat solid saturated MAGENTA #FF00FF throughout, evenly colored, with NO gradient, NO texture, NO floor, NO scenery, NO background shadows and NO pink lighting or pink reflections on objects. Magenta is only the removable backing plate. There is no magenta anywhere inside the objects. No text, letters, logos, watermarks, people, leaves or flowers. Silent."
+  },
+  "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_135829_e3e5f910-641c-4bba-a5ea-69d4d7a7dfb3.mp4",
+  "delivery": {
+    "file": "public/motion/transitions/hardware-reveal.webm",
+    "bytes": 16893247,
+    "width": 1600,
+    "height": 900,
+    "duration": 8.042,
+    "format": "Silent VP9 with alpha, 24 fps, keyframe every 3 frames"
+  },
+  "preview": "http://127.0.0.1:3100/?motion=1"
+}

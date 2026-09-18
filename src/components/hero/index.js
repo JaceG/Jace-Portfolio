@@ -1,11 +1,13 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { RESUME_DOWNLOAD_URL } from '@/constants/me';
+import HeroFilm from './film';
+import { useMotionPreview } from '../motion-preview';
+import monitorStyles from './monitor.module.css';
 import {
 	NAV_HEIGHT,
 	FIZZLE_VH,
 	HOLD_VH,
-	SNAP_THRESHOLD,
 } from './constants';
 
 const ROLES = [
@@ -577,13 +579,18 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
  * an old CRT and reboots it.
  */
 export default function Hero() {
+	const { active, paused, hardwareReady } = useMotionPreview();
+	const [monitorReady, setMonitorReady] = useState(false);
+	const hardwareReveal = active && !paused && hardwareReady && monitorReady;
 	const role = useTypewriter(ROLES);
 	const rootRef = useRef(null);
+	const monitorRef = useRef(null);
 	const contentRef = useRef(null);
 	const gridRef = useRef(null);
 	const staticRef = useRef(null);
 	const scanRef = useRef(null);
 	const rollRef = useRef(null);
+	const blackoutRef = useRef(null);
 	const frameRef = useRef(null);
 	const progressRef = useRef(0);
 	const lastTapRef = useRef({ t: 0, x: 0, y: 0 });
@@ -624,21 +631,18 @@ export default function Hero() {
 		};
 	}, []);
 
-	// Scroll-driven fizzle + snap controller.
+	// Scroll-driven fizzle. Native scrolling owns the position throughout;
+	// snapping on scroll-end traps small wheel/trackpad gestures at the boundaries.
 	//
 	// Zones (y = scrollY, vh = innerHeight):
-	//   fizzle  0 .. FIZZLE_VH*vh   hero resists, static/glitch build, then it
-	//                               tears away; stopping short of the threshold
-	//                               snaps back to the top, past it snaps to Me.
-	//   hold    .. + HOLD_VH*vh     Me is pinned and the drag hint flashes;
-	//                               stopping here snaps to either end.
+	//   fizzle  0 .. FIZZLE_VH*vh   static/glitch build, then the hero tears away.
+	//   hold    .. + HOLD_VH*vh     Me is pinned and the drag hint flashes.
 	//   free    beyond              normal scrolling.
 	useEffect(() => {
+		const root = rootRef.current;
+		const monitor = monitorRef.current;
+		if (!root) return;
 		let raf = null;
-		let stopTimer = null;
-		const reduced = window.matchMedia(
-			'(prefers-reduced-motion: reduce)'
-		).matches;
 		const dims = () => {
 			const vh = Math.max(1, window.innerHeight);
 			return { d1: vh * FIZZLE_VH, d2: vh * HOLD_VH };
@@ -646,8 +650,6 @@ export default function Hero() {
 
 		const render = () => {
 			raf = null;
-			const root = rootRef.current;
-			if (!root) return;
 			const { d1, d2 } = dims();
 			const y = window.scrollY;
 			const t = clamp01(y / d1);
@@ -656,7 +658,20 @@ export default function Hero() {
 			// The panel holds its shape for the first stretch (resistance) while
 			// the feedback layers ramp up immediately, then tears away.
 			const panelOpacity = 1 - smoothstep(0.6, 0.98, t);
-			root.style.opacity = String(panelOpacity);
+			// In the hardware study the whole screen physically lifts upward.
+			// The independently layered film remains behind it and falls downward.
+			root.style.opacity = hardwareReveal ? '1' : String(panelOpacity);
+			// Pull out of the screen far enough to identify the complete monitor,
+			// then carry its casing and the live hero upward as one physical object.
+			const pullback = smoothstep(0, .3, t);
+			const lift = smoothstep(.3, 1, t);
+			const screenTransform = `translateY(${window.innerHeight * (.16 * pullback - 1.2 * lift)}px) scale(${1 - .45 * pullback})`;
+			root.style.transformOrigin = hardwareReveal ? '50% 0' : '';
+			root.style.transform = hardwareReveal ? screenTransform : '';
+			if (monitor) {
+				monitor.style.transform = screenTransform;
+				monitor.style.visibility = hardwareReveal && y > 0 && t < 1 ? 'visible' : 'hidden';
+			}
 			// The site nav reads this to fade its ink overlay out in step with
 			// the hero (see components/header).
 			document.documentElement.style.setProperty(
@@ -669,7 +684,7 @@ export default function Hero() {
 			const content = contentRef.current;
 			if (content) {
 				content.style.opacity = String(1 - smoothstep(0.45, 0.85, t));
-				content.style.transform = `translateY(${-(t * t) * 90}px) scale(${
+				content.style.transform = hardwareReveal ? '' : `translateY(${-(t * t) * 90}px) scale(${
 					1 + t * 0.03
 				})`;
 				const blur = Math.max(0, t - 0.35) * 5;
@@ -680,12 +695,21 @@ export default function Hero() {
 				content.classList.toggle('hero-jitter', t > 0.2 && t < 1);
 			}
 
-			const noise = Math.pow(Math.sin(t * Math.PI), 0.7);
+			// These layers live inside the transformed hero, so the original CRT
+			// breakup travels within the monitor screen. Keep it running beneath
+			// the screen's fade to black as the monitor recedes.
+			const noiseProgress = hardwareReveal ? Math.min(t, .5) : t;
+			const noise = Math.pow(Math.sin(noiseProgress * Math.PI), 0.7);
 			staticRef.current.style.opacity = String(noise * 0.75);
 			scanRef.current.style.opacity = String(noise * 0.55);
 			rollRef.current.style.opacity = String(noise);
+			// Dim the complete display, including the CRT effects, without fading
+			// the casing or exposing the page through the screen.
+			blackoutRef.current.style.opacity = hardwareReveal
+				? String(smoothstep(.24, .6, t))
+				: '0';
 
-			const s = Math.round(clamp01(t / 0.6) * 10) / 10;
+			const s = t >= 1 ? 0 : Math.round(clamp01(t / 0.6) * 10) / 10;
 			setStorm((prev) => (prev === s ? prev : s));
 
 			const zone =
@@ -693,26 +717,8 @@ export default function Hero() {
 			document.documentElement.dataset.heroZone = zone;
 		};
 
-		// Runs once the user has stopped scrolling; decides whether to snap.
-		const settle = () => {
-			stopTimer = null;
-			if (reduced) return;
-			const { d1, d2 } = dims();
-			const y = window.scrollY;
-			let target = null;
-			if (y > 1 && y < d1) {
-				target = y / d1 < SNAP_THRESHOLD ? 0 : d1;
-			} else if (y > d1 && y < d1 + d2) {
-				target = (y - d1) / d2 < 0.5 ? d1 : d1 + d2;
-			}
-			if (target == null || Math.abs(target - y) < 2) return;
-			window.scrollTo({ top: target, behavior: 'smooth' });
-		};
-
 		const onScroll = () => {
 			if (raf == null) raf = requestAnimationFrame(render);
-			clearTimeout(stopTimer);
-			stopTimer = setTimeout(settle, 260);
 		};
 
 		render();
@@ -722,11 +728,13 @@ export default function Hero() {
 			window.removeEventListener('scroll', onScroll);
 			window.removeEventListener('resize', onScroll);
 			if (raf != null) cancelAnimationFrame(raf);
-			clearTimeout(stopTimer);
 			delete document.documentElement.dataset.heroZone;
 			document.documentElement.style.removeProperty('--hero-ink');
+			root.style.transform = '';
+			root.style.transformOrigin = '';
+			if (monitor) monitor.style.visibility = 'hidden';
 		};
-	}, []);
+	}, [hardwareReveal]);
 
 	// ---- Click / tap interactions -------------------------------------------
 
@@ -858,10 +866,17 @@ export default function Hero() {
 			: '';
 
 	return (
+		<>
+		{active && <div ref={monitorRef} className={monitorStyles.casing} aria-hidden='true'>
+			{/* Generated illustration with a transparent opening for the live hero. */}
+			{/* eslint-disable-next-line @next/next/no-img-element */}
+			<img src='/motion/monitor-casing.png' alt='' draggable='false'
+				onLoad={() => setMonitorReady(true)} onError={() => setMonitorReady(false)} />
+		</div>}
 		<div
 			ref={rootRef}
 			onPointerUp={onPointerUp}
-			className='hero-root fixed inset-0 z-10 select-none overflow-hidden bg-ink font-geist text-white antialiased'>
+			className='hero-root fixed inset-0 z-10 select-none overflow-clip bg-ink font-geist text-white antialiased'>
 			{/* Everything that "powers off" during a CRT cycle lives in here. */}
 			<div
 				key={screenKey}
@@ -877,6 +892,8 @@ export default function Hero() {
 							'radial-gradient(45% 45% at var(--glow-x, 50%) var(--glow-y, 50%), rgba(57,189,109,0.45), transparent 70%), radial-gradient(35% 35% at 80% 20%, rgba(57,189,109,0.22), transparent 70%)',
 					}}
 				/>
+				{/* Optional video artwork, behind the existing hero content. */}
+				<HeroFilm />
 				{/* Panning technical grid */}
 				<div
 					ref={gridRef}
@@ -1133,6 +1150,12 @@ export default function Hero() {
 				aria-hidden='true'
 				className='hero-static pointer-events-none absolute inset-0 z-30 opacity-0'
 			/>
+			<div
+				ref={blackoutRef}
+				aria-hidden='true'
+				className='hero-screen-blackout pointer-events-none absolute inset-0 z-40 bg-black opacity-0'
+			/>
 		</div>
+		</>
 	);
 }

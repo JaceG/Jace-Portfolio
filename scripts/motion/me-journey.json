@@ -1,0 +1,28 @@
+{
+  "purpose": "One focused revision: immersive transition from the bottom of ME into GitHub, grounded in the biography's computer-building to software-development story.",
+  "job_id": "0bee7007-6ebd-4244-b685-9f962aeb02cb",
+  "status": "completed",
+  "estimated_credits": 90,
+  "params": {
+    "model": "seedance_2_5",
+    "duration": 10,
+    "resolution": "1080p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false,
+    "count": 1,
+    "prompt": "Create an elaborate immersive ten-second animated editorial journey for the transition from a software engineer's biography to his real GitHub work. His story starts with taking computers apart and building his own PCs as a teenager, then becomes writing software professionally. Show this specific hardware-to-software transformation. A single spectacular continuous swooping camera move with large foreground objects passing very close to the lens, layered midground and distant objects, strong parallax, dramatic changes of scale and an elegant S-shaped flight path. The artwork fills the entire frame at full opacity. STYLE: sophisticated hand-illustrated technical collage, rich ink linework, engraved technical drawing textures, tactile ivory printed paper, black ink and saturated emerald green #39bd6d. Recognizable and richly detailed computer components and software windows; visually complex, art directed and cinematic. Not glossy CGI, not a generic abstract ribbon, not a minimal floating icon, not a slideshow, no flat fade between scenes. TIMELINE: 0-1 sec: begin with an uninterrupted flat emerald-green #39bd6d field. Giant illustrated keyboard keys and the edge of an ivory desktop computer casing sweep into the frame from below and both sides, rapidly enveloping the camera. 1-4 sec: the computer opens into an elaborate exploded technical illustration. Keyboard, green motherboard, intricate copper traces rendered ivory, cooling fan, memory modules and cables spread around the camera at multiple depths. Fly close between giant keys, swoop in a wide bank past the fan and glide along the motherboard toward a huge illuminated monitor. Strong near-field foreground occlusion, everything feels several times larger than the screen. 4-7 sec: accelerate directly THROUGH the monitor's screen into a deep world made from overlapping emerald, ivory and ink-black software windows. The windows contain small typographic code-like strokes, curly braces, indentation and branching flow diagrams, not readable prose. The camera spirals gently left and then straightens, weaving between dozens of vast upright interface sheets with a clear coherent vanishing point. These are richly drawn flat illustration planes, not a neon science-fiction city. 7-9 sec: the software windows become a sweeping fan of large white rectangular sheets and expand outward past the lens, framing a broad central opening of pure white. The camera passes through that opening and all artwork clears beyond the edges. 9-10 sec: hold a completely empty pure white #ffffff frame with no remaining objects, no logo, no text, no border, no gray vignette. The arrival should feel like exiting the illustrated world onto a clean white web page. Full-screen narrative transformation, continuous coherent camera movement, no cuts. No humans or faces, no flowers or foliage, no book, no branded logos, no watermarks, no readable headlines. Silent."
+  },
+  "preview": "http://127.0.0.1:3100/?motion=1#me-transition-space",
+  "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_133732_0bee7007-6ebd-4244-b685-9f962aeb02cb.mp4",
+  "delivery": [
+    {
+      "file": "public/motion/transitions/me-journey.mp4",
+      "bytes": 10016212
+    },
+    {
+      "file": "public/motion/transitions/me-journey-mobile.mp4",
+      "bytes": 3469065
+    }
+  ],
+  "encoding": "Silent H.264, 24fps, keyframes every 3 frames; 1920x1080 desktop and 608x1080 portrait crop for mobile."
+}

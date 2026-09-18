@@ -126,7 +126,7 @@ const Books = () => {
 
 		return (
 			<>
-				<h1 className='flex-1 text-center sm:text-5xl text-4xl font-bold text-[#39bb6a] uppercase mb-4 mt-8'>
+				<h1 data-motion='heading' data-motion-key={`category-${category.key}`} className='flex-1 text-center sm:text-5xl text-4xl font-bold text-[#39bb6a] uppercase mb-4 mt-8'>
 					{category.name}
 				</h1>
 
@@ -134,9 +134,13 @@ const Books = () => {
 					<div
 						key={`${category.key}-${rowIndex}`}
 						className='flex flex-wrap justify-center p-4 gap-4 mb-4'>
-						{row.map((book) => (
+						{row.map((book, bookIndex) => (
 							<div
 								key={`${category.key}-${book.id}`}
+								data-motion='book'
+								data-motion-key={`book-${category.key}-${book.id}`}
+								data-motion-hover
+								data-motion-delay={bookIndex * 75}
 								className='border-[20px] border-[#39bb6a]'>
 								{book.pageUrl ? (
 									<Link href={book.pageUrl} target='_blank'>
@@ -183,15 +187,15 @@ const Books = () => {
 
 	return (
 		<Section>
-			<div className='flex flex-col items-center justify-center 3xl:mb-0 mb-24 bg-white'>
+			<div className='relative flex flex-col items-center justify-center 3xl:mb-0 mb-24 bg-white'>
 				<main className='flex justify-center items-center mb-8'>
-					<h1 className='flex-1 text-center sm:text-9xl text-6xl font-bold text-[#39bb6a] uppercase mb-4 mt-8'>
+					<h1 data-motion='heading' className='flex-1 text-center sm:text-9xl text-6xl font-bold text-[#39bb6a] uppercase mb-4 mt-8'>
 						Books
 					</h1>
 				</main>
 
 				<div className='border-8 h-[475px] lg:h-[375px] xl:h-[375px] border-[#39bb6a] w-[300px] sm:w-[600px] lg:w-[800px] relative mb-8'>
-					<div className='w-full h-full bg-[#39bb6a] text-white absolute bottom-8 left-7 p-8'>
+					<div data-motion='card' className='w-full h-full bg-[#39bb6a] text-white absolute bottom-8 left-7 p-8'>
 						<h3 className='md:text-2xl font-bold'>
 							This is a section for the books I&apos;ve read that
 							I think are relevant to prompt & AI Engineering. I

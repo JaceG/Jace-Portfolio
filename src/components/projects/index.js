@@ -40,10 +40,11 @@ export default function Projects() {
 	return (
 		<Section>
 			<div className='flex flex-col items-center justify-center lg:mb-16 mb-24'>
-				<h1 className='sm:text-9xl text-6xl font-bold text-white uppercase mb-4'>
+				<h1 data-motion='heading' className='sm:text-9xl text-6xl font-bold text-white uppercase mb-4'>
 					Projects
 				</h1>
 				<img
+					data-motion='line'
 					src={'/line-curved.svg'}
 					alt='Arrow 2'
 					className='about-img transform hidden lg:block'
@@ -58,6 +59,7 @@ export default function Projects() {
 							description={project.snippet}
 							image={project.image}
 							github={project.github}
+							motionDelay={(index % 3) * 100}
 							isCenter={index % 3 === 1}>
 							<Link
 								href={`/case-study/${project.slug}`}

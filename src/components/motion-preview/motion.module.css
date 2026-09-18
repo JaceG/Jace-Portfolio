@@ -1,0 +1,47 @@
+/* Positioning and compositing only. The artwork motion is baked into video. */
+.accentClip {
+	position: absolute;
+	inset: -140px 0 auto;
+	height: 410px;
+	overflow: clip;
+	pointer-events: none;
+	z-index: 2;
+	mix-blend-mode: screen;
+}
+.accent {
+	position: absolute;
+	inset: 0 -40px;
+	opacity: .62;
+	mask-image: linear-gradient(0deg, transparent, #000 35%, #000 62%, transparent 95%);
+}
+.accent img, .accent video { width: 100%; height: 100%; object-fit: cover; }
+.reverse img, .reverse video { transform: scaleX(-1); }
+.ink { mix-blend-mode: multiply; }
+.ink .accent { opacity: .19; filter: grayscale(1) invert(1); }
+.corner { inset: 20px -120px auto auto; width: min(700px, 60vw); height: 450px; opacity: .23; mask-image: radial-gradient(ellipse, #000 5%, transparent 66%); }
+.controls {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 45;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 5px 10px 5px 13px;
+	border: 1px solid #ffffff30;
+	border-radius: 24px;
+	background: #08090bea;
+	color: #b5c9bb;
+	font: 10px var(--font-geist-mono), monospace;
+	letter-spacing: .08em;
+	box-shadow: 0 3px 18px #0001;
+}
+.controls button { min-width: 34px; min-height: 32px; padding: 0 5px; cursor: pointer; color: #d5ffe4; }
+.controls button:focus-visible { outline: 2px solid #39bd6d; outline-offset: 2px; border-radius: 10px; }
+@media (max-width: 767px) {
+	.accentClip { inset-block-start: -90px; height: 270px; }
+	.accent { opacity: .42; }
+	.ink .accent { opacity: .13; }
+	.corner { width: 360px; height: 280px; right: -180px; opacity: .18; }
+	.controls { right: 12px; bottom: 12px; }
+}

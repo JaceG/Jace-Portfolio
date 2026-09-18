@@ -1,0 +1,13 @@
+{
+  "job_id": "8a6b8162-f64f-4fda-8707-19964b1f6215",
+  "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IPDUzZb40f567unLQP4HNZyJ35/hf_20260918_124434_8a6b8162-f64f-4fda-8707-19964b1f6215.mp4",
+  "params": {
+    "model": "seedance_2_5",
+    "prompt": "A restrained abstract motion-design element for a green-and-white creative portfolio. On a perfectly pure black empty background, one long ultra-fine satin-white ribbon made of hundreds of luminous parallel hairline filaments flows horizontally from left edge to right edge. The delicate filament ribbon gently rolls into a single flowing S-curve with a soft emerald-green reflected edge, like long-exposure optical-fiber light. The luminous material remains confined to the central horizontal third of the frame, plenty of pure black above and below. Smooth slow continuous undulation, elegant editorial art direction, crisply detailed thin lines, modest brightness. Locked orthographic frontal camera. Flat graphic composition, no scene, no floor, no cast shadow, no support wires, no other objects, no particles, no lettering, no logos. Seamless-feeling flowing movement. Silent.",
+    "duration": 8,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false
+  },
+  "use": "Additive section boundary film; no layout changes."
+}

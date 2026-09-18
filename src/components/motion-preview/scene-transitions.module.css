@@ -1,0 +1,34 @@
+.scene {
+	position: fixed;
+	inset: 64px 0 0;
+	z-index: 30;
+	pointer-events: none;
+	visibility: hidden;
+	mix-blend-mode: screen;
+}
+.film {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+}
+.scene[data-ink='true'] {
+	filter: invert(1) hue-rotate(180deg);
+	mix-blend-mode: multiply;
+}
+.scene[data-immersive='true'] {
+	mix-blend-mode: normal;
+	filter: none;
+	background: #39bd6d;
+}
+.journeySpace {
+	height: 0;
+	pointer-events: none;
+	overflow-anchor: none;
+}
+.journeySpace[data-enabled='true'] {
+	height: 180svh;
+	background: linear-gradient(#39bd6d 0%, #39bd6d 45%, #fff 90%);
+}

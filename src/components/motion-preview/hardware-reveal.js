@@ -66,6 +66,17 @@ export default function HardwareReveal({ running, onReady }) {
 		window.addEventListener('scroll', schedule, { passive: true });
 		window.addEventListener('resize', schedule);
 		document.addEventListener('visibilitychange', onVisibility);
+		// WebKit (Safari, and every browser on iOS) cannot composite the alpha
+		// plane of a VP9 WebM, so it gets the same film as HEVC-with-alpha.
+		// GestureEvent only exists in WebKit. Checked here, after the listeners
+		// are attached, so the first loadeddata cannot be missed.
+		const webkit = 'GestureEvent' in window && video.canPlayType('video/mp4; codecs="hvc1"') !== '';
+		video.src = `/motion/transitions/hardware-reveal.${webkit ? 'mp4' : 'webm'}`;
+		video.load();
+		// iOS does not fetch or decode media for a video that has never played,
+		// so seeking would have nothing to present. A muted inline play/pause
+		// opens the decoder; scroll position still drives every visible frame.
+		if (webkit) video.play().then(() => video.pause()).catch(() => {});
 		if (video.readyState >= 2) schedulePaint();
 		update();
 		return () => {
@@ -77,6 +88,8 @@ export default function HardwareReveal({ running, onReady }) {
 			window.removeEventListener('scroll', schedule);
 			window.removeEventListener('resize', schedule);
 			document.removeEventListener('visibilitychange', onVisibility);
+			video.removeAttribute('src');
+			video.load();
 			onReady(false);
 		};
 	}, [running, onReady]);
@@ -85,7 +98,6 @@ export default function HardwareReveal({ running, onReady }) {
 	return <div ref={rootRef} className={styles.frame} data-hardware-reveal aria-hidden='true'>
 		<canvas ref={canvasRef} className={styles.film} />
 		<video ref={videoRef} className={styles.decoder}
-			src='/motion/transitions/hardware-reveal.webm'
 			muted playsInline preload='auto' disablePictureInPicture tabIndex={-1} />
 	</div>;
 }

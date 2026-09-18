@@ -17,3 +17,12 @@ const filter = [
 execFileSync('ffmpeg', ['-hide_banner', '-y', '-i', input, '-an', '-vf', filter,
   '-c:v', 'libvpx-vp9', '-crf', '29', '-b:v', '0', '-g', '3', '-auto-alt-ref', '0',
   '-row-mt', '1', '-cpu-used', '3', '-pix_fmt', 'yuva420p', output], { stdio: 'inherit' });
+
+// Safari and iOS cannot composite VP9 alpha, so the same film is also
+// delivered as HEVC-with-alpha (macOS VideoToolbox). Decode the WebM with
+// libvpx so its alpha plane survives; keep the 3-frame keyframe interval
+// so scroll seeking stays responsive.
+const hevc = output.replace(/\.webm$/, '.mp4');
+execFileSync('ffmpeg', ['-hide_banner', '-y', '-c:v', 'libvpx-vp9', '-i', output, '-an',
+  '-c:v', 'hevc_videotoolbox', '-allow_sw', '1', '-alpha_quality', '0.8', '-q:v', '60',
+  '-g', '3', '-tag:v', 'hvc1', '-pix_fmt', 'bgra', '-movflags', '+faststart', hevc], { stdio: 'inherit' });

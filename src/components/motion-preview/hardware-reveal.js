@@ -61,10 +61,13 @@ export default function HardwareReveal({ running, onReady }) {
 			// When the cut reaches into the hardware bands (phones), the CSS
 			// fades the center so the two halves never meet in a hard seam.
 			root.dataset.narrow = String(aspect < (vw / vh) * .6);
-			// One atomic replacement, including alpha. Never clear the visible
-			// canvas while waiting for a video frame or display the seeking video.
-			// Both draws land in the same task, so they present together.
-			context.globalCompositeOperation = 'copy';
+			// One atomic replacement, including alpha: clear and redraw inside
+			// this single task, so the canvas is never presented empty. Do not
+			// rely on the 'copy' composite mode to erase the previous frame;
+			// iOS WebKit ignores it for video with alpha, so transparent pixels
+			// kept the old artwork and every moving part left a trail of copies.
+			context.globalCompositeOperation = 'source-over';
+			context.clearRect(0, 0, cw, ch);
 			if (wide) {
 				// Wider than the film: full width, trimmed evenly top and bottom.
 				context.drawImage(video, 0, Math.round((vh - ch) / 2), vw, ch, 0, 0, cw, ch);
@@ -74,7 +77,6 @@ export default function HardwareReveal({ running, onReady }) {
 				const left = Math.ceil(cw / 2);
 				const right = cw - left;
 				context.drawImage(video, 0, 0, left, vh, 0, 0, left, vh);
-				context.globalCompositeOperation = 'source-over';
 				context.drawImage(video, vw - right, 0, right, vh, left, 0, right, vh);
 			}
 			root.dataset.frameTime = video.currentTime.toFixed(3);

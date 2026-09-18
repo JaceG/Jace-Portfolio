@@ -51,6 +51,9 @@ const BOOT_LINES = [
 	'> restoring hero',
 ];
 
+// The narrowest screen shape that still reads as a monitor (16:10).
+const MONITOR_MIN_ASPECT = 1.6;
+
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const smoothstep = (a, b, x) => {
 	const t = clamp01((x - a) / (b - a));
@@ -665,10 +668,39 @@ export default function Hero() {
 			// then carry its casing and the live hero upward as one physical object.
 			const pullback = smoothstep(0, .3, t);
 			const lift = smoothstep(.3, 1, t);
-			const screenTransform = `translateY(${window.innerHeight * (.16 * pullback - 1.2 * lift)}px) scale(${1 - .45 * pullback})`;
+			// The casing's opening is fitted to the screen it surrounds. On a tall
+			// viewport that would stretch it into a portrait tower, so the screen
+			// narrows to a landscape window around the name as the camera pulls
+			// back, and the casing is fitted to that window instead. Landscape
+			// viewports already satisfy the ratio and are unchanged.
+			const vw = window.innerWidth;
+			const vh = Math.max(1, window.innerHeight);
+			const windowHeight = Math.min(vh, vw / MONITOR_MIN_ASPECT);
+			const portrait = windowHeight < vh;
+			let windowTop = 0;
+			if (portrait && hardwareReveal) {
+				// offsetTop is unaffected by the transforms applied below.
+				const name = root.querySelector('h1');
+				let center = vh * .45;
+				if (name) {
+					center = name.offsetHeight / 2;
+					for (let el = name; el && el !== root; el = el.offsetParent) center += el.offsetTop;
+				}
+				windowTop = Math.max(0, Math.min(vh - windowHeight, center - windowHeight / 2));
+			}
+			const clipTop = windowTop * pullback;
+			const clipBottom = (vh - windowTop - windowHeight) * pullback;
+			// A small landscape monitor can stay larger on a narrow screen.
+			const shrink = portrait ? .2 : .45;
+			const screenTransform = `translateY(${vh * (.16 * pullback - 1.2 * lift)}px) scale(${1 - shrink * pullback})`;
 			root.style.transformOrigin = hardwareReveal ? '50% 0' : '';
 			root.style.transform = hardwareReveal ? screenTransform : '';
+			root.style.clipPath = hardwareReveal && portrait ? `inset(${clipTop}px 0 ${clipBottom}px 0)` : '';
 			if (monitor) {
+				monitor.style.top = `${clipTop}px`;
+				monitor.style.bottom = `${clipBottom}px`;
+				// Scale about the viewport's top edge, exactly like the hero.
+				monitor.style.transformOrigin = `50% ${-clipTop}px`;
 				monitor.style.transform = screenTransform;
 				monitor.style.visibility = hardwareReveal && y > 0 && t < 1 ? 'visible' : 'hidden';
 			}
@@ -732,7 +764,13 @@ export default function Hero() {
 			document.documentElement.style.removeProperty('--hero-ink');
 			root.style.transform = '';
 			root.style.transformOrigin = '';
-			if (monitor) monitor.style.visibility = 'hidden';
+			root.style.clipPath = '';
+			if (monitor) {
+				monitor.style.visibility = 'hidden';
+				monitor.style.top = '';
+				monitor.style.bottom = '';
+				monitor.style.transformOrigin = '';
+			}
 		};
 	}, [hardwareReveal]);
 

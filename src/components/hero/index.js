@@ -871,6 +871,9 @@ export default function Hero() {
 			{/* Generated illustration with a transparent opening for the live hero. */}
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img src='/motion/monitor-casing.png' alt='' draggable='false'
+				// This image is in the server-rendered HTML, so it can finish
+				// loading (always, once cached) before React attaches onLoad.
+				ref={(img) => { if (img?.complete && img.naturalWidth > 0) setMonitorReady(true); }}
 				onLoad={() => setMonitorReady(true)} onError={() => setMonitorReady(false)} />
 		</div>}
 		<div

@@ -45,14 +45,38 @@ export default function HardwareReveal({ running, onReady }) {
 			// Decode that position before making the artwork visible for the first time.
 			const wanted = target * Math.max(0, video.duration - .05);
 			if (!ready && Math.abs(video.currentTime - wanted) > 1 / 30) { seek(); return; }
-			if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
-				canvas.width = video.videoWidth;
-				canvas.height = video.videoHeight;
+			// The film is 16:9 with hardware in its outer thirds and an open
+			// center. Never stretch it to the viewport: match the canvas to the
+			// frame's aspect and choose what to show instead.
+			const vw = video.videoWidth;
+			const vh = video.videoHeight;
+			const aspect = root.clientWidth / Math.max(1, root.clientHeight);
+			const wide = aspect >= vw / vh;
+			const cw = wide ? vw : Math.max(2, Math.round(vh * aspect));
+			const ch = wide ? Math.max(2, Math.round(vw / aspect)) : vh;
+			if (canvas.width !== cw || canvas.height !== ch) {
+				canvas.width = cw;
+				canvas.height = ch;
 			}
+			// When the cut reaches into the hardware bands (phones), the CSS
+			// fades the center so the two halves never meet in a hard seam.
+			root.dataset.narrow = String(aspect < (vw / vh) * .6);
 			// One atomic replacement, including alpha. Never clear the visible
 			// canvas while waiting for a video frame or display the seeking video.
+			// Both draws land in the same task, so they present together.
 			context.globalCompositeOperation = 'copy';
-			context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			if (wide) {
+				// Wider than the film: full width, trimmed evenly top and bottom.
+				context.drawImage(video, 0, Math.round((vh - ch) / 2), vw, ch, 0, 0, cw, ch);
+			} else {
+				// Narrower: keep the left and right bands at the screen edges and
+				// drop the middle, which is open space until the viewport is tall.
+				const left = Math.ceil(cw / 2);
+				const right = cw - left;
+				context.drawImage(video, 0, 0, left, vh, 0, 0, left, vh);
+				context.globalCompositeOperation = 'source-over';
+				context.drawImage(video, vw - right, 0, right, vh, left, 0, right, vh);
+			}
 			root.dataset.frameTime = video.currentTime.toFixed(3);
 			if (!ready) { ready = true; onReady(true); }
 			update();
@@ -64,7 +88,8 @@ export default function HardwareReveal({ running, onReady }) {
 		video.addEventListener('seeked', schedulePaint);
 		video.addEventListener('error', onError);
 		window.addEventListener('scroll', schedule, { passive: true });
-		window.addEventListener('resize', schedule);
+		const onResize = () => { schedule(); schedulePaint(); };
+		window.addEventListener('resize', onResize);
 		document.addEventListener('visibilitychange', onVisibility);
 		// WebKit (Safari, and every browser on iOS) cannot composite the alpha
 		// plane of a VP9 WebM, so it gets the same film as HEVC-with-alpha.
@@ -86,7 +111,7 @@ export default function HardwareReveal({ running, onReady }) {
 			video.removeEventListener('seeked', schedulePaint);
 			video.removeEventListener('error', onError);
 			window.removeEventListener('scroll', schedule);
-			window.removeEventListener('resize', schedule);
+			window.removeEventListener('resize', onResize);
 			document.removeEventListener('visibilitychange', onVisibility);
 			video.removeAttribute('src');
 			video.load();

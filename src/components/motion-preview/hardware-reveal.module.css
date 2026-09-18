@@ -19,3 +19,9 @@
 	opacity: 0;
 	pointer-events: none;
 }
+/* Portrait screens show only the film's outer bands, one per edge. Where they
+   would meet, fade to the page instead of cutting through the artwork. */
+.frame[data-narrow='true'] .film {
+	-webkit-mask-image: linear-gradient(to right, #000 0%, #000 30%, transparent 50%, #000 70%, #000 100%);
+	mask-image: linear-gradient(to right, #000 0%, #000 30%, transparent 50%, #000 70%, #000 100%);
+}

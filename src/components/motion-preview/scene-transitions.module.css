@@ -23,12 +23,17 @@
 	filter: none;
 	background: #39bd6d;
 }
-.journeySpace {
-	height: 0;
+.transitionSpace {
+	display: none;
 	pointer-events: none;
 	overflow-anchor: none;
 }
-.journeySpace[data-enabled='true'] {
-	height: 180svh;
-	background: linear-gradient(#39bd6d 0%, #39bd6d 45%, #fff 90%);
+.transitionSpace[data-enabled='true'] { display: block; }
+.readingRoom { height: clamp(160px, 32svh, 360px); }
+.transitionTrack { height: var(--transition-travel); position: relative; }
+.transitionSpace[data-transition-space='github'] {
+	background: linear-gradient(#39bd6d 0%, #39bd6d 55%, #fff 100%);
+}
+.transitionSpace[data-transition-space='projects'] {
+	background: linear-gradient(#fff 0%, #fff 10%, #39bd6d 90%);
 }

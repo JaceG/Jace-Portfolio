@@ -9,6 +9,7 @@ import Books from '@/components/books';
 import MotionPreview from '@/components/motion-preview';
 import MotionAccent from '@/components/motion-preview/accent';
 import MeTransitionSpace from '@/components/motion-preview/me-transition-space';
+import ProjectPassage from '@/components/motion-preview/project-passage';
 
 export default function Home() {
 	return (
@@ -49,6 +50,7 @@ export default function Home() {
 					aria-label='Live GitHub activity'>
 					<GithubWork />
 				</section>
+				<ProjectPassage />
 				<section
 					id='projects'
 					className='relative'

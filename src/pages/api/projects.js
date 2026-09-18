@@ -269,14 +269,15 @@ export default function handler(req, res) {
 	const endIndex = page * 3;
 	const results = projects.slice(startIndex, endIndex);
 
-	// Full list (used by the site terminal's `projects` command)
+	// Shared full list for the terminal and the live screenshot transition.
 	if (req.query.all) {
 		return res.status(200).json({
 			total,
-			results: projects.map(({ slug, title, snippet, github, app }) => ({
+			results: projects.map(({ slug, title, snippet, image, github, app }) => ({
 				slug,
 				title,
 				snippet,
+				image,
 				github,
 				app,
 			})),

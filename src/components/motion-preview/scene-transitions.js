@@ -5,10 +5,6 @@ import styles from './scene-transitions.module.css';
 
 const SCENES = [
 	{ id: 'github', immersive: true, source: 'me-journey' },
-	{ id: 'projects' },
-	{ id: 'resume' },
-	{ id: 'books', ink: true },
-	{ id: 'connect' },
 ];
 const clamp = (n) => Math.max(0, Math.min(1, n));
 const smooth = (a, b, n) => { const t = clamp((n - a) / (b - a)); return t * t * (3 - 2 * t); };
@@ -23,11 +19,10 @@ export default function SceneTransitions({ running, onJourneyReady }) {
 		const entries = SCENES.map(({ id, ink, immersive, source }) => ({
 			id, ink, immersive, source,
 			section: document.getElementById(id),
+			space: document.querySelector(`[data-transition-track="${id}"]`),
 			video: root.querySelector(`[data-film="${id}"]`),
 			top: 0, target: 0, loaded: false, failed: false,
 		})).filter((entry) => entry.section);
-		const journeySpace = document.getElementById('me-transition-space');
-		let journeyStart = 0, journeyEnd = 0;
 		let frame = 0, active = null, replay = null;
 		let previousY = window.scrollY;
 		let scrolling = false;
@@ -40,10 +35,11 @@ export default function SceneTransitions({ running, onJourneyReady }) {
 			active = null;
 		};
 		const measure = () => {
-			for (const entry of entries) entry.top = entry.section.getBoundingClientRect().top + window.scrollY;
-			if (journeySpace) {
-				journeyStart = journeySpace.getBoundingClientRect().top + window.scrollY - window.innerHeight * .52;
-				journeyEnd = journeySpace.getBoundingClientRect().bottom + window.scrollY - 64;
+			for (const entry of entries) {
+				entry.top = entry.section.getBoundingClientRect().top + window.scrollY;
+				const bounds = entry.space?.getBoundingClientRect();
+				entry.start = bounds ? bounds.top + window.scrollY - window.innerHeight * .94 : 0;
+				entry.end = bounds ? bounds.bottom + window.scrollY - 64 : 0;
 			}
 		};
 		const load = (entry) => {
@@ -73,13 +69,17 @@ export default function SceneTransitions({ running, onJourneyReady }) {
 			root.dataset.ink = String(Boolean(entry.ink));
 			root.dataset.immersive = String(Boolean(entry.immersive));
 			root.dataset.progress = progress.toFixed(3);
+			// Constrain every film to its own interval in the page. Neither the
+			// preceding paragraph nor the incoming heading can be covered by it.
+			const bounds = entry.space?.getBoundingClientRect();
+			const top = isReplay || !bounds ? 0 : Math.max(0, bounds.top - 64);
+			const bottom = isReplay || !bounds ? 0 : Math.max(0, window.innerHeight - bounds.bottom);
+			root.style.clipPath = `inset(${top}px 0 ${bottom}px 0)`;
 			if (entry.immersive) {
 				// The new ME film occupies the frame in its original colors, at full strength.
-				root.style.clipPath = `inset(${(1 - smooth(0, .13, progress)) * 100}% 0 0)`;
-				root.style.opacity = String(1 - smooth(.91, 1, progress));
+				root.style.opacity = String(smooth(0, .09, progress) * (1 - smooth(.91, 1, progress)));
 				entry.video.style.opacity = '1';
 			} else {
-				root.style.clipPath = 'none';
 				root.style.opacity = '1';
 				entry.video.style.opacity = String(smooth(0, .12, progress) * (1 - smooth(.79, 1, progress)));
 			}
@@ -99,12 +99,9 @@ export default function SceneTransitions({ running, onJourneyReady }) {
 				return;
 			}
 			if (!scrolling) { clear(); return; }
-			const viewport = window.innerHeight;
 			const candidate = entries.map((entry) => ({
 				entry,
-				progress: entry.immersive
-					? (window.scrollY - journeyStart) / Math.max(1, journeyEnd - journeyStart)
-					: (viewport * .94 - (entry.top - window.scrollY)) / (viewport * .86),
+				progress: (window.scrollY - entry.start) / Math.max(1, entry.end - entry.start),
 			})).find(({ progress }) => progress > 0 && progress < 1);
 			if (!candidate) { clear(); return; }
 			draw(candidate.entry, candidate.progress, false);
@@ -169,10 +166,10 @@ export default function SceneTransitions({ running, onJourneyReady }) {
 		measure();
 		const nearby = new IntersectionObserver((observed) => {
 			for (const observation of observed) {
-				if (observation.isIntersecting) load(entries.find((entry) => entry.section === observation.target));
+				if (observation.isIntersecting) load(entries.find((entry) => (entry.space || entry.section) === observation.target));
 			}
 		}, { rootMargin: '1400px' });
-		entries.forEach((entry) => nearby.observe(entry.section));
+		entries.forEach((entry) => nearby.observe(entry.space || entry.section));
 		const resizeObserver = new ResizeObserver(onResize);
 		const main = document.querySelector('[data-motion-page]');
 		if (main) resizeObserver.observe(main);

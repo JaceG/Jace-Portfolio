@@ -1,0 +1,11 @@
+.stage {
+	position: sticky;
+	top: 64px;
+	height: calc(100svh - 64px);
+	width: 100%;
+	overflow: clip;
+	pointer-events: none;
+	contain: paint;
+}
+.canvas { display: block; width: 100%; height: 100%; }
+.decoder { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }

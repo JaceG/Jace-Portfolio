@@ -10,8 +10,14 @@ const MotionContext = createContext({ active: false, paused: true, journeyReady:
 export const useMotionPreview = () => useContext(MotionContext);
 
 // A context provider only: no new layout element around the existing page.
+//
+// The motion plays for every visitor by default (subject to their
+// prefers-reduced-motion setting). In local dev only, ?motion=1 additionally
+// surfaces a small on/off/pause debug panel so the effect can be iterated on
+// without devtools; that panel must never reach production visitors.
 export default function MotionPreview({ children }) {
-	const [enabled, setEnabled] = useState(false);
+	const [enabled, setEnabled] = useState(true);
+	const [debug, setDebug] = useState(false);
 	const [visible, setVisible] = useState(true);
 	const [paused, setPaused] = useState(true);
 	const [reduced, setReduced] = useState(true);
@@ -19,8 +25,8 @@ export default function MotionPreview({ children }) {
 	const [hardwareReady, setHardwareReady] = useState(false);
 
 	useEffect(() => {
-		if (process.env.NODE_ENV === 'production') return;
-		setEnabled(new URLSearchParams(window.location.search).get('motion') === '1');
+		const isDev = process.env.NODE_ENV !== 'production';
+		setDebug(isDev && new URLSearchParams(window.location.search).get('motion') === '1');
 		const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const update = () => {
 			setReduced(preference.matches);
@@ -39,7 +45,7 @@ export default function MotionPreview({ children }) {
 			{children}
 			<HardwareReveal running={active && !paused && !reduced} onReady={setHardwareReady} />
 			<SceneTransitions running={active && !paused && !reduced} onJourneyReady={setJourneyReady} />
-			{enabled && (
+			{debug && (
 				<div className={styles.controls} aria-label='Motion preview controls'>
 					<span>MOTION</span>
 					<button type='button' onClick={() => setVisible((v) => !v)} aria-pressed={visible} aria-label='Toggle added motion'>

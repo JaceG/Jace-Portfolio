@@ -114,26 +114,43 @@ export default function Me() {
 		);
 	};
 
+	// These document-level listeners must be attached exactly once, but the
+	// handlers above are redefined on every render. Keeping the latest set in a
+	// ref lets the listener effect stay dependency-free and still call current
+	// logic -- today the handlers only touch refs, so nothing would go stale,
+	// but this stops that quietly becoming untrue if one starts reading state.
+	const dragHandlersRef = useRef(null);
+	useEffect(() => {
+		dragHandlersRef.current = {
+			isInsideImage,
+			handleImageMouseDown,
+			handleImageMouseUp,
+			handleImageMouseMove,
+		};
+	});
+
 	useEffect(() => {
 		const onMove = (e) => {
-			if (isInsideImage(e) && !hideDragFeatureRef.current) {
-				handleImageMouseMove(e);
+			const h = dragHandlersRef.current;
+			if (h.isInsideImage(e) && !hideDragFeatureRef.current) {
+				h.handleImageMouseMove(e);
 			} else if (isDraggingRef.current) {
-				handleImageMouseUp(e);
+				h.handleImageMouseUp(e);
 			}
 		};
 		const onDown = (e) => {
+			const h = dragHandlersRef.current;
 			if (
 				imageContainerRef.current?.contains(e.target) &&
-				isInsideImage(e) &&
+				h.isInsideImage(e) &&
 				!hideDragFeatureRef.current
 			) {
-				handleImageMouseDown(e);
+				h.handleImageMouseDown(e);
 			}
 		};
 		const onUp = (e) => {
 			if (!hideDragFeatureRef.current && isDraggingRef.current) {
-				handleImageMouseUp(e);
+				dragHandlersRef.current.handleImageMouseUp(e);
 			}
 		};
 		document.body.addEventListener('mousemove', onMove);
@@ -144,7 +161,6 @@ export default function Me() {
 			document.body.removeEventListener('mousedown', onDown);
 			document.body.removeEventListener('mouseup', onUp);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {

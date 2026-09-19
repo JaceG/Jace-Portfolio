@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { RESUME_DOWNLOAD_URL } from '@/constants/me';
 import HeroFilm from './film';
 import { useMotionPreview } from '../motion-preview';
@@ -68,7 +68,10 @@ const smoothstep = (a, b, x) => {
  * fires an immediate full-word flicker followed by a chromatic tear.
  */
 function GlitchWord({ text, className, style, storm = 0, burst = 0 }) {
-	const chars = [...text];
+	// Memoised so the glitch scheduler below can depend on it honestly: text is
+	// a module constant, so this keeps a stable identity and the effect still
+	// only restarts when storm changes.
+	const chars = useMemo(() => [...text], [text]);
 	const [glitches, setGlitches] = useState({});
 	const fireRef = useRef(null);
 
@@ -135,8 +138,7 @@ function GlitchWord({ text, className, style, storm = 0, burst = 0 }) {
 			lifeTimers.forEach((t) => clearTimeout(t));
 			setGlitches({});
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [storm]);
+	}, [storm, chars]);
 
 	useEffect(() => {
 		if (!burst) return;
@@ -255,6 +257,16 @@ function BootSequence({ onDone }) {
 function Orb({ rootRef, onDock, onUndock, ejectRef }) {
 	const elRef = useRef(null);
 	const trailRef = useRef(null);
+	// The hero re-renders constantly for the typewriter, so these props are new
+	// functions each time. They are read through refs to keep them out of the
+	// physics effect's dependencies -- that effect owns the orb's position and
+	// velocity, and re-running it would reset the orb mid-flight.
+	const onDockRef = useRef(onDock);
+	const onUndockRef = useRef(onUndock);
+	useEffect(() => {
+		onDockRef.current = onDock;
+		onUndockRef.current = onUndock;
+	}, [onDock, onUndock]);
 
 	useEffect(() => {
 		const root = rootRef.current;
@@ -353,7 +365,7 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
 			setNear(1);
 			el.classList.add('is-docked');
 			el.classList.remove('is-moving');
-			onDock?.(s.x, s.y);
+			onDockRef.current?.(s.x, s.y);
 		};
 		const eject = () => {
 			el.classList.remove('is-docked');
@@ -364,7 +376,7 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
 				s.vy = Math.sin(a) * 1.5;
 				run();
 			}
-			onUndock?.();
+			onUndockRef.current?.();
 		};
 		if (ejectRef) ejectRef.current = eject;
 		// Magnetic pull toward the pill dot, with proximity feedback; docks
@@ -555,8 +567,7 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
 			root.style.removeProperty('--orb-y');
 			root.style.removeProperty('--pill-near');
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [rootRef]);
+	}, [rootRef, ejectRef]);
 
 	return (
 		<>

@@ -68,6 +68,13 @@ const NEOFETCH_ART = [
 function MatrixRain({ onDone }) {
 	const ref = useRef(null);
 	const [fading, setFading] = useState(false);
+	// onDone is passed as an inline arrow, so it is a new function on every
+	// parent render -- and the terminal re-renders on each keystroke. Read it
+	// through a ref so the rain is set up once instead of restarting.
+	const onDoneRef = useRef(onDone);
+	useEffect(() => {
+		onDoneRef.current = onDone;
+	}, [onDone]);
 
 	useEffect(() => {
 		const canvas = ref.current;
@@ -95,14 +102,13 @@ function MatrixRain({ onDone }) {
 			}
 		}, 45);
 		const fade = setTimeout(() => setFading(true), 11000);
-		const done = setTimeout(onDone, 12500);
+		const done = setTimeout(() => onDoneRef.current(), 12500);
 		return () => {
 			clearInterval(timer);
 			clearTimeout(fade);
 			clearTimeout(done);
 			window.removeEventListener('resize', size);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

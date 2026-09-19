@@ -11,7 +11,7 @@ export default function WorkExperience() {
 				<div className='mb-8'>
 					<a
 						href={RESUME_DOWNLOAD_URL}
-						className='rounded bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black mt-4'>
+						className='rounded-sm bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black mt-4'>
 						Download Resume
 					</a>
 				</div>

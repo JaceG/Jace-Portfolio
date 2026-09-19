@@ -134,12 +134,12 @@ export default function CaseStudy() {
 						<div>
 							<div
 								ref={measureProjectImage}
-								className='border-[11px] border-primary relative lg:w-[600px] lg:h-[300px] md:w-[400px] h-[200px] w-[300px] ml-2 md:ml-0'>
-								<div className='absolute z-10 lg:left-[700px] md:left-[450px] left-0 lg:bottom-[200px] bottom-[100px]'>
+								className='border-11 border-primary relative lg:w-[600px] lg:h-[300px] md:w-[400px] h-[200px] w-[300px] ml-2 md:ml-0'>
+								<div className='absolute z-10 lg:left-[700px] md:left-[450px] left-0 lg:bottom-[200px] bottom-section'>
 									<h1 className='text-primary 2xl:text-[112px] lg:text-[72px] text-[52px] font-black uppercase 2xl:leading-[102px] lg:leading-[72px] leading-[52px]'>
 										{project.title}
 									</h1>
-									<div className='relative lg:right-[100px] right-[50px] 2xl:w-[925px] lg:w-[600px] w-[450px] hidden md:block'>
+									<div className='relative lg:right-section right-[50px] 2xl:w-[925px] lg:w-[600px] w-[450px] hidden md:block'>
 										<svg
 											width='100%'
 											height='60'
@@ -194,7 +194,7 @@ export default function CaseStudy() {
 								{project.app && (
 									<a
 										href={project.app}
-										className='relativ rounded bg-primary flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
+										className='relativ rounded-sm bg-primary flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
 										target='_blank'>
 										App Link
 									</a>
@@ -202,7 +202,7 @@ export default function CaseStudy() {
 								{project.github && (
 									<a
 										href={project.github}
-										className='relative rounded bg-white flex items-center justify-center py-4 px-10 box-border text-center text-base text-primary border-4 border-primary border-opacity-50 tracking-[-0.04em] uppercase font-black'
+										className='relative rounded-sm bg-white flex items-center justify-center py-4 px-10 box-border text-center text-base text-primary border-4 border-primary/50 tracking-[-0.04em] uppercase font-black'
 										target='_blank'>
 										{'<Source Code/>'}
 									</a>

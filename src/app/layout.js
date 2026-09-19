@@ -85,7 +85,7 @@ export default function RootLayout({ children }) {
 				<meta name='msapplication-TileColor' content='#39BD6D' />
 			</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} bg-primary text-secondary antialiased !scroll-smooth`}>
+				className={`${geistSans.variable} ${geistMono.variable} bg-primary text-secondary antialiased scroll-smooth!`}>
 				<HotjarInit />
 				<Header></Header>
 				{children}

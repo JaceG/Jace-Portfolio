@@ -813,7 +813,7 @@ export default function Hero() {
 			[
 				...prev,
 				{ id: base + 50, kind: 'flash', x, y },
-				{ id: base + 51, kind: 'ring', x, y },
+				{ id: base + 51, kind: 'ring-3', x, y },
 				{ id: base + 52, kind: 'ring2', x, y },
 				...sparks,
 			].slice(-120)
@@ -1022,7 +1022,7 @@ export default function Hero() {
 							style={{ transform: 'translate3d(var(--px, 0px), var(--py, 0px), 0)' }}>
 							{/* Status pill */}
 							<div
-								className={`hero-pill mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 backdrop-blur ${
+								className={`hero-pill mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/3 px-4 py-1.5 backdrop-blur-sm ${
 									docked ? 'is-docked' : ''
 								}`}
 								style={{ animation: 'fade-up 0.7s ease-out 0.1s both' }}>
@@ -1062,7 +1062,7 @@ export default function Hero() {
 										text={NAME_BOTTOM}
 										storm={storm}
 										burst={burst}
-										className={`block bg-gradient-to-r from-primary via-emerald-300 to-primary bg-[length:200%_auto] bg-clip-text text-transparent ${nameSize}`}
+										className={`block bg-linear-to-r from-primary via-emerald-300 to-primary bg-size-[200%_auto] bg-clip-text text-transparent ${nameSize}`}
 										style={{
 											animation:
 												'rise-in 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both, sheen 6s linear infinite',
@@ -1144,11 +1144,11 @@ export default function Hero() {
 						style={{ animation: 'fade-up 0.7s ease-out 1s both' }}>
 						<div
 							aria-hidden='true'
-							className='pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-ink to-transparent'
+							className='pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-ink to-transparent'
 						/>
 						<div
 							aria-hidden='true'
-							className='pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-ink to-transparent'
+							className='pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-ink to-transparent'
 						/>
 						<div
 							className='flex w-max gap-10 whitespace-nowrap font-geist-mono text-sm uppercase tracking-[0.2em] text-white/40'

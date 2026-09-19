@@ -78,7 +78,7 @@ export default function Projects() {
 							isCenter={index % 3 === 1}>
 							<Link
 								href={`/case-study/${project.slug}`}
-								className='relative rounded bg-[#39bb6a] p-3 tracking-[-0.04em] block w-[140px] uppercase font-black'>
+								className='relative rounded-sm bg-[#39bb6a] p-3 tracking-[-0.04em] block w-[140px] uppercase font-black'>
 								Case Study
 							</Link>
 						</Card>
@@ -89,7 +89,7 @@ export default function Projects() {
 				{Math.ceil(total / 3) > page ? (
 					<button
 						onClick={handleShowMore}
-						className='relative rounded bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
+						className='relative rounded-sm bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
 						See More Projects
 					</button>
 				) : null}
@@ -97,7 +97,7 @@ export default function Projects() {
 				{page > 1 ? (
 					<button
 						onClick={handleShowLess}
-						className='relative rounded bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
+						className='relative rounded-sm bg-[#39bb6a] border-2 border-white lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
 						See Less
 					</button>
 				) : null}

@@ -261,7 +261,7 @@ export default function Me() {
 			<main className='flex md:flex-row flex-col'>
 				<div className='md:flex-1 flex md:justify-end justify-center md:mt-0 mt-32'>
 					<div className='xl:mr-[75px] md:mr-[60px] w-full md:w-auto'>
-						<div className='xl:h-[800px] xl:w-[600px] md:h-[475px] md:w-[350px] h-[450px] w-[calc(100%-50px)] m-auto md:m-0 border-[11px] border-white relative -translate-x-[10px] md:translate-x-0'>
+						<div className='xl:h-[800px] xl:w-[600px] md:h-[475px] md:w-[350px] h-[450px] w-[calc(100%-50px)] m-auto md:m-0 border-11 border-white relative translate-x-[-10px] md:translate-x-0'>
 							<div className='absolute w-full h-full flex justify-center items-center'>
 								Hire Me!
 							</div>
@@ -276,12 +276,12 @@ export default function Me() {
 									ref={staticSvgRef}
 									src={'/line.svg'}
 									alt='Line'
-									className='about-img xl:-ml-[315px] md:-ml-[175px] xl:w-[925px] md:w-[550px] hidden md:block'
+									className='about-img xl:ml-[-315px] md:ml-[-175px] xl:w-[925px] md:w-[550px] hidden md:block'
 								/>
 								<img
 									src={'/line-curved-2.svg'}
 									alt='Line'
-									className='about-img relative top-8 xl:-ml-[300px] md:-ml-[150px] xl:w-[925px] md:w-[550px] md:hidden block'
+									className='about-img relative top-8 xl:ml-[-300px] md:ml-[-150px] xl:w-[925px] md:w-[550px] md:hidden block'
 								/>
 							</div>
 							<div
@@ -310,8 +310,8 @@ export default function Me() {
 										key={link.label + index}
 										url={link.url}
 										target='_blank'
-										className={`xl:!w-[60px] xl:!h-[60px] md:!w-[40px] md:!h-[40px] !h-20 !w-20 ${
-											isDragging ? 'z-[-1]' : 'z-[0]'
+										className={`xl:w-[60px]! xl:h-[60px]! md:w-[40px]! md:h-[40px]! h-20! w-20! ${
+											isDragging ? 'z-[-1]' : 'z-0'
 										}`}
 										rel='noopener noreferrer'
 									/>
@@ -319,7 +319,7 @@ export default function Me() {
 							</div>
 							<a
 								href={RESUME_DOWNLOAD_URL}
-								className='rounded bg-black flex items-center justify-center xl:py-4 xl:px-10 md:py-2 md:px-6 my-16 md:my-0 py-6 px-12 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'>
+								className='rounded-sm bg-black flex items-center justify-center xl:py-4 xl:px-10 md:py-2 md:px-6 my-16 md:my-0 py-6 px-12 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'>
 								Download Resume
 							</a>
 						</div>
@@ -328,7 +328,7 @@ export default function Me() {
 				<div className='md:flex-1 md:px-0 px-10 md:text-left text-center'>
 					<div
 						className={`xl:max-w-[715px] md:pr-24 text-[20px] leading-[32px] ${
-							isDragging ? 'z-[-1]' : 'z-[0]'
+							isDragging ? 'z-[-1]' : 'z-0'
 						} relative`}>
 						<div
 							className='xl:mt-[275px] md:mt-[200px]'

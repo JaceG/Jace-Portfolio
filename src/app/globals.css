@@ -1,7 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap')
+layer(base);
+@import 'tailwindcss';
+
+/*
+  These reference the CSS variables next/font defines on <body>, so they have to
+  be inlined into the utilities: a plain @theme would declare them on :root
+  (<html>), which sits above <body> and cannot see --font-geist-sans, leaving
+  font-geist invalid and silently falling back to the body's Inter.
+*/
+@theme inline {
+  --font-geist: var(--font-geist-sans), Inter, sans-serif;
+  --font-geist-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@theme {
+  --spacing-section: 100px;
+
+  --color-primary: #39bd6d;
+  --color-secondary: #fff;
+  --color-tertiary: #4c4d50;
+  --color-ink: #08090b;
+
+  --breakpoint-3xl: 1572px;
+
+  --animate-flash: flash 10s ease-in-out;
+
+  @keyframes flash {
+    10%,
+    100% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 body {
   font-family: "Inter", Helvetica;

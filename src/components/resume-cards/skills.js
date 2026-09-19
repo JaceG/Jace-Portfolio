@@ -19,7 +19,7 @@ export default function Skills() {
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Frontend Development
 								</div>
-								<div className='flex-grow flex justify-end'>
+								<div className='grow flex justify-end'>
 									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -58,7 +58,7 @@ export default function Skills() {
 										</div>
 									</div>
 								</div>
-								{/* <div className='flex-grow flex justify-end'>
+								{/* <div className='grow flex justify-end'>
 									<div className='flex flex-row gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -75,7 +75,7 @@ export default function Skills() {
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Backend Development
 								</div>
-								<div className='flex-grow flex justify-end'>
+								<div className='grow flex justify-end'>
 									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -104,7 +104,7 @@ export default function Skills() {
 										</div>
 									</div>
 								</div>
-								{/* <div className='flex-grow flex justify-end'>
+								{/* <div className='grow flex justify-end'>
 									<div className='flex flex-row gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -121,7 +121,7 @@ export default function Skills() {
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Database Skills
 								</div>
-								<div className='flex-grow flex justify-end'>
+								<div className='grow flex justify-end'>
 									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -150,7 +150,7 @@ export default function Skills() {
 										</div>
 									</div>
 								</div>
-								{/* <div className='flex-grow flex justify-end'>
+								{/* <div className='grow flex justify-end'>
 									<div className='flex flex-row gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -168,7 +168,7 @@ export default function Skills() {
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Tools and Technologies
 								</div>
-								<div className='flex-grow flex justify-end'>
+								<div className='grow flex justify-end'>
 									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -202,7 +202,7 @@ export default function Skills() {
 										</div>
 									</div>
 								</div>
-								{/* <div className='flex-grow flex justify-end'>
+								{/* <div className='grow flex justify-end'>
 									<div className='flex flex-row gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -220,7 +220,7 @@ export default function Skills() {
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Additional Skills
 								</div>
-								<div className='flex-grow flex justify-end'>
+								<div className='grow flex justify-end'>
 									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -254,7 +254,7 @@ export default function Skills() {
 										</div>
 									</div>
 								</div>
-								{/* <div className='flex-grow flex justify-end'>
+								{/* <div className='grow flex justify-end'>
 									<div className='flex flex-row gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -271,7 +271,7 @@ export default function Skills() {
 								<div className='shrink-0 uppercase font-bold text-black text-lg'>
 									Soft Skills
 								</div>
-								<div className='flex-grow flex justify-end'>
+								<div className='grow flex justify-end'>
 									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
@@ -300,7 +300,7 @@ export default function Skills() {
 										</div>
 									</div>
 								</div>
-								{/* <div className='flex-grow flex justify-end'>
+								{/* <div className='grow flex justify-end'>
 									<div className='flex flex-row gap-2 text-sm text-[#13692d]'>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>

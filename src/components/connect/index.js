@@ -158,7 +158,7 @@ const Connect = () => {
 					</div>
 					<button
 						type='submit'
-						className='relative rounded bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
+						className='relative rounded-sm bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'
 						disabled={isSubmitting}>
 						{isSubmitting ? 'Sending...' : 'Send Message'}
 					</button>

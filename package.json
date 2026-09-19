@@ -24,9 +24,10 @@
 	},
 	"devDependencies": {
 		"@higgsfield/client": "^0.2.6",
+		"@tailwindcss/postcss": "^4.3.3",
 		"eslint": "^9",
 		"eslint-config-next": "16.3.5",
 		"postcss": "^8.5.28",
-		"tailwindcss": "^3.4.1"
+		"tailwindcss": "^4.3.3"
 	}
 }

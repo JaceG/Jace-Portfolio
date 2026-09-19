@@ -115,7 +115,7 @@ function MatrixRain({ onDone }) {
 		<canvas
 			ref={ref}
 			aria-hidden='true'
-			className='pointer-events-none fixed inset-0 z-[45] bg-ink transition-opacity duration-[1500ms]'
+			className='pointer-events-none fixed inset-0 z-45 bg-ink transition-opacity duration-1500'
 			style={{ opacity: fading ? 0 : 1 }}
 		/>
 	);
@@ -609,7 +609,7 @@ export default function Terminal() {
 		<>
 			{matrix && <MatrixRain onDone={() => setMatrix(false)} />}
 			{flash && (
-				<div aria-hidden='true' className='pointer-events-none fixed inset-0 z-[45]'>
+				<div aria-hidden='true' className='pointer-events-none fixed inset-0 z-45'>
 					<div className='hero-static absolute inset-0' style={{ opacity: 0.85 }} />
 					<div className='hero-scanlines absolute inset-0' style={{ opacity: 0.6 }} />
 				</div>
@@ -621,7 +621,7 @@ export default function Terminal() {
 					<div
 						role='dialog'
 						aria-label='Site terminal'
-						className='terminal-panel pointer-events-auto w-full max-w-[760px] overflow-hidden rounded-2xl border border-white/10 bg-ink/95 font-geist-mono text-[13px] text-white shadow-[0_0_70px_rgba(57,189,109,0.18)] backdrop-blur sm:text-sm'>
+						className='terminal-panel pointer-events-auto w-full max-w-[760px] overflow-hidden rounded-2xl border border-white/10 bg-ink/95 font-geist-mono text-[13px] text-white shadow-[0_0_70px_rgba(57,189,109,0.18)] backdrop-blur-sm sm:text-sm'>
 						<div className='flex items-center gap-2 border-b border-white/10 px-4 py-2.5'>
 							<span className='h-3 w-3 rounded-full bg-[#ff5f57]' />
 							<span className='h-3 w-3 rounded-full bg-[#febc2e]' />
@@ -631,7 +631,7 @@ export default function Terminal() {
 								type='button'
 								onClick={closeTerminal}
 								aria-label='Close terminal'
-								className='ml-auto rounded px-2 text-white/50 transition-colors hover:text-white'>
+								className='ml-auto rounded-sm px-2 text-white/50 transition-colors hover:text-white'>
 								✕
 							</button>
 						</div>
@@ -663,7 +663,7 @@ export default function Terminal() {
 									autoCorrect='off'
 									spellCheck={false}
 									aria-label='Terminal input'
-									className='terminal-input min-w-0 flex-1 bg-transparent text-white caret-primary outline-none placeholder:text-white/25'
+									className='terminal-input min-w-0 flex-1 bg-transparent text-white caret-primary outline-hidden placeholder:text-white/25'
 									placeholder={busy ? '' : 'type /help'}
 								/>
 								{busy && <span className='animate-pulse text-primary'>…</span>}

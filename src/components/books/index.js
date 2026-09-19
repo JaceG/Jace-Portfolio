@@ -152,7 +152,7 @@ const Books = () => {
 								data-motion-key={`book-${category.key}-${book.id}`}
 								data-motion-hover
 								data-motion-delay={bookIndex * 75}
-								className='border-[20px] border-[#39bb6a]'>
+								className='border-20 border-[#39bb6a]'>
 								{book.pageUrl ? (
 									<Link href={book.pageUrl} target='_blank'>
 										<Image
@@ -179,7 +179,7 @@ const Books = () => {
 					{data.page > 1 && (
 						<button
 							onClick={() => handleShowLess(category.key)}
-							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
+							className='relative rounded-sm bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
 							See Less
 						</button>
 					)}
@@ -187,7 +187,7 @@ const Books = () => {
 					{data.page * booksPerPage < data.total && (
 						<button
 							onClick={() => handleShowMore(category.key)}
-							className='relative rounded bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
+							className='relative rounded-sm bg-[#ffffff] border-2 border-[#39bb6a] text-[#39bb6a] lg:w-[450px] w-[300px] p-3 tracking-[-0.04em] block uppercase font-black'>
 							See More Books
 						</button>
 					)}
@@ -235,7 +235,7 @@ const Books = () => {
 				<div className='flex flex-col items-center mb-8'>
 					<button
 						onClick={toggleTweets}
-						className='mb-4 px-4 py-2 bg-[#39bb6a] text-white rounded font-semibold hover:bg-[#2fa05a] transition-colors'>
+						className='mb-4 px-4 py-2 bg-[#39bb6a] text-white rounded-sm font-semibold hover:bg-[#2fa05a] transition-colors'>
 						{tweetsExpanded ? 'Collapse' : 'Expand'} Tweets
 					</button>
 				</div>

@@ -205,7 +205,7 @@ export default function GithubWork() {
 						href={`https://github.com/${GH_USER}?tab=repositories`}
 						target='_blank'
 						rel='noopener noreferrer'
-						className='relative block w-[220px] rounded bg-[#39bb6a] p-3 text-center text-base font-black uppercase tracking-[-0.04em] text-white'>
+						className='relative block w-[220px] rounded-sm bg-[#39bb6a] p-3 text-center text-base font-black uppercase tracking-[-0.04em] text-white'>
 						View all repos
 					</a>
 				</Reveal>

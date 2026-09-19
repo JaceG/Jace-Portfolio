@@ -20,35 +20,46 @@ const categories = [
 	},
 ];
 
+const booksPerPage = 4;
+
 const Books = () => {
 	const [bookData, setBookData] = useState({});
 	const [tweetsExpanded, setTweetsExpanded] = useState(false);
-	const booksPerPage = 4;
-
-	async function fetchBooks() {
-		const promises = categories.map((cat) =>
-			fetch(`/api/books?category=${cat.apiCategory}`).then((res) =>
-				res.json()
-			)
-		);
-
-		const results = await Promise.all(promises);
-
-		const newBookData = {};
-		categories.forEach((cat, index) => {
-			newBookData[cat.key] = {
-				allBooks: results[index].results,
-				displayedBooks: results[index].results.slice(0, booksPerPage),
-				total: results[index].total,
-				page: 1,
-			};
-		});
-
-		setBookData(newBookData);
-	}
 
 	useEffect(() => {
+		let cancelled = false;
+
+		async function fetchBooks() {
+			const promises = categories.map((cat) =>
+				fetch(`/api/books?category=${cat.apiCategory}`).then((res) =>
+					res.json()
+				)
+			);
+
+			const results = await Promise.all(promises);
+			if (cancelled) return;
+
+			const newBookData = {};
+			categories.forEach((cat, index) => {
+				newBookData[cat.key] = {
+					allBooks: results[index].results,
+					displayedBooks: results[index].results.slice(
+						0,
+						booksPerPage
+					),
+					total: results[index].total,
+					page: 1,
+				};
+			});
+
+			setBookData(newBookData);
+		}
+
 		fetchBooks();
+
+		return () => {
+			cancelled = true;
+		};
 	}, []);
 
 	// Ensure Twitter widgets render when tweets are expanded

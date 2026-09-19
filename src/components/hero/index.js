@@ -208,7 +208,9 @@ function BootSequence({ onDone }) {
 	// re-renders constantly (typewriter), and restarting the timers on every
 	// render would stall the sequence.
 	const onDoneRef = useRef(onDone);
-	onDoneRef.current = onDone;
+	useEffect(() => {
+		onDoneRef.current = onDone;
+	}, [onDone]);
 
 	useEffect(() => {
 		const timers = BOOT_LINES.map((_, i) =>
@@ -833,6 +835,11 @@ export default function Hero() {
 
 	useEffect(() => () => clearTimeout(dockTimerRef.current), []);
 
+	const powerCycle = () => {
+		cycleRef.current = 'off';
+		setCycle('off');
+	};
+
 	// Commands from the site terminal (`reboot`, `glitch` → pulse). The orb
 	// handles `launch` itself.
 	useEffect(() => {
@@ -848,11 +855,6 @@ export default function Hero() {
 		window.addEventListener('hero:command', onCommand);
 		return () => window.removeEventListener('hero:command', onCommand);
 	}, []);
-
-	const powerCycle = () => {
-		cycleRef.current = 'off';
-		setCycle('off');
-	};
 
 	const onScreenAnimationEnd = (e) => {
 		if (e.target !== e.currentTarget) return;

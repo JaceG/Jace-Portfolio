@@ -62,6 +62,58 @@ export default function Me() {
 		return `M${startX},${y} C${midX},${y} ${midX},${y} ${endX},${y}`;
 	};
 
+	const handleImageMouseDown = (e) => {
+		e.preventDefault();
+		isDraggingRef.current = true;
+		mouseStartImageRef.current = {
+			x: e.clientX,
+			y: e.clientY,
+		};
+		// Keep the static line in layout (visibility, not display) so its
+		// bounds can still be measured while the live curve is drawn.
+		staticSvgRef.current.style.visibility = 'hidden';
+		svgRef.current.style.display = 'block';
+		setCurve(restCurve());
+		setIsDragging(true);
+	};
+
+	const handleImageMouseUp = () => {
+		isDraggingRef.current = false;
+		imageContainerRef.current.style.left = '24px';
+		imageContainerRef.current.style.top = 'unset';
+		imageContainerRef.current.style.bottom = '30px';
+		setCurve(restCurve());
+		staticSvgRef.current.style.visibility = 'visible';
+		svgRef.current.style.display = 'none';
+		setIsDragging(false);
+	};
+
+	const handleImageMouseMove = (e) => {
+		if (!isDraggingRef.current || !imageContainerRef.current) return;
+		const mouseX = e.clientX;
+		const mouseY = e.clientY;
+		const distanceX = mouseX - mouseStartImageRef.current.x;
+		const distanceY = mouseY - mouseStartImageRef.current.y;
+		mouseStartImageRef.current = {
+			x: mouseX,
+			y: mouseY,
+		};
+		const imageLeft =
+			parseInt(imageContainerRef.current.style.left?.replace('px', '')) ||
+			0;
+		const imageTop =
+			parseInt(imageContainerRef.current.style.top?.replace('px', '')) ||
+			0;
+		imageContainerRef.current.style.left = `${imageLeft + distanceX}px`;
+		imageContainerRef.current.style.top = `${imageTop + distanceY}px`;
+
+		const face = faceTrackingRef.current.getBoundingClientRect();
+		const { endX, y, midX } = lineGeometry();
+		setCurve(
+			`M${face.right},${face.bottom} C${midX},${face.y} ${midX},${face.y} ${endX},${y}`
+		);
+	};
+
 	useEffect(() => {
 		const onMove = (e) => {
 			if (isInsideImage(e) && !hideDragFeatureRef.current) {
@@ -122,57 +174,6 @@ export default function Me() {
 		}
 	}, []);
 
-	const handleImageMouseDown = (e) => {
-		e.preventDefault();
-		isDraggingRef.current = true;
-		mouseStartImageRef.current = {
-			x: e.clientX,
-			y: e.clientY,
-		};
-		// Keep the static line in layout (visibility, not display) so its
-		// bounds can still be measured while the live curve is drawn.
-		staticSvgRef.current.style.visibility = 'hidden';
-		svgRef.current.style.display = 'block';
-		setCurve(restCurve());
-		setIsDragging(true);
-	};
-
-	const handleImageMouseUp = () => {
-		isDraggingRef.current = false;
-		imageContainerRef.current.style.left = '24px';
-		imageContainerRef.current.style.top = 'unset';
-		imageContainerRef.current.style.bottom = '30px';
-		setCurve(restCurve());
-		staticSvgRef.current.style.visibility = 'visible';
-		svgRef.current.style.display = 'none';
-		setIsDragging(false);
-	};
-
-	const handleImageMouseMove = (e) => {
-		if (!isDraggingRef.current || !imageContainerRef.current) return;
-		const mouseX = e.clientX;
-		const mouseY = e.clientY;
-		const distanceX = mouseX - mouseStartImageRef.current.x;
-		const distanceY = mouseY - mouseStartImageRef.current.y;
-		mouseStartImageRef.current = {
-			x: mouseX,
-			y: mouseY,
-		};
-		const imageLeft =
-			parseInt(imageContainerRef.current.style.left?.replace('px', '')) ||
-			0;
-		const imageTop =
-			parseInt(imageContainerRef.current.style.top?.replace('px', '')) ||
-			0;
-		imageContainerRef.current.style.left = `${imageLeft + distanceX}px`;
-		imageContainerRef.current.style.top = `${imageTop + distanceY}px`;
-
-		const face = faceTrackingRef.current.getBoundingClientRect();
-		const { endX, y, midX } = lineGeometry();
-		setCurve(
-			`M${face.right},${face.bottom} C${midX},${face.y} ${midX},${face.y} ${endX},${y}`
-		);
-	};
 
 	const socialLinks = [
 		{

@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { usePathname } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 async function fetchProjectData(slug) {
 	const res = await fetch(`/api/projects?slug=${slug}`);
@@ -13,39 +13,42 @@ async function fetchProjectData(slug) {
 export default function CaseStudy() {
 	const pathname = usePathname();
 	const slug = pathname.split('/').pop(); // Extract the slug from the pathname
-	const projectImageRef = useRef(null);
 	const [project, setProject] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [projectImageWidth, setProjectImageWidth] = useState(0);
-	const [projectImageHeight, setProjectImageHeight] = useState(0);
+	const [projectImageSize, setProjectImageSize] = useState({
+		width: 0,
+		height: 0,
+	});
 
-	useEffect(() => {
-		window.addEventListener('resize', () => {
-			if (projectImageRef.current) {
-				setProjectImageWidth(projectImageRef.current.clientWidth);
-				setProjectImageHeight(projectImageRef.current.clientHeight);
-			}
-		});
+	// The framed container is only rendered once the project has loaded, so it is
+	// measured through a callback ref: the observer attaches the moment the node
+	// exists and detaches when it goes away. The embedded iframe needs explicit
+	// pixel dimensions, which is why the size has to live in state at all.
+	const measureProjectImage = useCallback((node) => {
+		if (!node) return;
+		const apply = () =>
+			setProjectImageSize({
+				width: node.clientWidth,
+				height: node.clientHeight,
+			});
+		apply();
+		const observer = new ResizeObserver(apply);
+		observer.observe(node);
+		return () => observer.disconnect();
 	}, []);
 
 	useEffect(() => {
-		if (projectImageRef.current) {
-			setProjectImageWidth(projectImageRef.current.clientWidth);
-			setProjectImageHeight(projectImageRef.current.clientHeight);
-		}
-	}, [
-		projectImageRef,
-		projectImageRef?.current?.clientWidth,
-		projectImageRef?.current?.clientHeight,
-	]);
-
-	useEffect(() => {
+		let cancelled = false;
 		async function loadProject() {
 			const data = await fetchProjectData(slug);
+			if (cancelled) return;
 			setProject(data);
 			setLoading(false);
 		}
 		loadProject();
+		return () => {
+			cancelled = true;
+		};
 	}, [slug]);
 
 	if (loading) {
@@ -130,7 +133,7 @@ export default function CaseStudy() {
 					<div className='flex md:flex-1 md:mt-0 mt-60 md:h-screen items-center justify-center'>
 						<div>
 							<div
-								ref={projectImageRef}
+								ref={measureProjectImage}
 								className='border-[11px] border-primary relative lg:w-[600px] lg:h-[300px] md:w-[400px] h-[200px] w-[300px] ml-2 md:ml-0'>
 								<div className='absolute z-10 lg:left-[700px] md:left-[450px] left-0 lg:bottom-[200px] bottom-[100px]'>
 									<h1 className='text-primary 2xl:text-[112px] lg:text-[72px] text-[52px] font-black uppercase 2xl:leading-[102px] lg:leading-[72px] leading-[52px]'>
@@ -168,8 +171,8 @@ export default function CaseStudy() {
 									<iframe
 										src={project.video}
 										className='bg-black'
-										width={projectImageWidth}
-										height={projectImageHeight}
+										width={projectImageSize.width}
+										height={projectImageSize.height}
 										allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media'
 										style={{
 											position: 'absolute',

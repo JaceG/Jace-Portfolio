@@ -5,25 +5,40 @@ import Card from '../project-card';
 import Section from '../section';
 import Link from 'next/link';
 
+async function fetchProjectsPage(page) {
+	const res = await fetch(`/api/projects?page=${page}`);
+	return res.json();
+}
+
 export default function Projects() {
 	const [projects, setProjects] = useState([]);
 	const [total, setTotal] = useState(0);
 	const [page, setPage] = useState(1);
 
-	async function fetchProjects(page = 1) {
-		const res = await fetch(`/api/projects?page=${page}`);
-		const data = await res.json();
-		setProjects([...projects, ...data.results]);
-		setTotal(data.total);
-	}
-
 	useEffect(() => {
-		fetchProjects();
+		let cancelled = false;
+
+		async function loadFirstPage() {
+			const data = await fetchProjectsPage(1);
+			if (cancelled) return;
+			setProjects(data.results);
+			setTotal(data.total);
+		}
+
+		loadFirstPage();
+
+		return () => {
+			cancelled = true;
+		};
 	}, []);
 
-	function handleShowMore() {
-		setPage(page + 1);
-		fetchProjects(page + 1);
+	async function handleShowMore() {
+		const nextPage = page + 1;
+		setPage(nextPage);
+		const data = await fetchProjectsPage(nextPage);
+		// Append via the updater so a slow response can't overwrite newer state.
+		setProjects((prev) => [...prev, ...data.results]);
+		setTotal(data.total);
 	}
 
 	function handleShowLess() {
@@ -34,7 +49,7 @@ export default function Projects() {
 		} else {
 			startIndex = projects.length - (projects.length % 3);
 		}
-		setProjects(projects.filter((_, i) => i < startIndex));
+		setProjects((prev) => prev.filter((_, i) => i < startIndex));
 	}
 
 	return (

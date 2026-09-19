@@ -23,7 +23,7 @@ export default function Footer() {
 			<footer className='w-full'>
 				<div className='flex sm:flex-row flex-col max-w-[1024px] mx-auto items-center justify-between'>
 					<div className='flex flex-col items-center sm:items-start'>
-						<p>© 2025 Jace Galloway</p>
+						<p>© {new Date().getFullYear()} Jace Galloway</p>
 						<TerminalHint />
 					</div>
 					<div className='flex justify-between my-4'>

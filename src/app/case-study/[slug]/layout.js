@@ -1,4 +1,11 @@
-// Project data for metadata generation
+import { notFound } from 'next/navigation';
+
+// Slugs that must not be reachable at /case-study/<slug>, by direct URL or
+// otherwise. The route 404s below before anything for these slugs renders.
+const HIDDEN_SLUGS = new Set(['remi']);
+
+// Project data for metadata generation. Hidden slugs are intentionally
+// omitted here too, so a hit on this map alone already reads as not found.
 const projects = {
 	'phone-case-store': {
 		title: 'Phone Case Store',
@@ -11,12 +18,6 @@ const projects = {
 		description:
 			'A tiny, free macOS menu bar app that converts images between PNG, JPEG, WebP, HEIC and more with one drop.',
 		image: '/og-imagedrop.png',
-	},
-	remi: {
-		title: 'REMI',
-		description:
-			'A single Expo/React Native app for a mobile oil change franchise: dispatch calendar, guided job flow, orders, inventory and payments.',
-		image: '/og-remi.png',
 	},
 	'dating-tool-app': {
 		title: 'Dating Tool App',
@@ -134,6 +135,7 @@ export async function generateMetadata({ params }) {
 	if (!project) {
 		return {
 			title: 'Project Not Found | Jace Galloway',
+			robots: { index: false, follow: false },
 		};
 	}
 
@@ -177,6 +179,12 @@ export async function generateMetadata({ params }) {
 	};
 }
 
-export default function CaseStudyLayout({ children }) {
+export default async function CaseStudyLayout({ children, params }) {
+	const { slug } = await params;
+	// Server-side, before anything renders: a direct hit on a hidden slug's
+	// URL gets a real 404 response, not just a client-rendered "not found".
+	if (HIDDEN_SLUGS.has(slug)) {
+		notFound();
+	}
 	return <>{children}</>;
 }

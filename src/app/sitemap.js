@@ -10,7 +10,7 @@ export default async function sitemap() {
 	const projects = [
 		{ slug: 'phone-case-store' },
 		{ slug: 'imagedrop' },
-		{ slug: 'remi' },
+		// 'remi' is deliberately left out: the case study is hidden.
 		{ slug: 'dating-tool-app' },
 		{ slug: 'react-learning-stories' },
 		{ slug: 'the-vegan-aisle' },

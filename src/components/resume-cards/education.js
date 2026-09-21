@@ -6,8 +6,9 @@ export default function Education() {
 					<p className='m-0'>Education</p>
 				</div>
 			</div>
-			<div className='border-8 h-[160px] border-white w-[300px] sm:w-[600px] lg:w-[800px] relative'>
-				<div data-motion='card' className='w-full h-full bg-white text-black absolute bottom-8 left-7'>
+			<div className='w-[300px] sm:w-[600px] lg:w-[800px] relative'>
+				<div className='absolute inset-0 border-8 border-white' aria-hidden='true' />
+				<div data-motion='card' className='w-full min-h-[160px] bg-white text-black relative bottom-8 left-7 pb-8'>
 					<ul>
 						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>

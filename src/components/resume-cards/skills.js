@@ -7,10 +7,11 @@ export default function Skills() {
 					Skills
 				</h2>
 			</div>
-			{/* Skills Border Container with matching size */}
-			<div className='border-8 border-white w-[300px] sm:w-[600px] lg:w-[800px] 3xl:h-[470px] lg:h-[475px] md:h-[610px] sm:h-[750px] h-[1080px] relative'>
-				{/* Inner white container offset relative to the border */}
-				<div className='w-full h-full absolute bottom-10 left-[21px]'>
+			{/* Skills border frame, sized by the rows it holds */}
+			<div className='w-[300px] sm:w-[600px] lg:w-[800px] relative'>
+				<div className='absolute inset-0 border-8 border-white' aria-hidden='true' />
+				{/* Rows offset relative to the border */}
+				<div className='w-full relative bottom-10 left-[21px]'>
 					{/* Skills Rows Container with padding and gap */}
 					<div className='flex flex-col gap-2'>
 						{/* Row 1: Frontend Development Skills */}

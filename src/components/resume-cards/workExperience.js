@@ -34,11 +34,7 @@ export default function WorkExperience() {
 								- Columbus, OH
 							</p>
 							<p className='text-sm text-tertiary hidden sm:block'>
-								Single-handedly built the REMI field-service
-								platform (backend API, technician and customer
-								mobile apps, franchise dashboard) in four
-								months, then hired and led a team of developers
-								to take it over.
+								Single-handedly built the REMI field-service platform (backend API, technician and customer mobile apps, franchise dashboard) in four months. Technicians and franchise owners use it every day in the field. I migrated the franchise&apos;s full history in from their previous shop software, then hired and led the team of developers who took it over.
 							</p>
 						</li>
 						<li data-motion='row' className='px-8 pt-8'>
@@ -52,8 +48,49 @@ export default function WorkExperience() {
 								- Remote
 							</p>
 							<p className='text-sm text-tertiary hidden sm:block'>
-								Full-stack web development, building custom
-								solutions for clients using modern technologies.
+								Built Company Hunter, a public lead-generation tool on the Google Places API that landed me interviews job boards never did, plus data scrapers, automated email campaigns, websites and mobile apps for clients.
+							</p>
+						</li>
+						<li data-motion='row' className='px-8 pt-8'>
+							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
+								Marketing &amp; Data Entry Specialist
+							</h3>
+							<p className='text-sm text-tertiary sm:block'>
+								<span className='font-bold text-black'>
+									Fix Your Funnel
+								</span>{' '}
+								- San Diego, CA
+							</p>
+							<p className='text-sm text-tertiary hidden sm:block'>
+								Keap (formerly Infusionsoft) CRM automation for email and text message campaigns, data process automation and customer support.
+							</p>
+						</li>
+						<li data-motion='row' className='px-8 pt-8'>
+							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
+								Quality Assurance Analyst
+							</h3>
+							<p className='text-sm text-tertiary sm:block'>
+								<span className='font-bold text-black'>
+									Sony
+								</span>{' '}
+								- San Diego, CA
+							</p>
+							<p className='text-sm text-tertiary hidden sm:block'>
+								Quality assurance for Sony&apos;s MLB The Show: testing, documenting bugs and verifying fixes with developers.
+							</p>
+						</li>
+						<li data-motion='row' className='px-8 pt-8'>
+							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
+								Marketing Manager
+							</h3>
+							<p className='text-sm text-tertiary sm:block'>
+								<span className='font-bold text-black'>
+									ADventures
+								</span>{' '}
+								- San Diego, CA
+							</p>
+							<p className='text-sm text-tertiary hidden sm:block'>
+								Keap (formerly Infusionsoft) CRM automation for email and text message campaigns, and management of the ads team.
 							</p>
 						</li>
 						<li data-motion='row' className='px-8 pt-8'>
@@ -62,73 +99,34 @@ export default function WorkExperience() {
 							</h3>
 							<p className='text-sm text-tertiary sm:block'>
 								<span className='font-bold text-black'>
-									Independant
+									Independent
 								</span>{' '}
 								- Tampa, FL
 							</p>
 							<p className='text-sm text-tertiary hidden sm:block'>
-								Sales and customer service for health and life
-								insurance products.
+								Sales and customer service for health and life insurance products.
 							</p>
 						</li>
 						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
 								Driver
 							</h3>
-							<p className='text-sm text-tertiary'>
+							<p className='text-sm text-tertiary sm:block'>
 								<span className='font-bold text-black'>
 									Uber &amp; Lyft
 								</span>{' '}
-								- San Diego, California, / Tampa, Florida, /
-								Columbus, Ohio
+								- San Diego, California, / Tampa, Florida, / Columbus, Ohio
 							</p>
 							<p className='text-sm text-tertiary hidden sm:block'>
-								I probably don&apos;t need to describe the
-								responsibilities of this one.
+								I probably don&apos;t need to describe the responsibilities of this one.
 							</p>
 						</li>
 						<li data-motion='row' className='px-8 pt-8'>
 							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
-								Marketing Manager
+								Earlier Experience
 							</h3>
-							<p className='text-sm text-tertiary'>
-								<span className='font-bold text-black'>
-									ADventures
-								</span>{' '}
-								- San Diego, CA
-							</p>
 							<p className='text-sm text-tertiary hidden sm:block'>
-								Digital marketing automation implementation and
-								management of ads team.
-							</p>
-						</li>
-						<li data-motion='row' className='px-8 pt-8'>
-							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
-								Marketing &amp; Data Entry Specialist
-							</h3>
-							<p className='text-sm text-tertiary'>
-								<span className='font-bold text-black'>
-									Fix Your Funnel
-								</span>{' '}
-								- San Diego, CA
-							</p>
-							<p className='text-sm text-tertiary hidden sm:block'>
-								Digital marketing automation implementation and
-								customer support.
-							</p>
-						</li>
-						<li data-motion='row' className='px-8 pt-8'>
-							<h3 className='sm:text-2xl text-xl font-bold uppercase'>
-								Quality Assurance Analyst
-							</h3>
-							<p className='text-sm text-tertiary'>
-								<span className='font-bold text-black'>
-									Sony
-								</span>{' '}
-								- San Diego, CA
-							</p>
-							<p className='text-sm text-tertiary hidden sm:block'>
-								Quality assurance for Sony&apos;s MLB The Show.
+								Customer support, QA testing and teaching people how to use technology, plus my own computer repair and custom gaming PC business.
 							</p>
 						</li>
 					</ul>

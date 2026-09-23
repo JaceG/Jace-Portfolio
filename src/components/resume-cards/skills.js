@@ -85,6 +85,11 @@ export default function Skills() {
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
+												Express
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
 												Java
 											</span>
 										</div>
@@ -116,6 +121,68 @@ export default function Skills() {
 								</div> */}
 							</div>
 						</div>
+						{/* Row: Automation & Outreach */}
+						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
+								<div className='shrink-0 uppercase font-bold text-black text-lg'>
+									Automation &amp; Outreach
+								</div>
+								<div className='grow flex justify-end'>
+									<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Keap (Infusionsoft)
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Klaviyo
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Postmark
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Twilio
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Zapier
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												IFTTT
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Webhooks
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Web Scraping
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Google Places API
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												OpenAI API
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						{/* Row 3: Database Skills */}
 						<div data-motion='row' className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
 							<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
@@ -131,6 +198,11 @@ export default function Skills() {
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
+												MySQL
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
 												MongoDB
 											</span>
 										</div>
@@ -142,11 +214,6 @@ export default function Skills() {
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
 												Mongoose
-											</span>
-										</div>
-										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
-											<span className='leading-6'>
-												Express
 											</span>
 										</div>
 									</div>
@@ -241,6 +308,11 @@ export default function Skills() {
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
 											<span className='leading-6'>
 												Cursor
+											</span>
+										</div>
+										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>
+											<span className='leading-6'>
+												Claude Code
 											</span>
 										</div>
 										<div className='bg-[#d0f1da] flex items-center justify-center p-2'>

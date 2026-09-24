@@ -14,8 +14,11 @@ export default function ScProjects() {
 		href: `${SC_BASE}/case-study/${slug}`,
 	}));
 	return (
-		<Section>
-			<ProjectList cards={cards} />
-		</Section>
+		// White from the top edge so it runs straight on from the GitHub strip.
+		<div className='bg-white pb-24'>
+			<Section>
+				<ProjectList cards={cards} />
+			</Section>
+		</div>
 	);
 }

@@ -125,6 +125,13 @@ export default function Terminal() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const [open, setOpen] = useState(false);
+	// Yellow dot: tuck the terminal into a small dock at the bottom of the
+	// screen, keeping its history, until it's clicked or reopened.
+	const [minimized, setMinimized] = useState(false);
+	const minimizedRef = useRef(false);
+	useEffect(() => {
+		minimizedRef.current = minimized;
+	}, [minimized]);
 	const [lines, setLines] = useState([]);
 	const [input, setInput] = useState('');
 	const [history, setHistory] = useState([]);
@@ -159,6 +166,7 @@ export default function Terminal() {
 
 	const openTerminal = useCallback(() => {
 		setOpen(true);
+		setMinimized(false);
 		setLines((prev) =>
 			prev.length
 				? prev
@@ -173,7 +181,10 @@ export default function Terminal() {
 		);
 	}, []);
 
-	const closeTerminal = useCallback(() => setOpen(false), []);
+	const closeTerminal = useCallback(() => {
+		setOpen(false);
+		setMinimized(false);
+	}, []);
 
 	// ---- Open triggers: double-tap on the page background (not the hero),
 	//      the backtick key, or a `terminal:open` event.
@@ -216,6 +227,10 @@ export default function Terminal() {
 			const typing = ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName);
 			if (e.key === '`' && !typing) {
 				e.preventDefault();
+				if (minimizedRef.current) {
+					setMinimized(false);
+					return;
+				}
 				setOpen((o) => {
 					if (!o) openTerminal();
 					return !o;
@@ -235,11 +250,11 @@ export default function Terminal() {
 
 	// Focus + scroll to bottom whenever the terminal opens or prints
 	useEffect(() => {
-		if (!open) return;
+		if (!open || minimized) return;
 		inputRef.current?.focus({ preventScroll: true });
 		const el = scrollRef.current;
 		if (el) el.scrollTop = el.scrollHeight;
-	}, [open, lines]);
+	}, [open, minimized, lines]);
 
 	// ---- Navigation helpers ------------------------------------------------
 
@@ -637,7 +652,19 @@ export default function Terminal() {
 					<div className='hero-scanlines absolute inset-0' style={{ opacity: 0.6 }} />
 				</div>
 			)}
-			{open && (
+			{open && minimized && (
+				<button
+					type='button'
+					onClick={() => setMinimized(false)}
+					aria-label='Restore terminal'
+					className='terminal-root fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-ink/95 px-4 py-2 font-geist-mono text-xs text-white/70 shadow-[0_0_40px_rgba(57,189,109,0.18)] backdrop-blur-sm transition-colors hover:text-white'>
+					<span className='h-2.5 w-2.5 rounded-full bg-[#ff5f57]' />
+					<span className='h-2.5 w-2.5 rounded-full bg-[#febc2e]' />
+					<span className='h-2.5 w-2.5 rounded-full bg-[#28c840]' />
+					<span className='ml-1'>guest@hirejace: ~</span>
+				</button>
+			)}
+			{open && !minimized && (
 				// Top-anchored on phones so the on-screen keyboard doesn't cover it;
 				// bottom-docked on larger screens.
 				<div className='terminal-root pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:inset-x-0 sm:bottom-0 sm:top-auto sm:px-6 sm:pb-6 sm:pt-0'>
@@ -646,9 +673,23 @@ export default function Terminal() {
 						aria-label='Site terminal'
 						className='terminal-panel pointer-events-auto w-full max-w-[760px] overflow-hidden rounded-2xl border border-white/10 bg-ink/95 font-geist-mono text-[13px] text-white shadow-[0_0_70px_rgba(57,189,109,0.18)] backdrop-blur-sm sm:text-sm'>
 						<div className='flex items-center gap-2 border-b border-white/10 px-4 py-2.5'>
-							<span className='h-3 w-3 rounded-full bg-[#ff5f57]' />
-							<span className='h-3 w-3 rounded-full bg-[#febc2e]' />
-							<span className='h-3 w-3 rounded-full bg-[#28c840]' />
+							<div className='group flex items-center gap-2'>
+								<button
+									type='button'
+									onClick={closeTerminal}
+									aria-label='Close terminal'
+									className="relative flex h-3 w-3 items-center justify-center rounded-full after:absolute after:-inset-2 after:content-[''] bg-[#ff5f57] text-[9px] font-bold leading-none text-black/60">
+									<span className='opacity-0 group-hover:opacity-100'>×</span>
+								</button>
+								<button
+									type='button'
+									onClick={() => setMinimized(true)}
+									aria-label='Minimize terminal'
+									className="relative flex h-3 w-3 items-center justify-center rounded-full after:absolute after:-inset-2 after:content-[''] bg-[#febc2e] text-[9px] font-bold leading-none text-black/60">
+									<span className='opacity-0 group-hover:opacity-100'>−</span>
+								</button>
+								<span className='h-3 w-3 rounded-full bg-[#28c840]' />
+							</div>
 							<span className='ml-3 text-xs text-white/50'>guest@hirejace: ~</span>
 							<button
 								type='button'

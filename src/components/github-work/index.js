@@ -84,29 +84,24 @@ function Reveal({ children, delay = 0, className, instant = false }) {
  * The site's offset double-frame: a green outline with a filled green panel
  * shifted up and to the left (see the Books callout and project cards).
  */
-function Frame({ children, className = '', innerClassName = '', inverted = false }) {
+function Frame({ children, className = '', innerClassName = '' }) {
 	return (
-		<div className={`relative border-8 ${inverted ? 'border-white' : 'border-[#39bb6a]'} ${className}`}>
+		<div className={`relative border-8 border-[#39bb6a] ${className}`}>
 			<div
-				className={`absolute bottom-6 left-6 h-full w-full ${
-					inverted ? 'bg-white text-[#39bb6a]' : 'bg-[#39bb6a] text-white'
-				} ${innerClassName}`}>
+				className={`absolute bottom-6 left-6 h-full w-full bg-[#39bb6a] text-white ${innerClassName}`}>
 				{children}
 			</div>
 		</div>
 	);
 }
 
-function Stat({ value, label, inverted = false }) {
+function Stat({ value, label }) {
 	return (
 		<div className='flex min-w-0 flex-col items-center justify-center px-3 py-5 text-center'>
 			<div className='max-w-full text-3xl font-black leading-none tracking-[-0.04em] md:text-[2rem]'>
 				{value}
 			</div>
-			<div
-				className={`mt-3 text-xs font-black uppercase tracking-[-0.04em] sm:text-sm ${
-					inverted ? 'text-[#39bb6a]/80' : 'text-white/80'
-				}`}>
+			<div className='mt-3 text-xs font-black uppercase tracking-[-0.04em] text-white/80 sm:text-sm'>
 				{label}
 			</div>
 		</div>
@@ -149,9 +144,7 @@ function SkeletonCard() {
 	);
 }
 
-// `inverted` swaps the white section for the green page background with
-// white ink, for pages whose section order needs it.
-export default function GithubWork({ compact = false, inverted = false } = {}) {
+export default function GithubWork({ compact = false } = {}) {
 	const { profile, repos, failed } = useGithub();
 
 	const topLanguage = (() => {
@@ -167,11 +160,9 @@ export default function GithubWork({ compact = false, inverted = false } = {}) {
 	const dash = '—';
 
 	return (
-		<div className={inverted ? 'py-24 text-white' : 'bg-white py-24 text-black'}>
+		<div className='bg-white py-24 text-black'>
 			<div className='mx-auto flex max-w-[1100px] flex-col items-center px-6 sm:px-10'>
-				<h1 data-motion='heading' className={`mb-2 text-center text-6xl font-bold uppercase sm:text-9xl ${
-						inverted ? 'text-white' : 'text-[#39bb6a]'
-					}`}>
+				<h1 data-motion='heading' className='mb-2 text-center text-6xl font-bold uppercase text-[#39bb6a] sm:text-9xl'>
 					GitHub
 				</h1>
 				{!compact && (
@@ -185,28 +176,21 @@ export default function GithubWork({ compact = false, inverted = false } = {}) {
 					instant={compact}
 					className={compact ? 'mt-10 w-full pr-6 pt-6' : 'mb-20 w-full pr-6 pt-6'}>
 					<Frame
-						inverted={inverted}
 						className='h-[300px] w-full sm:h-[160px]'
-						innerClassName={`grid grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x-4 divide-y-4 sm:divide-y-0 ${
-							inverted ? 'divide-[#39bb6a]/30' : 'divide-white/30'
-						}`}>
+						innerClassName='grid grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x-4 divide-y-4 sm:divide-y-0 divide-white/30'>
 						<Stat
-							inverted={inverted}
 							value={failed ? dash : profile?.public_repos ?? dash}
 							label='Public repos'
 						/>
 						<Stat
-							inverted={inverted}
 							value={failed ? dash : profile?.followers ?? dash}
 							label='Followers'
 						/>
 						<Stat
-							inverted={inverted}
 							value={failed ? dash : topLanguage ?? dash}
 							label='Top language'
 						/>
 						<Stat
-							inverted={inverted}
 							value={failed || !lastPush ? dash : relativeTime(lastPush)}
 							label='Last push'
 						/>

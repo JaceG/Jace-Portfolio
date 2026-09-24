@@ -57,7 +57,7 @@ export default function SourceCo() {
 				<Me bioContent={SC_BIO} resumeUrl={SC_RESUME_URL} />
 			</section>
 			<section id='github' className='relative' aria-label='Live GitHub activity'>
-				<GithubWork compact inverted />
+				<GithubWork compact />
 			</section>
 			<section id='projects' className='relative' aria-label='Projects'>
 				<ScProjects />

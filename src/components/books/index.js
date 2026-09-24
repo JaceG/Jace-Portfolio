@@ -22,7 +22,7 @@ const categories = [
 
 const booksPerPage = 4;
 
-const Books = () => {
+const Books = ({ hideTwitter = false } = {}) => {
 	const [bookData, setBookData] = useState({});
 	const [tweetsExpanded, setTweetsExpanded] = useState(false);
 
@@ -209,10 +209,14 @@ const Books = () => {
 					<div data-motion='card' className='w-full h-full bg-[#39bb6a] text-white absolute bottom-8 left-7 p-8'>
 						<h3 className='md:text-2xl font-bold'>
 							This is a section for the books I&apos;ve read that
-							I think are relevant to prompt & AI Engineering. I
-							have also included a X conversation thread that
-							explains why I chose the categories of books that I
-							have here.
+							I think are relevant to prompt & AI Engineering.
+							{!hideTwitter && (
+								<>
+									{' '}I have also included a X conversation
+									thread that explains why I chose the
+									categories of books that I have here.
+								</>
+							)}
 							<br />
 							<br />
 							Over the last several years I have read over 400
@@ -231,6 +235,8 @@ const Books = () => {
 					</div>
 				</div>
 
+				{!hideTwitter && (
+					<>
 				{/* Twitter Embeds */}
 				<div className='flex flex-col items-center mb-8'>
 					<button
@@ -352,6 +358,9 @@ const Books = () => {
 						}
 					}
 				`}</style>
+
+					</>
+				)}
 
 				{categories.map((category) => (
 					<BookSection key={category.key} category={category} />

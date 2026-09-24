@@ -1,23 +1,18 @@
 'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Sidebar from './sidebar';
+import { navTo, usePageNav } from './nav';
 import { useState } from 'react';
 
 export default function Header() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const navigation = useRouter();
-	const smoothScroll = (e) => {
-		e.preventDefault();
-		const pathname = window.location.pathname;
-		if (pathname === '/') {
-			const target = e.target.href.split('#')[1];
-			const element = document.getElementById(target);
-			element.scrollIntoView({ behavior: 'smooth' });
-		} else {
-			navigation.push(e.target.href);
-		}
-	};
+	// Subscribing to the pathname re-renders the header on navigation, which
+	// re-reads the page's nav attributes.
+	usePathname();
+	const nav = usePageNav();
+	const smoothScroll = (e) => navTo(e, navigation);
 
 	const handleSidebar = () => {
 		setIsSidebarOpen(!isSidebarOpen);
@@ -25,7 +20,7 @@ export default function Header() {
 
 	return (
 		<>
-			{isSidebarOpen && <Sidebar onSidebarClose={handleSidebar} />}
+			{isSidebarOpen && <Sidebar onSidebarClose={handleSidebar} nav={nav} />}
 			<header className='w-full sticky top-0 z-20 bg-primary relative'>
 				{/* Ink overlay: fully opaque while the home-page hero is solid,
 				    fades out as the hero fizzles (driven by --hero-ink), and is
@@ -54,29 +49,13 @@ export default function Header() {
 				</button>
 				<nav className='relative hidden sm:flex justify-end items-center p-4'>
 					<ul className='flex space-x-4 text-2xl'>
-						<li>
-							<Link onClick={smoothScroll} href='/#me'>
-								ME
-							</Link>
-						</li>
-						<li>
-							<Link onClick={smoothScroll} href='/#projects'>
-								WORK
-							</Link>
-						</li>
-						<li>
-							<Link onClick={smoothScroll} href='/#books'>
-								BOOKS
-							</Link>
-						</li>
-						<li>
-							<Link onClick={smoothScroll} href='/#connect'>
-								CONTACT
-							</Link>
-						</li>
-						{/* <li>
-						<a href='#learn'>LEARN</a>
-					</li> */}
+						{nav.items.map(([id, label]) => (
+							<li key={id}>
+								<Link onClick={smoothScroll} href={`${nav.base}/#${id}`}>
+									{label}
+								</Link>
+							</li>
+						))}
 					</ul>
 				</nav>
 			</header>

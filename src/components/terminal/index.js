@@ -137,6 +137,19 @@ export default function Terminal() {
 	const vimRef = useRef(false);
 	const lastTapRef = useRef({ t: 0, x: 0, y: 0 });
 	const idRef = useRef(0);
+	// Page-specific commands a route can register via window.__terminalExt.
+	const [ext, setExt] = useState(null);
+	const extRef = useRef(null);
+	useEffect(() => {
+		const sync = () => {
+			const next = window.__terminalExt || null;
+			extRef.current = next;
+			setExt(next);
+		};
+		sync();
+		window.addEventListener('terminal:ext', sync);
+		return () => window.removeEventListener('terminal:ext', sync);
+	}, []);
 
 	const push = useCallback((...items) => {
 		setLines((prev) =>
@@ -149,11 +162,14 @@ export default function Terminal() {
 		setLines((prev) =>
 			prev.length
 				? prev
-				: [
-						L('ok', 'hirejace terminal v1.0.0'),
-						L('dim', 'type /help for options · esc to close'),
-						L('dim', 'tip: try neofetch, matrix, or sudo hire jace'),
-				  ].map((l) => ({ ...l, id: ++idRef.current }))
+				: (extRef.current?.welcome
+						? extRef.current.welcome({ ok, dim })
+						: [
+								L('ok', 'hirejace terminal v1.0.0'),
+								L('dim', 'type /help for options · esc to close'),
+								L('dim', 'tip: try neofetch, matrix, or sudo hire jace'),
+						  ]
+				  ).map((l) => ({ ...l, id: ++idRef.current }))
 		);
 	}, []);
 
@@ -228,10 +244,11 @@ export default function Terminal() {
 	// ---- Navigation helpers ------------------------------------------------
 
 	const goto = (id) => {
-		if (pathname === '/') {
-			document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: 'smooth' });
 		} else {
-			router.push(`/#${id}`);
+			router.push(`${ext?.base || ''}/#${id}`);
 		}
 	};
 	const heroCommand = (name) =>
@@ -240,7 +257,7 @@ export default function Terminal() {
 
 	// ---- Commands ----------------------------------------------------------
 
-	const COMMANDS = {
+	const BASE_COMMANDS = {
 		help: {
 			desc: 'list commands',
 			run: () => [
@@ -513,6 +530,12 @@ export default function Terminal() {
 		stats: { hidden: true, run: () => COMMANDS.gh.run() },
 		konami: { hidden: true, run: () => [ok('↑ ↑ ↓ ↓ ← → ← → B A'), dim('respect.')] },
 	};
+	const COMMANDS = ext
+		? {
+				...BASE_COMMANDS,
+				...ext.buildCommands({ ok, out, dim, err, pre, goto, openUrl, router, uptime }),
+		  }
+		: BASE_COMMANDS;
 
 	const run = async (raw) => {
 		const text = raw.trim();

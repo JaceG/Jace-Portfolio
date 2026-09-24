@@ -1,4 +1,69 @@
-export default function Skills() {
+// GTM-ordered rows for the SourceCo page. Same markup as the rows below.
+const SC_ROWS = [
+	{
+		title: 'Automation & Outreach',
+		items: ['n8n', 'Keap (Infusionsoft)', 'Klaviyo', 'Postmark', 'Twilio', 'Zapier', 'IFTTT', 'Webhooks', 'Stripe Billing', 'Direct Mail API'],
+	},
+	{
+		title: 'Data & Enrichment',
+		items: ['Web Scraping (Axios + Cheerio)', 'Google Places API', 'Lead Dedup', 'CSV Import / Export', 'Result Caching', 'Rate Limiting', 'SHA-256 Fingerprinting'],
+	},
+	{
+		title: 'AI & Agents',
+		items: ['Claude Code', 'Claude MCP Servers', 'OpenAI API (GPT-4)', 'ChatGPT', 'Cursor', 'Copilot', 'v0', 'Replit'],
+	},
+	{
+		title: 'Integrations',
+		items: ['Shopify', 'WordPress Plugins', 'GitHub REST API', 'Spotify Web API', 'Google Maps', 'Ticketmaster', 'OpenWeather', 'OAuth 2.0 (PKCE)', 'GraphQL + Apollo'],
+	},
+	{ title: 'Backend Development', items: ['Node.js', 'Express', 'REST APIs', 'Python', 'WebSockets', 'JWT + Magic-Link Auth', 'Payload CMS', 'Java'] },
+	{ title: 'Database Skills', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'MongoDB Atlas', 'Mongoose'] },
+	{ title: 'Frontend Development', items: ['React', 'React Native', 'Expo', 'Next', 'TypeScript', 'Tailwind CSS', 'TanStack Query', 'Zustand', 'Zod', 'Chart.js', 'three.js', 'JS', 'HTML', 'CSS'] },
+	{ title: 'Testing & Monitoring', items: ['Playwright', 'Vitest', 'Jest', 'Cypress', 'React Testing Library', 'Sentry'] },
+	{ title: 'Tools and Technologies', items: ['Git', 'Github', 'Github Actions', 'EAS + OTA Updates', 'Postman', 'Render', 'Vite', 'Blender (Python)', 'Swift', 'Electron'] },
+	{ title: 'Soft Skills', items: ['Self Awareness', 'Tact', 'Patience', 'Active Listening', 'Adaptability'] },
+];
+
+function ScSkills() {
+	return (
+		<div className='flex flex-col items-center justify-center'>
+			<div className='3xl:w-[730px] xl:w-[730px] lg:w-[730px] md:w-[600px]  flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
+				<h2 className='w-[336px] text-[56px] tracking-[-0.04em] leading-[52px] uppercase font-black text-white text-left mb-6'>
+					Skills
+				</h2>
+			</div>
+			<div className='w-[300px] sm:w-[600px] lg:w-[800px] relative'>
+				<div className='absolute inset-0 border-8 border-white' aria-hidden='true' />
+				<div className='w-full relative bottom-10 left-[21px]'>
+					<div className='flex flex-col gap-2'>
+						{SC_ROWS.map((row) => (
+							<div key={row.title} className='bg-white p-4 shadow-md sm:w-[590px] lg:w-[790px] w-[300px]'>
+								<div className='flex flex-wrap flex-col md:flex-row gap-[18px]'>
+									<div className='shrink-0 uppercase font-bold text-black text-lg'>
+										{row.title}
+									</div>
+									<div className='grow flex justify-end'>
+										<div className='flex flex-row flex-wrap gap-2 text-sm text-[#13692d]'>
+											{row.items.map((item) => (
+												<div key={item} className='bg-[#d0f1da] flex items-center justify-center p-2'>
+													<span className='leading-6'>{item}</span>
+												</div>
+											))}
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export default function Skills({ variant } = {}) {
+	if (variant === 'sc') return <ScSkills />;
+
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			{/* Skills Header */}

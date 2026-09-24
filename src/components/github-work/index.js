@@ -44,13 +44,13 @@ function useGithub() {
 }
 
 /** Fades children up into place the first time they scroll into view. */
-function Reveal({ children, delay = 0, className }) {
+function Reveal({ children, delay = 0, className, instant = false }) {
 	const ref = useRef(null);
-	const [shown, setShown] = useState(false);
+	const [shown, setShown] = useState(instant);
 
 	useEffect(() => {
 		const el = ref.current;
-		if (!el) return;
+		if (!el || instant) return;
 		const io = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
@@ -62,7 +62,7 @@ function Reveal({ children, delay = 0, className }) {
 		);
 		io.observe(el);
 		return () => io.disconnect();
-	}, []);
+	}, [instant]);
 
 	return (
 		<div
@@ -71,7 +71,9 @@ function Reveal({ children, delay = 0, className }) {
 			style={{
 				opacity: shown ? 1 : 0,
 				transform: shown ? 'translateY(0)' : 'translateY(24px)',
-				transition: `opacity 0.7s ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+				transition: instant
+					? 'none'
+					: `opacity 0.7s ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
 			}}>
 			{children}
 		</div>
@@ -142,7 +144,7 @@ function SkeletonCard() {
 	);
 }
 
-export default function GithubWork() {
+export default function GithubWork({ compact = false } = {}) {
 	const { profile, repos, failed } = useGithub();
 
 	const topLanguage = (() => {
@@ -163,12 +165,16 @@ export default function GithubWork() {
 				<h1 data-motion='heading' className='mb-2 text-center text-6xl font-bold uppercase text-[#39bb6a] sm:text-9xl'>
 					GitHub
 				</h1>
-				<p className='mb-12 text-center text-[20px] font-black uppercase tracking-[-0.04em] text-tertiary'>
-					Live from my public repos
-				</p>
+				{!compact && (
+					<p className='mb-12 text-center text-[20px] font-black uppercase tracking-[-0.04em] text-tertiary'>
+						Live from my public repos
+					</p>
+				)}
 
 				{/* Stat strip */}
-				<Reveal className='mb-20 w-full pr-6 pt-6'>
+				<Reveal
+					instant={compact}
+					className={compact ? 'mt-10 w-full pr-6 pt-6' : 'mb-20 w-full pr-6 pt-6'}>
 					<Frame
 						className='h-[300px] w-full sm:h-[160px]'
 						innerClassName='grid grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x-4 divide-y-4 sm:divide-y-0 divide-white/30'>
@@ -191,6 +197,7 @@ export default function GithubWork() {
 					</Frame>
 				</Reveal>
 
+				{compact ? null : (<>
 				{/* Recent repos */}
 				<Reveal className='mb-10 flex w-full flex-col items-center justify-between gap-6 sm:flex-row sm:items-end'>
 					<div className='text-center sm:text-left'>
@@ -236,6 +243,7 @@ export default function GithubWork() {
 							  ))}
 					</div>
 				)}
+				</>)}
 			</div>
 		</div>
 	);

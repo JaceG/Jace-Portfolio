@@ -3,13 +3,13 @@ import Education from '../resume-cards/education';
 import Skills from '../resume-cards/skills';
 import Section from '../section';
 
-export default function Resume() {
+export default function Resume({ resumeUrl, skillsVariant } = {}) {
 	return (
 		<Section>
 			<div>
-				<WorkExperience />
+				<WorkExperience resumeUrl={resumeUrl} />
 				<Education />
-				<Skills />
+				<Skills variant={skillsVariant} />
 			</div>
 		</Section>
 	);

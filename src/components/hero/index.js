@@ -16,6 +16,8 @@ const ROLES = [
 	'React & Node.js',
 	'AI-Powered Solutions',
 ];
+const DEFAULT_BLURB =
+	'I build web apps, mobile apps, and AI-powered products end to end — from clean React interfaces to resilient Node.js services.';
 const NAME_TOP = 'JACE';
 const NAME_BOTTOM = 'GALLOWAY';
 const STACK = [
@@ -594,11 +596,20 @@ function Orb({ rootRef, onDock, onUndock, ejectRef }) {
  * grid shock, glitch burst); a double click/tap power-cycles the panel like
  * an old CRT and reboots it.
  */
-export default function Hero() {
+export default function Hero({
+	// `still` renders the hero in normal page flow: no scroll-driven fizzle,
+	// a scroll cue at the bottom, and the interaction hints always visible.
+	still = false,
+	roles = ROLES,
+	blurb = DEFAULT_BLURB,
+	stack = STACK,
+	resumeUrl = RESUME_DOWNLOAD_URL,
+	hints = null,
+} = {}) {
 	const { active, paused, hardwareReady } = useMotionPreview();
 	const [monitorReady, setMonitorReady] = useState(false);
 	const hardwareReveal = active && !paused && hardwareReady && monitorReady;
-	const role = useTypewriter(ROLES);
+	const role = useTypewriter(roles);
 	const rootRef = useRef(null);
 	const monitorRef = useRef(null);
 	const contentRef = useRef(null);
@@ -658,6 +669,22 @@ export default function Hero() {
 		const root = rootRef.current;
 		const monitor = monitorRef.current;
 		if (!root) return;
+		if (still) {
+			// In flow: the nav stays ink while it sits over the hero, and turns
+			// green as the hero's bottom edge passes underneath it.
+			const onScroll = () => {
+				const ink = clamp01((root.offsetHeight - window.scrollY) / NAV_HEIGHT);
+				document.documentElement.style.setProperty('--hero-ink', ink.toFixed(3));
+			};
+			onScroll();
+			window.addEventListener('scroll', onScroll, { passive: true });
+			window.addEventListener('resize', onScroll);
+			return () => {
+				window.removeEventListener('scroll', onScroll);
+				window.removeEventListener('resize', onScroll);
+				document.documentElement.style.removeProperty('--hero-ink');
+			};
+		}
 		let raf = null;
 		const dims = () => {
 			const vh = Math.max(1, window.innerHeight);
@@ -785,7 +812,7 @@ export default function Hero() {
 				monitor.style.transformOrigin = '';
 			}
 		};
-	}, [hardwareReveal]);
+	}, [hardwareReveal, still]);
 
 	// ---- Click / tap interactions -------------------------------------------
 
@@ -930,7 +957,9 @@ export default function Hero() {
 		<div
 			ref={rootRef}
 			onPointerUp={onPointerUp}
-			className='hero-root fixed inset-0 z-10 select-none overflow-clip bg-ink font-geist text-white antialiased'>
+			className={`hero-root ${
+				still ? 'relative -mt-16 h-svh' : 'fixed inset-0'
+			} z-10 select-none overflow-clip bg-ink font-geist text-white antialiased`}>
 			{/* Everything that "powers off" during a CRT cycle lives in here. */}
 			<div
 				key={screenKey}
@@ -1086,9 +1115,7 @@ export default function Hero() {
 							<p
 								className='hero-blurb mt-7 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg'
 								style={{ animation: 'fade-up 0.7s ease-out 0.7s both' }}>
-								I build web apps, mobile apps, and AI-powered products
-								end to end — from clean React interfaces to resilient
-								Node.js services.
+								{blurb}
 							</p>
 
 							{/* CTAs */}
@@ -1110,7 +1137,7 @@ export default function Hero() {
 									/>
 								</a>
 								<a
-									href={RESUME_DOWNLOAD_URL}
+									href={resumeUrl}
 									className='rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/85 transition-colors duration-200 hover:border-primary/60 hover:text-white'>
 									Download Resume
 								</a>
@@ -1132,11 +1159,32 @@ export default function Hero() {
 						{/* Interaction hint */}
 						<div
 							aria-hidden='true'
-							className='pointer-events-none absolute bottom-3 right-0 hidden font-geist-mono text-[10px] uppercase tracking-[0.2em] text-white/30 sm:block'
+							className={`pointer-events-none font-geist-mono uppercase tracking-[0.2em] ${
+								still
+									? 'relative mt-5 block text-[10px] leading-5 text-white/60 sm:absolute sm:bottom-3 sm:right-0 sm:mt-0 sm:text-right sm:text-[11px]'
+									: 'absolute bottom-3 right-0 hidden text-[10px] text-white/30 sm:block'
+							}`}
 							style={{ animation: 'fade-up 0.7s ease-out 1.3s both' }}>
-							click · pulse &nbsp;/&nbsp; double-tap · reboot &nbsp;/&nbsp; orb · throw
+							{hints || (
+								<>click · pulse &nbsp;/&nbsp; double-tap · reboot &nbsp;/&nbsp; orb · throw</>
+							)}
 						</div>
 					</div>
+
+					{still && (
+						<div
+							aria-hidden='true'
+							className='pointer-events-none relative flex justify-center pt-4 pb-3'>
+							<div
+								className='flex flex-col items-center gap-1 font-geist-mono text-xs font-bold uppercase tracking-[0.3em] text-primary'
+								style={{ animation: 'scroll-cue 1.8s ease-in-out infinite' }}>
+								<span>Scroll</span>
+								<svg width='34' height='34' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round'>
+									<path d='M6 9l6 6 6-6' />
+								</svg>
+							</div>
+						</div>
+					)}
 
 					{/* Tech stack marquee */}
 					<div
@@ -1153,7 +1201,7 @@ export default function Hero() {
 						<div
 							className='flex w-max gap-10 whitespace-nowrap font-geist-mono text-sm uppercase tracking-[0.2em] text-white/40'
 							style={{ animation: 'marquee 26s linear infinite' }}>
-							{[...STACK, ...STACK].map((item, i) => (
+							{[...stack, ...stack].map((item, i) => (
 								<span key={i} className='flex items-center gap-10'>
 									{item}
 									<span className='text-primary/60'>/</span>

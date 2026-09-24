@@ -9,12 +9,14 @@ export default function Card({
 	github,
 	isCenter = false,
 	motionDelay = 0,
+	href,
 }) {
 	function toSlug(text) {
 		return text.toLowerCase().replace(/ /g, '-');
 	}
 
 	const slug = toSlug(title);
+	const link = href || `/case-study/${slug}`;
 	return (
 		<div
 			data-motion='card'
@@ -25,7 +27,7 @@ export default function Card({
 			}`}>
 			<div data-motion-sheet className='bg-white w-full h-full absolute bottom-8 left-8'>
 				<div className='p-8'>
-					<Link href={`/case-study/${slug}`}>
+					<Link href={link}>
 						<img
 							src={image}
 							alt={title}
@@ -40,7 +42,7 @@ export default function Card({
 					</p>
 					<div className='relative w-full flex flex-row items-center py-4 text-center text-base gap-4 text-white'>
 						<Link
-							href={`/case-study/${slug}`}
+							href={link}
 							className='relative rounded-sm bg-[#39bb6a] p-3 tracking-[-0.04em] block w-[140px] uppercase font-black'>
 							See App
 						</Link>

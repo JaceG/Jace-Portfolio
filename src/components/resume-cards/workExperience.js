@@ -1,6 +1,6 @@
 import { RESUME_DOWNLOAD_URL } from '@/constants/me';
 
-export default function WorkExperience() {
+export default function WorkExperience({ resumeUrl = RESUME_DOWNLOAD_URL } = {}) {
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			<div className='3xl:w-[730px] lg:w-[730px] md:w-[600px] flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-8'>
@@ -10,7 +10,7 @@ export default function WorkExperience() {
 				</div>
 				<div className='mb-8'>
 					<a
-						href={RESUME_DOWNLOAD_URL}
+						href={resumeUrl}
 						className='rounded-sm bg-black flex items-center justify-center py-4 px-10 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black mt-4'>
 						Download Resume
 					</a>

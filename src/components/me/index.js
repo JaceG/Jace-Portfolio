@@ -7,7 +7,7 @@ import Section from '../section';
 import { useEffect, useRef, useState } from 'react';
 import { bio, RESUME_DOWNLOAD_URL } from '@/constants/me';
 
-export default function Me() {
+export default function Me({ bioContent = bio, resumeUrl = RESUME_DOWNLOAD_URL } = {}) {
 	const isDraggingRef = useRef(null);
 	const imageRef = useRef(null);
 	const svgRef = useRef(null);
@@ -318,7 +318,7 @@ export default function Me() {
 								))}
 							</div>
 							<a
-								href={RESUME_DOWNLOAD_URL}
+								href={resumeUrl}
 								className='rounded-sm bg-black flex items-center justify-center xl:py-4 xl:px-10 md:py-2 md:px-6 my-16 md:my-0 py-6 px-12 box-border text-center text-base text-white tracking-[-0.04em] uppercase font-black'>
 								Download Resume
 							</a>
@@ -335,7 +335,7 @@ export default function Me() {
 							style={{
 								pointerEvents: isDragging ? 'none' : 'auto',
 							}}>
-							{bio}
+							{bioContent}
 						</div>
 					</div>
 				</div>

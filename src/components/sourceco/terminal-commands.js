@@ -2,6 +2,7 @@
 // when that page is open, so none of this ships with the main portfolio.
 import {
 	SC_BASE,
+	SC_CONCEPTS_URL,
 	SC_CALL_URL,
 	SC_PROJECTS,
 	SC_RESUME_URL,
@@ -17,6 +18,7 @@ export const SC_SECTIONS = {
 	books: 'Books',
 	anatomy: "SourceCo's GTM stack as a body",
 	pitch: 'The n8n library deck',
+	concepts: 'Working concepts for SourceCo',
 	connect: 'Call or text',
 };
 
@@ -108,6 +110,13 @@ export function buildCommands({ ok, out, dim, err, pre, goto, openUrl, router, u
 			},
 		},
 		deck: { desc: 'jump to the deck', run: () => cmds.cd.run(['pitch']) },
+		concepts: {
+			desc: 'open the concepts site',
+			run: () => {
+				openUrl(SC_CONCEPTS_URL);
+				return [ok('opening sourceco.hirejace.com…')];
+			},
+		},
 		anatomy: { hidden: true, run: () => cmds.cd.run(['anatomy']) },
 		projects: {
 			desc: 'list my projects (open <n> to view one)',

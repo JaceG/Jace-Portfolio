@@ -6,6 +6,7 @@ import ScGithub from '@/components/sourceco/github';
 import ScProjects from '@/components/sourceco/projects';
 import Anatomy from '@/components/sourceco/anatomy';
 import Deck from '@/components/sourceco/deck';
+import Concepts from '@/components/sourceco/concepts';
 import Call from '@/components/sourceco/call';
 import TerminalBridge from '@/components/sourceco/terminal-bridge';
 import {
@@ -92,6 +93,9 @@ export default function SourceCo() {
 			</section>
 			<section id='pitch' className='relative' aria-label='The n8n library deck'>
 				<Deck />
+			</section>
+			<section id='concepts' className='relative' aria-label='Concepts for SourceCo'>
+				<Concepts />
 			</section>
 			<section id='connect' className='relative' aria-label='Call or text'>
 				<Call />

@@ -2,6 +2,7 @@
 // the modules it loads, so none of this ships with the main portfolio.
 
 export const SC_BASE = '/sourceco';
+export const SC_CONCEPTS_URL = 'https://sourceco.hirejace.com';
 
 export const SC_RESUME_URL =
 	'https://drive.google.com/uc?export=download&id=1pUBTr0FUAc75I2qB5JK-p-zUKNHvvooi';

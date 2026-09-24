@@ -20,6 +20,13 @@ import { SC_PAGE_ATTRS, SC_ROBOTS } from './nav';
 // GitHub stats are read on the server and refreshed at most hourly.
 export const revalidate = 3600;
 
+const SHARE_IMAGE = {
+	url: '/sourceco/og.png',
+	width: 1200,
+	height: 630,
+	alt: 'Jace Galloway to SourceCo',
+};
+
 // Unlisted: not in the nav, the sitemap or search results.
 export const metadata = {
 	title: { absolute: 'Jace Galloway — GTM Engineer' },
@@ -27,11 +34,20 @@ export const metadata = {
 		'Jace Galloway: outbound automation, data pipelines, n8n and Claude Code.',
 	robots: SC_ROBOTS,
 	alternates: { canonical: null },
+	// Link previews (iMessage, Facebook, Slack, LinkedIn): Jace's J mark
+	// pointing to the SourceCo logo on black.
 	openGraph: {
 		type: 'website',
+		url: '/sourceco',
 		title: 'Jace Galloway — GTM Engineer',
 		description: 'Outbound automation, data pipelines, n8n and Claude Code.',
-		images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+		images: [SHARE_IMAGE],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Jace Galloway — GTM Engineer',
+		description: 'Outbound automation, data pipelines, n8n and Claude Code.',
+		images: [SHARE_IMAGE.url],
 	},
 };
 

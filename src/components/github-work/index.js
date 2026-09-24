@@ -177,15 +177,20 @@ export default function GithubWork({ compact = false } = {}) {
 					className={compact ? 'mt-10 w-full pr-6 pt-6' : 'mb-20 w-full pr-6 pt-6'}>
 					<Frame
 						className='h-[300px] w-full sm:h-[160px]'
-						innerClassName='grid grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x-4 divide-y-4 sm:divide-y-0 divide-white/30'>
+						innerClassName={`grid ${
+							compact ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-4'
+						} divide-x-0 sm:divide-x-4 divide-y-4 sm:divide-y-0 divide-white/30`}>
 						<Stat
 							value={failed ? dash : profile?.public_repos ?? dash}
 							label='Public repos'
 						/>
-						<Stat
-							value={failed ? dash : profile?.followers ?? dash}
-							label='Followers'
-						/>
+						{/* The compact strip (SourceCo page) leaves followers out. */}
+						{!compact && (
+							<Stat
+								value={failed ? dash : profile?.followers ?? dash}
+								label='Followers'
+							/>
+						)}
 						<Stat
 							value={failed ? dash : topLanguage ?? dash}
 							label='Top language'

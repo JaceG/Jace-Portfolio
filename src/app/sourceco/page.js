@@ -1,8 +1,8 @@
 import Hero from '@/components/hero';
 import Me from '@/components/me';
-import GithubWork from '@/components/github-work';
 import Resume from '@/components/resume';
 import Books from '@/components/books';
+import ScGithub from '@/components/sourceco/github';
 import ScProjects from '@/components/sourceco/projects';
 import Anatomy from '@/components/sourceco/anatomy';
 import Deck from '@/components/sourceco/deck';
@@ -16,6 +16,9 @@ import {
 	SC_STACK,
 } from '@/constants/sourceco';
 import { SC_PAGE_ATTRS, SC_ROBOTS } from './nav';
+
+// GitHub stats are read on the server and refreshed at most hourly.
+export const revalidate = 3600;
 
 // Unlisted: not in the nav, the sitemap or search results.
 export const metadata = {
@@ -57,7 +60,7 @@ export default function SourceCo() {
 				<Me bioContent={SC_BIO} resumeUrl={SC_RESUME_URL} />
 			</section>
 			<section id='github' className='relative' aria-label='Live GitHub activity'>
-				<GithubWork compact />
+				<ScGithub />
 			</section>
 			<section id='projects' className='relative' aria-label='Projects'>
 				<ScProjects />

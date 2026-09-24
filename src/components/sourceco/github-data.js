@@ -8,7 +8,6 @@ const HOUR = 3600;
 
 const QUERY = `query($login: String!) {
   user(login: $login) {
-    createdAt
     location
     repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100) {
       totalCount
@@ -109,7 +108,6 @@ export async function getGithubStats() {
 		const days = weeks.flat();
 		return {
 			account: {
-				since: new Date(u.createdAt).getUTCFullYear(),
 				location: u.location || '',
 				publicRepos: u.repositories.totalCount,
 			},

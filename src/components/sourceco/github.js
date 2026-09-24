@@ -154,8 +154,8 @@ export default async function ScGithub() {
 					GitHub
 				</h1>
 				<p className='text-center text-[16px] font-black uppercase tracking-[-0.04em] text-tertiary sm:text-[20px]'>
-					On GitHub since {account.since}
-					{account.location ? ` · ${account.location}` : ''} · {fmt(account.publicRepos)} public repos
+					{account.location ? `${account.location} · ` : ''}
+					{fmt(account.publicRepos)} public repos
 				</p>
 
 				{/* Stat strip, same frame as the portfolio's */}

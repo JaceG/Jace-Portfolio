@@ -1,14 +1,18 @@
 import { projects } from '@/data/projects';
 import { SC_PROJECTS } from '@/constants/sourceco';
 
-// Server-only helper: the six SourceCo projects, in page order, with the
-// SourceCo snippet/image overrides applied. REMI is only reachable through
-// here and the /sourceco case-study route.
+// Server-only helpers for the SourceCo page. The six SourceCo picks come
+// first, in order, with their snippet/image overrides; every other public
+// project follows in the portfolio's own order. REMI is only reachable here
+// and through the /sourceco case-study route.
 export function getScProjects() {
-	return SC_PROJECTS.map(({ slug, title, ...overrides }) => {
+	const picks = SC_PROJECTS.map(({ slug, title, ...overrides }) => {
 		const project = projects.find((p) => p.slug === slug);
 		return project ? { ...project, ...overrides } : null;
 	}).filter(Boolean);
+	const picked = new Set(picks.map((p) => p.slug));
+	const rest = projects.filter((p) => !p.hidden && !picked.has(p.slug));
+	return [...picks, ...rest];
 }
 
 export function getScProject(slug) {

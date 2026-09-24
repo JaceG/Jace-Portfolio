@@ -4,7 +4,7 @@ import TerminalBridge from '@/components/sourceco/terminal-bridge';
 import { getScProject, getScProjects } from '@/components/sourceco/data';
 import { SC_PAGE_ATTRS, SC_ROBOTS } from '../../nav';
 
-// Only the six SourceCo projects exist here; anything else 404s.
+// Only projects listed on the SourceCo page exist here; anything else 404s.
 export const dynamicParams = false;
 
 export function generateStaticParams() {

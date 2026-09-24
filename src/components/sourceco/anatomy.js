@@ -6,12 +6,12 @@ const SRC = '/sourceco/anatomy.jpg';
 export default function Anatomy() {
 	return (
 		<Section>
-			<div className='bg-white py-24 flex flex-col items-center'>
-				<h1 className='text-center sm:text-9xl text-6xl font-bold text-[#39bb6a] uppercase mb-12'>
+			<div className='pb-24 flex flex-col items-center'>
+				<h1 className='text-center sm:text-9xl text-6xl font-bold text-white uppercase mb-12'>
 					Anatomy
 				</h1>
 				<div className='relative w-[calc(100vw-72px)] max-w-[1000px]'>
-					<div className='absolute inset-0 border-8 border-[#39bb6a]' aria-hidden='true' />
+					<div className='absolute inset-0 border-8 border-white' aria-hidden='true' />
 					<a
 						href={SRC}
 						target='_blank'
@@ -30,7 +30,7 @@ export default function Anatomy() {
 					href={SRC}
 					target='_blank'
 					rel='noopener noreferrer'
-					className='mt-10 text-sm font-bold uppercase tracking-[-0.02em] text-[#39bb6a] underline'>
+					className='mt-10 text-sm font-bold uppercase tracking-[-0.02em] text-white underline'>
 					Open full size
 				</a>
 			</div>

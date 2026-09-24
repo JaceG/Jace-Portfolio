@@ -65,11 +65,11 @@ export default function SourceCo() {
 			<section id='resume' className='relative' aria-label='Resume and skills'>
 				<Resume resumeUrl={SC_RESUME_URL} skillsVariant='sc' />
 			</section>
-			<section id='anatomy' className='relative' aria-label="SourceCo's GTM stack as a body">
-				<Anatomy />
-			</section>
 			<section id='books' className='relative' aria-label='Books'>
 				<Books hideTwitter />
+			</section>
+			<section id='anatomy' className='relative' aria-label="SourceCo's GTM stack as a body">
+				<Anatomy />
 			</section>
 			<section id='pitch' className='relative' aria-label='The n8n library deck'>
 				<Deck />

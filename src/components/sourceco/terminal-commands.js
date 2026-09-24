@@ -14,8 +14,8 @@ export const SC_SECTIONS = {
 	github: 'Live GitHub activity',
 	projects: 'Selected work',
 	resume: 'Resume & skills',
-	anatomy: "SourceCo's GTM stack as a body",
 	books: 'Books',
+	anatomy: "SourceCo's GTM stack as a body",
 	pitch: 'The n8n library deck',
 	connect: 'Call or text',
 };

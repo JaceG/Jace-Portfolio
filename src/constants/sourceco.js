@@ -37,7 +37,8 @@ export const SC_STACK = [
 	'React Native',
 ];
 
-// Order matters: the top three are the most relevant to the role.
+// Order matters: the top three are the most relevant to the role; 4-6 are
+// Jace's picks; the rest of the portfolio follows these on the page.
 // `title` is for the terminal listing; the page uses the case-study data.
 // `snippet` overrides the card text; `image` overrides the card/case-study art.
 export const SC_PROJECTS = [
@@ -57,6 +58,18 @@ export const SC_PROJECTS = [
 		title: 'Marketing Email API',
 		snippet:
 			'Scrapes data and sends it out: email automation with Shopify and WordPress integrations.',
+	},
+	{
+		slug: 'pdf-wonder-kit',
+		title: 'PDF Wonder Kit',
+	},
+	{
+		slug: 'imagedrop',
+		title: 'ImageDrop',
+	},
+	{
+		slug: 'dating-tool-app',
+		title: 'Dating Tool App',
 	},
 	{
 		slug: 'github-candidate-search',

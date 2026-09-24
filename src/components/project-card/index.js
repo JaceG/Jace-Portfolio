@@ -40,7 +40,7 @@ export default function Card({
 					<h2 className={`sm:text-4xl text-2xl font-bold ${inv ? 'text-white' : 'text-black'} uppercase mb-2`}>
 						{title}
 					</h2>
-					<p className={`${inv ? 'text-white font-medium' : 'text-tertiary'} text-base leading-6`}>
+					<p className={`${inv ? 'text-white font-semibold [text-shadow:0_1px_2px_rgba(0,0,0,0.3)]' : 'text-tertiary'} text-base leading-6`}>
 						{description}
 					</p>
 					<div className='relative w-full flex flex-row items-center py-4 text-center text-base gap-4 text-white'>

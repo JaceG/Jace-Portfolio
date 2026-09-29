@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+/*
+  The services site's own theme. It shares nothing with the portfolio's
+  globals.css. The font variables come from next/font on <body>, so they are
+  inlined (see the note in the portfolio's globals.css for why).
+*/
+@theme inline {
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-instrument), system-ui, sans-serif;
+}
+
+@theme {
+  --color-paper: #f7f4ee;
+  --color-card: #fffdf9;
+  --color-ink: #16181d;
+  --color-muted: #5b5f68;
+  --color-line: #e3ddd2;
+  --color-accent: #b8431a;
+  --color-accent-deep: #933413;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  /* Sticky header height, so anchored sections aren't hidden under it. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* The FAQ uses <details>; swap the default marker for a plus that turns. */
+.faq summary {
+  list-style: none;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary .faq-mark {
+  transition: transform 0.2s ease;
+}
+.faq details[open] summary .faq-mark {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .faq summary .faq-mark {
+    transition: none;
+  }
+}

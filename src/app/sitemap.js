@@ -46,6 +46,12 @@ export default async function sitemap() {
 			changeFrequency: 'weekly',
 			priority: 1,
 		},
+		{
+			url: `${baseUrl}/services`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.9,
+		},
 		...projectUrls,
 	];
 }

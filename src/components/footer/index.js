@@ -24,6 +24,10 @@ export default function Footer() {
 				<div className='flex sm:flex-row flex-col max-w-[1024px] mx-auto items-center justify-between'>
 					<div className='flex flex-col items-center sm:items-start'>
 						<p>© {new Date().getFullYear()} Jace Galloway</p>
+						{/* A plain <a>: /services has its own root layout. */}
+						<a href='/services' className='underline-offset-4 hover:underline'>
+							Need your business website modernized? →
+						</a>
 						<TerminalHint />
 					</div>
 					<div className='flex justify-between my-4'>

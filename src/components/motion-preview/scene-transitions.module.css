@@ -37,3 +37,6 @@
 .transitionSpace[data-transition-space='projects'] {
 	background: linear-gradient(#fff 0%, #fff 10%, #39bd6d 90%);
 }
+/* TEMPORARY: taller green band for the black hole experiment, plus a 50svh
+   buffer between the black hole and the keyboard scene. */
+.transitionSpace[data-transition-space='github'] > .readingRoom[data-transition-buffer='before'] { height: calc(clamp(360px, 75svh, 820px) + 50svh); }
